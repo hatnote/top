@@ -262,7 +262,7 @@ h1 .ultra {
     <div class="container">
         <h1>{full_lang} Wikipedia <span class="ultra">Top 100</span></h1>
         <p>The most-visited {full_lang} Wikipedia articles, updated daily. <a href="#about">Learn more</a>...</p> 
-        <div class="subtitle light"><span class="left">&larr;</span><p class="center">{formatted_date}</p><span class="right">&rarr;</span>
+        <div class="subtitle light">{?prev}<span class="left">&larr;</span>{/prev}<p class="center">{formatted_date}</p>{?next}<span class="right">&rarr;</span>{/next}
 <br style="clear: left;" />
         </div>
     </div>

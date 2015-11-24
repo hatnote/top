@@ -112,30 +112,31 @@ def get_summaries(titles, lang, project):
     return summaries
 
 
-def get_article_traffic(date, lang, project):
+def get_article_traffic(query_date, lang, project):
     '''\
     Get the traffic report for the top 1000 articles for a given day.
     '''
     url = TOP_API_URL.format(lang=lang,
                              project=project,
-                             year=date.year,
-                             month=date.month,
-                             day=date.day)
+                             year=query_date.year,
+                             month=query_date.month,
+                             day='%02d' % query_date.day)
     if DEBUG:
         print 'Getting %s' % url
     resp = urllib2.urlopen(url)
     data = loads(resp.read())
-    articles = loads(data['items'][0]['articles'])
+    articles = data['items'][0]['articles']
     return articles
 
 
-def load_prev_stats(date, limit=7, lang=DEFAULT_LANG, project=DEFAULT_PROJECT):
+def load_prev_stats(query_date, limit=10, lang=DEFAULT_LANG,
+                    project=DEFAULT_PROJECT):
     '''\
     Load available local traffic data.
     '''
     prev_stats = []
     for lookback in range(1, limit):
-        prev = date - timedelta(days=lookback)
+        prev = query_date - timedelta(days=lookback)
         prevfile_name = DATA_PATH_TMPL.format(lang=lang,
                                               project=project,
                                               date=prev.strftime('%Y%m%d'),
@@ -144,7 +145,7 @@ def load_prev_stats(date, limit=7, lang=DEFAULT_LANG, project=DEFAULT_PROJECT):
             data_file = codecs.open(prevfile_name, 'r')
         except IOError:
             print 'No file for %s' % prev.strftime('%Y%m%d')
-            continue
+            break
         with data_file:
             prev_stats.append(dict((art['article'], art) for art in
                                    load(data_file)['articles']))
@@ -205,60 +206,50 @@ def tweet_composer(article, lang, project):
     return msg
 
 
-def make_article_list(date, limit, lang, project):
-    # TODO: This is a mess.
+def make_article_list(query_date, limit, lang, project):
+    # TODO: Clean up
     wiki_info = get_wiki_info(lang, project)
-    cur_articles = get_article_traffic(date, lang, project)
+    cur_articles = get_article_traffic(query_date, lang, project)
     cur_articles = [art for art in cur_articles
                     if is_article(art['article'], wiki_info)]
-    prev = date - timedelta(days=1)
+    prev = query_date - timedelta(days=1)
     prev_articles = get_article_traffic(prev, lang, project)
-    prev_articles = [art for art in prev_articles
-                     if is_article(art['article'], wiki_info)]
-    prev_stats = load_prev_stats(date)
+    prev_articles = dict((art['article'], art) for art in prev_articles
+                         if is_article(art['article'], wiki_info))
+    prev_stats = load_prev_stats(query_date)
+    max_streak = len(prev_stats) + 1
     streaks = find_streaks([a['article'] for a in cur_articles], prev_stats)
     ret = []
-    for idx, article in enumerate(cur_articles):
-        prev_ranks = [prev for prev in prev_articles
-                      if prev['article'] == article['article']]
-        if len(prev_ranks) > 1:
-            # import pdb; pdb.set_trace()
-            pass
-        if len(prev_ranks) == 1:
-            article['pviews'] = prev_ranks[0]['views']
-            article['prank'] = prev_ranks[0]['rank']
-            if article['views'] > article['pviews']:
-                article['view_trend'] = '&uarr;'
-            elif article['views'] == article['pviews']:
-                article['view_trend'] = '-'
-            else:
-                article['view_trend'] = '&darr;'
-            if article['rank'] < article['prank']:
-                article['rank_trend'] = '&uarr;'
-            elif article['rank'] == article['prank']:
-                article['rank_trend'] = '-'
-            else:
-                article['rank_trend'] = '&darr;'
+    for article in cur_articles:
+        prev_article = prev_articles.get(article['article'], {})
+        article['pviews'] = prev_article.get('views', None)
+        article['prank'] = prev_article.get('rank', None)
+        if article['pviews'] and article['pviews'] < article['views']:
+            article['view_trend'] = '&uarr;'
+        elif not article['pviews']:
+            article['view_trend'] = '&uarr;'
+        elif article['views'] == article['pviews']:
+            article['view_trend'] = '-'
+        else:
+            article['view_trend'] = '&darr;'
+        if article['prank'] and article['rank'] < article['prank']:
+            article['rank_trend'] = '&uarr;'
+        elif not article['prank']:
+            article['rank_trend'] = '&uarr;'
+        elif article['rank'] == article['prank']:
+            article['rank_trend'] = '-'
+        else:
+            article['rank_trend'] = '&darr;'
+        if article['pviews']:
             article['view_delta'] = shorten_number(abs(article['views'] -
                                                    article['pviews']))
         else:
-            article['pviews'] = None
-            article['prank'] = None
             article['view_delta'] = None
-            article['view_trend'] = '&uarr;'
-            article['rank_trend'] = '&uarr;'
-        if len(prev_stats) > 0:
-            possible_streak = len(prev_stats)
-            streak = streaks.get(article['article'], (0))[0] + 1
-            streak_min = streaks.get(article['article'], (None, None))[1]
-            if streak == possible_streak + 1:
-                streak = '%s+' % (streak - 1,)
-        else:
-            if DEBUG:
-                print 'No streak data'
-            streak = 0
-            streak_min = None
-        article['streak_min'] = streak_min
+        (streak, rank_max) = streaks.get(article['article'], (0, None))
+        streak = streak + 1
+        if streak == max_streak:
+            streak = '%s+' % (streak - 1,)
+        article['max_streak'] = max_streak
         article['streak'] = streak
         article['rank'] = len(ret) + 1
         article['views_raw'] = article['views']
@@ -302,7 +293,7 @@ def add_extras(articles, lang, project):
 def save_traffic_stats(lang, project, query_date, limit=DEFAULT_LIMIT):
     '''\
     1. Get articles
-    2. Add extras
+    2. Add images and summaries
     3. Prepare and save results
     '''
     articles = make_article_list(query_date,
