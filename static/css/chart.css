@@ -1,0 +1,209 @@
+body {
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 11pt;
+    background: #dfe0e2;
+}
+
+a {
+    color: #0098d8;
+    text-decoration: none;
+}
+
+ul, li {
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    font-size: 4em;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.subtitle {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: 900;
+    background: #0D0F05;
+    color: #fbfbfb;
+    border-radius: 7px 7px 0 0;
+    -moz-border-radius: 7px 7px 0 0;
+    -webkit-border-radius: 7px 7px 0 0;
+}
+
+.subtitle p {
+    margin: 0;
+    padding: 0.5em;
+}
+
+h1 .ultra {
+    font-weight: 900;
+}
+
+.row {
+    display: table;
+    margin-bottom: 0.5em;
+    background-color: #fbfbfb;
+    width: 100%;
+    border-bottom: 2px solid #fbfbfb;
+    border-radius: 7px 7px 7px 7px;
+    -moz-border-radius: 7px 7px 7px 7px;
+    -webkit-border-radius: 7px 7px 7px 7px;
+    -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.label:hover a {
+    text-decoration: underline;
+}
+
+
+.column {
+    display: table-cell;
+    overflow: hidden;
+    color: #46454b;
+}
+
+.rank {
+    font-family: 'Roboto Slab', serif;  
+    font-size: 2em;
+    width: 50px;
+    text-align: center;
+    background: #0D0F05;
+    color: #fbfbfb;
+    padding: 0.2em;
+    vertical-align: middle;
+    border-radius: 7px 0 0 7px;
+    -moz-border-radius: 7px 0 0 7px;
+    -webkit-border-radius: 7px 0 0 7px;
+}
+
+.rank a {
+    color: #fbfbfb;
+    text-decoration: none;
+}
+
+.cover-art {
+    background-size: cover; 
+    width: 150px; 
+}
+
+.summary {
+    margin: 0 1em 1em 1em;
+}
+
+.meta {
+    line-height: 0.8em;
+    margin: 0;
+}
+
+.title {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 800;
+    font-size: 2em;
+    line-height: 1em;
+    margin: 0.5em 0 0.5em 0.5em;
+}
+
+.views, .streak {
+    display: inline-block;
+    margin: 0.5em 0 0.5em 0;
+}
+
+.streak {
+    padding-left: 1em;
+}
+
+.meta-area {
+    margin: 0 0 1em 1em;
+    border-top: 1px dotted #ccc;
+    font-size: 0.9em;
+    color: #74838A;
+}
+
+.container {
+    max-width: 800px;
+    min-width: 500px;
+    margin: auto;
+}
+
+
+.header {
+    text-align: center;
+    padding-top: 4em;
+    background-color: #fbfbfb;
+    border-bottom: 4px solid #0d0f05;
+    margin: 0 auto;
+}
+
+.row:hover {
+    background: rgb(224, 233, 251);
+    -webkit-transition: background-color 500ms linear;
+    -moz-transition: background-color 500ms linear;
+    -o-transition: background-color 500ms linear;
+    -ms-transition: background-color 500ms linear;
+    transition: background-color 500ms linear;
+}
+
+.footer-area {
+    border-top: 1px solid #46454b;
+    margin: 0;
+    padding: 2em 0;
+    background-color: #fbfbfb;
+    font-size: 1.2em;
+    line-height: 1.5em;
+}
+
+.footer a:hover, a.learn:hover {
+    background-color: rgb(224, 233, 251);
+    -webkit-transition: background-color 500ms linear;
+    -moz-transition: background-color 500ms linear;
+    -o-transition: background-color 500ms linear;
+    -ms-transition: background-color 500ms linear;
+    transition: background-color 500ms linear;
+}
+
+.twitter-icon {
+    float: right;
+    margin: 1em;
+}
+
+a.issue_nav {
+    color: #fff;
+}
+
+a.issue_nav:hover {
+    color: #fff;
+    background-color: #0098d8;
+    -webkit-transition: background-color 100ms linear;
+    -moz-transition: background-color 100ms linear;
+    -o-transition: background-color 100ms linear;
+    -ms-transition: background-color 100ms linear;
+    transition: background-color 100ms linear;
+}
+
+.left {
+    padding: 0.5em;
+    float: left;
+    border-radius: 7px 0 0 0;
+    -moz-border-radius: 7px 0 0 0;
+    -webkit-border-radius: 7px 0 0 0;
+    width: 20%;
+}
+
+.center {
+    float: left;
+    width: 50%;
+}
+    
+.right {
+    padding: 0.5em;
+    float: right;
+    border-radius: 0 7px 0 0;
+    -moz-border-radius: 0 7px 0 0;
+    -webkit-border-radius: 0 7px 0 0;
+    width: 20%;
+}

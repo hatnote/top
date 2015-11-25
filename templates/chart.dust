@@ -3,21 +3,8 @@
 <meta charset="UTF-8">
 <title>{full_lang} {project} Top 100 on {formatted_date}</title>
 <script src="../../../js/jquery.js"></script>
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<!-- <script src="js/jquery.dotdotdot.min.js"></script> -->
 <link href='../../../css/fonts.css' rel='stylesheet' type='text/css'>
 <link href='../../../css/chart.css' rel='stylesheet' type='text/css'>
-<script>
-$(document).ready(function () {
-    //$('.summary').dotdotdot({height: 80})
-    // $('.meta').hide()
-    // $('.row').hover(function() {
-    //     $('.meta', this).toggle();
-    // }, function () {
-    //     $('.meta', this).hide();
-    // })
-})
-</script>
 <style>
 {#articles}
 .cover-{rank} {
