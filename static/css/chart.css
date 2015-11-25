@@ -134,9 +134,9 @@ h1 .ultra {
 .header {
     text-align: center;
     padding-top: 4em;
-    background-color: #fbfbfb;
     border-bottom: 4px solid #0d0f05;
     margin: 0 auto;
+    background: #fbfbfb;
 }
 
 .row:hover {
