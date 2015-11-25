@@ -1,10 +1,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>{full_lang} Wikipedia Top 100</title>
+<title>{full_lang} {project} Top 100 on {formatted_date}</title>
+<script src="../../../js/jquery.js"></script>
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <!-- <script src="js/jquery.dotdotdot.min.js"></script> -->
-<link href='https://fonts.googleapis.com/css?family=Lato:400,900|Roboto+Slab' rel='stylesheet' type='text/css'>
+<link href='../../../css/fonts.css' rel='stylesheet' type='text/css'>
+<link href='../../../css/chart.css' rel='stylesheet' type='text/css'>
 <script>
 $(document).ready(function () {
     //$('.summary').dotdotdot({height: 80})
@@ -17,127 +19,6 @@ $(document).ready(function () {
 })
 </script>
 <style>
-
-body {
-    margin: 0;
-    font-family: 'Lato', sans-serif;
-    font-weight: 400;
-    font-size: 11pt;
-    background: #dfe0e2;
-}
-
-a {
-    color: #0098d8;
-    text-decoration: none;
-}
-
-ul, li {
-    padding: 0;
-}
-
-h1 {
-    text-align: center;
-    font-size: 4em;
-    font-weight: 400;
-    margin-bottom: 0;
-}
-
-.subtitle {
-    margin: 0;
-    font-size: 1.5em;
-    font-weight: 900;
-    background: #0D0F05;
-    color: #fbfbfb;
-    border-radius: 7px 7px 0 0;
-    -moz-border-radius: 7px 7px 0 0;
-    -webkit-border-radius: 7px 7px 0 0;
-}
-
-.subtitle p {
-    margin: 0;
-    padding: 0.5em;
-}
-
-h1 .ultra {
-    font-weight: 900;
-}
-
-.row {
-    display: table;
-    margin-bottom: 0.5em;
-    background-color: #fbfbfb;
-    width: 100%;
-    border-bottom: 2px solid #fbfbfb;
-    border-radius: 7px 7px 7px 7px;
-    -moz-border-radius: 7px 7px 7px 7px;
-    -webkit-border-radius: 7px 7px 7px 7px;
-    -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-    -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-}
-
-.label:hover a {
-    text-decoration: underline;
-}
-
-
-.column {
-    display: table-cell;
-    overflow: hidden;
-    color: #46454b;
-}
-
-.rank {
-    font-family: 'Roboto Slab', serif;  
-    font-size: 2em;
-    width: 50px;
-    text-align: center;
-    background: #0D0F05;
-    color: #fbfbfb;
-    padding: 0.2em;
-    vertical-align: middle;
-    border-radius: 7px 0 0 7px;
-    -moz-border-radius: 7px 0 0 7px;
-    -webkit-border-radius: 7px 0 0 7px;
-}
-
-.rank a {
-    color: #fbfbfb;
-    text-decoration: none;
-}
-
-.label {
-    /*width: 100%;*/
-
-}
-
-.cover-art {
-    background-size: cover; 
-    width: 150px; 
-    /*height: 150px;*/
-}
-
-.summary {
-    margin: 0 1em 1em 1em;
-}
-
-.sm .cover-art {
-    width: 100px;
-    height: 100px;
-}
-
-.sm .rank {
-    height: 100px;
-    line-height: 100px;
-    font-size: 1.5em;
-    width: 25px;
-}
-
-.meta {
-    line-height: 0.8em;
-    margin: 0;
-}
-
 {#articles}
 .cover-{rank} {
     background: url({image_url});
@@ -145,157 +26,60 @@ h1 .ultra {
     background-position: 50%; 
 }
 {/articles}
-
-
-.title {
-    font-family: 'Roboto Slab', serif;
-    font-weight: 800;
-    font-size: 2em;
-    line-height: 1em;
-    margin: 0.5em 0 0.5em 0.5em;
-}
-
-.views, .streak {
-    display: inline-block;
-    margin: 0.5em 0 0.5em 0;
-}
-
-.streak {
-    padding-left: 1em;
-}
-
-.meta-area {
-    margin: 0 0 1em 1em;
-    border-top: 1px dotted #ccc;
-    font-size: 0.9em;
-    color: #74838A;
-}
-
-.container {
-    max-width: 800px;
-    min-width: 500px;
-    margin: auto;
-}
-
-
-.header {
-    text-align: center;
-    padding-top: 4em;
-    background-color: #fbfbfb;
-    border-bottom: 2px solid #0d0f05;
-    margin: 0 auto;
-}
-
-.row:hover .column, .row:hover .views, .row:hover .streak {
-    
-}
-
-.row:hover {
-    background: rgb(224, 233, 251);
-    -webkit-transition: background-color 500ms linear;
-    -moz-transition: background-color 500ms linear;
-    -o-transition: background-color 500ms linear;
-    -ms-transition: background-color 500ms linear;
-    transition: background-color 500ms linear;
-    border-bottom: 2px solid #46454b;
-}
-
-.footer-area {
-    border-top: 1px solid #46454b;
-    margin: 0;
-    padding: 2em 0;
-    background-color: #fbfbfb;
-}
-
-.footer-area h2 {
-    
-}
-
-.twitter-icon {
-    float: right;
-    margin: 1em;
-}
-
-.left {
-    padding: 0.5em;
-    float: left;
-    border-radius: 7px 0 0 0;
-    -moz-border-radius: 7px 0 0 0;
-    -webkit-border-radius: 7px 0 0 0;
-    width: 20%;
-}
-.center {
-    float: left;
-    width: 50%;
-}
-.left:hover {
-    background-color: #0098d8;
-    -webkit-transition: background-color 100ms linear;
-    -moz-transition: background-color 100ms linear;
-    -o-transition: background-color 100ms linear;
-    -ms-transition: background-color 100ms linear;
-    transition: background-color 100ms linear;
-}
-.right {
-    padding: 0.5em;
-    float: right;
-    border-radius: 0 7px 0 0;
-    -moz-border-radius: 0 7px 0 0;
-    -webkit-border-radius: 0 7px 0 0;
-    width: 20%;
-}
-
-.right:hover {
-    background-color: #0098d8;
-    -webkit-transition: background-color 100ms linear;
-    -moz-transition: background-color 100ms linear;
-    -o-transition: background-color 10ms linear;
-    -ms-transition: background-color 100ms linear;
-    transition: background-color 100ms linear;
-}
-
 </style>
 </head>
 <body>
 
-<div class="header">
+    <div class="header">
+        <div class="container">
+            <h1>{full_lang} {project} <span class="ultra">Top 100</span></h1>
+            <p>The most-visited {full_lang} {project} articles, updated daily. <a href="#about" class="learn">Learn more</a>...</p> 
+            <div class="subtitle light">{?prev}<a class="issue_nav left" href="../../../{prev}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev}<p class="center">{formatted_date}</p>{?next}<a class="issue_nav right" href="../../../{next}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next}
+    <br style="clear: left;" />
+            </div>
+        </div>
+
+    </div>
+
     <div class="container">
-        <h1>{full_lang} Wikipedia <span class="ultra">Top 100</span></h1>
-        <p>The most-visited {full_lang} Wikipedia articles, updated daily. <a href="#about">Learn more</a>...</p> 
-        <div class="subtitle light">{?prev}<span class="left">&larr;</span>{/prev}<p class="center">{formatted_date}</p>{?next}<span class="right">&rarr;</span>{/next}
-<br style="clear: left;" />
+        <ul>
+            {#articles}
+            <li class="row">
+                <div class="column rank"><p><a href="#rank-{rank}">{rank}</a></p></div>
+                <a class="column cover-art cover-{rank}" href="{url}" target="_blank"></a>
+                <div class="column label">
+                    <a id="rank-{rank}"></a>
+                    <a id="title-{article}"></a>
+                    <p class="title"><a href="{url}" target="_blank">{title}</a></p>
+                    <p class="summary">{summary}</p>
+                    <div class="meta-area">
+                        <p class="views">{views} views <span class="meta">({view_trend|s}{view_delta} from yesterday)</span></p>
+                        <p class="streak">{@gt key=streak value=1}{streak} day streak{/gt}</p>
+                        <a href="http://twitter.com/share?text={tweet}&amp;url=" target="_blank"><img class="twitter-icon" src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Twitter_bird_logo_2012.svg/18px-Twitter_bird_logo_2012.svg.png"></a>
+                    </div>
+                </div>
+            </li>
+            {/articles}
+        </ul>
+    </div>
+
+    <div class="footer-area">
+        <div class="container footer">
+            <h2>About</h2>
+            <p>Learn more on the <a href="#">Hatnote Blog</a>.</p>
+            <p><a name="about"></a>A daily list of the most visited {project} articles, generated by <a href="https://twitter.com/sklaporte">Stephen LaPorte</a> and <a href="https://twitter.com/mhashemi">Mahmoud Hashemi</a>. Wikipedia articles are written by thousands of people and read by billions more. If you find this list interesting, you will enjoy <a href="http://weekly.hatnote.com">The Weeklypedia</a>, a weekly digest of the most edited Wikipedia articles.</p>
+            <p>This page was made possible by <a href="https://wikimedia.org/api/rest_v1/?doc#!/Pageviews_data/get_metrics_pageviews_top_project_access_year_month_day">{project}'s new page view API</a>, with some nice images and summaries from the <a href="https://www.mediawiki.org/wiki/API:Query">MediaWiki API</a>. You can find more code and documentation <a href="https://github.com/hatnote/top">available on github</a>.</p>
+            <p>Want to see a list of the most visited articles in another language of Wikipedia? So do we! Please <a href="https://github.com/hatnote/top/issues">send a request</a> and let us know if you can help translate the templates.</p>
         </div>
     </div>
 
-</div>
-
-<div class="container">
-    <ul>
-        {#articles}
-        <li class="row">
-            <div class="column rank"><p><a href="#rank-{rank}">{rank}</a></p></div>
-            <a class="column cover-art cover-{rank}" href="{url}" target="_blank"></a>
-            <div class="column label">
-                <a id="rank-{rank}"></a>
-                <a id="title-{article}"></a>
-                <p class="title"><a href="{url}" target="_blank">{title}</a></p>
-                <p class="summary">{summary}</p>
-                <div class="meta-area">
-                    <p class="views">{views} views <span class="meta">({view_trend|s}{view_delta} from yesterday)</span></p>
-                    <p class="streak">{@gt key=streak value=1}{streak} day streak{/gt}</p>
-                    <a href="http://twitter.com/share?text={tweet}&amp;url=" target="_blank"><img class="twitter-icon" src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Twitter_bird_logo_2012.svg/18px-Twitter_bird_logo_2012.svg.png"></a>
-                </div>
-            </div>
-        </li>
-        {/articles}
-    </ul>
-</div>
-
-<div class="footer-area">
-    <div class="container footer">
-        <h2>About</h2>
-        <p><a name="about"></a>An experiment built on Wikipedia's new page view API. etc</p>
-    </div>
-</div>
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-40320359-1', 'hatnote.com');
+    ga('send', 'pageview');
+    </script>
 </body>
 </html>

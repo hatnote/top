@@ -11,15 +11,16 @@ from datetime import date, timedelta, datetime
 from boltons.fileutils import mkdir_p
 
 from utils import grouper, shorten_number
+from word_filter import word_filter
 from common import (DATA_PATH_TMPL,
                     TOP_API_URL,
                     MW_API_URL,
                     DEBUG,
                     PREFIXES,
-                    LOCAL_LANG_MAP)
+                    LOCAL_LANG_MAP,
+                    DEFAULT_PROJECT,
+                    DEFAULT_LANG)
 
-DEFAULT_LANG = 'en'
-DEFAULT_PROJECT = 'wikipedia'
 DEFAULT_LIMIT = 100
 DEFAULT_IMAGE = 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/'\
                 'Wikipedia%27s_W.svg/400px-Wikipedia%27s_W.svg.png'
@@ -139,8 +140,9 @@ def load_prev_stats(query_date, limit=10, lang=DEFAULT_LANG,
         prev = query_date - timedelta(days=lookback)
         prevfile_name = DATA_PATH_TMPL.format(lang=lang,
                                               project=project,
-                                              date=prev.strftime('%Y%m%d'),
-                                              format='json')
+                                              year=prev.year,
+                                              month=prev.month,
+                                              day=prev.day)
         try:
             data_file = codecs.open(prevfile_name, 'r')
         except IOError:
@@ -182,8 +184,11 @@ def tweet_composer(article, lang, project):
     title = article['title']
     project = project.capitalize()
     lang = LOCAL_LANG_MAP[lang]
-    streak = article['streak']
-    if type(streak) is str or (type(streak) is int and streak > 1):
+    if type(article['streak']) is str:
+        streak = article['streak'].replace('+', '')
+    else:
+        streak = article['streak']
+    if int(streak) > 1:
         msg = 'On a %s day streak, %s was the #%s most read article on %s #%s'\
             ' w/ %s views' % (article['streak'],
                               title,
@@ -285,6 +290,9 @@ def add_extras(articles, lang, project):
         for article in article_group:
             title = article['title']
             article['image_url'] = images[title]
+            if word_filter(title) or word_filter(article['image_url']):
+                print 'no image for %s' % (title,)
+                article['image_url'] = DEFAULT_IMAGE
             article['summary'] = summaries[title]
             ret.append(article)
     return ret
@@ -309,12 +317,13 @@ def save_traffic_stats(lang, project, query_date, limit=DEFAULT_LIMIT):
            'lang': lang,
            'full_lang': LOCAL_LANG_MAP[lang],
            'examples': [articles[0], articles[query_date.day*2]],
-           'project': project,
+           'project': project.capitalize(),
            'meta': {'generated': datetime.now().strftime("%Y-%m-%d %H:%M:%S")}}
     outfile_name = DATA_PATH_TMPL.format(lang=lang,
                                          project=project,
-                                         date=query_date.strftime('%Y%m%d'),
-                                         format='json')
+                                         year=query_date.year,
+                                         month=query_date.month,
+                                         day=query_date.day)
     try:
         out_file = codecs.open(outfile_name, 'w')
     except IOError:
@@ -333,6 +342,7 @@ def get_argparser():
     prs.add_argument('--limit', default=DEFAULT_LIMIT)
     prs.add_argument('--project', default=DEFAULT_PROJECT)
     prs.add_argument('--date', default=None)
+    prs.add_argument('--update', '-u', action='store_true')
     return prs
 
 
@@ -344,6 +354,9 @@ if __name__ == '__main__':
     else:
         input_date = datetime.strptime(args.date, '%Y%m%d')
     save_traffic_stats(args.lang, args.project, input_date)
+    if args.update:
+        from build_page import save_and_update
+        print save_and_update(input_date, args.lang, args.project)
     if DEBUG:
         import pdb
         pdb.set_trace()
