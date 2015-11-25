@@ -13,6 +13,7 @@ from boltons.fileutils import mkdir_p
 from utils import grouper, shorten_number
 from word_filter import word_filter
 from common import (DATA_PATH_TMPL,
+                    PERMALINK_TMPL,
                     TOP_API_URL,
                     MW_API_URL,
                     DEBUG,
@@ -267,6 +268,13 @@ def make_article_list(query_date, limit, lang, project):
                                                      lang,
                                                      project).encode('utf-8'),
                                       safe=':/')
+
+        article['permalink'] = quote_plus(PERMALINK_TMPL.format(lang=lang,
+                                                     project=project,
+                                                     year=query_date.year,
+                                                     month=query_date.month,
+                                                     day=query_date.day,
+                                                     title=article['article']).encode('utf-8'))
         ret.append(article)
     return ret[:limit]
 

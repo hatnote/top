@@ -2,9 +2,9 @@
 <head>
     <meta charset="UTF-8">
     <title>{full_lang} {project} Top 100 on {formatted_date}</title>
-    <script src="../../../js/jquery.js"></script>
-    <link href='../../../css/fonts.css' rel='stylesheet' type='text/css'>
-    <link href='../../../css/chart.css' rel='stylesheet' type='text/css'>
+    <script src="../../../../js/jquery.js"></script>
+    <link href='../../../../css/fonts.css' rel='stylesheet' type='text/css'>
+    <link href='../../../../css/chart.css' rel='stylesheet' type='text/css'>
     <style>
     {#articles}
     .cover-{rank} {
@@ -20,7 +20,7 @@
         <div class="container">
             <h1>{full_lang} {project} <span class="ultra">Top 100</span></h1>
             <p>The most-visited {full_lang} {project} articles, updated daily. <a href="#about" class="learn">Learn more</a>...</p> 
-            <div class="subtitle light">{?prev}<a class="issue_nav left" href="../../../{prev}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev}<p class="center">{formatted_date}</p>{?next}<a class="issue_nav right" href="../../../{next}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next}
+            <div class="subtitle light">{?prev}<a class="issue_nav left" href="../../../../{prev}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev}<p class="center">{formatted_date}</p>{?next}<a class="issue_nav right" href="../../../../{next}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next}
             <br style="clear: left;" />
             </div>
         </div>
@@ -41,7 +41,7 @@
                     <div class="meta-area">
                         <p class="views">{views} views <span class="meta">({view_trend|s}{view_delta} from yesterday)</span></p>
                         <p class="streak">{@gt key=streak value=1}{streak} day streak{/gt}</p>
-                        <a href="http://twitter.com/share?text={tweet}&amp;url=" target="_blank"><img class="twitter-icon" src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Twitter_bird_logo_2012.svg/18px-Twitter_bird_logo_2012.svg.png"></a>
+                        <a href="http://twitter.com/share?text={tweet}&amp;url={permalink}" target="_blank"><img class="twitter-icon" src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Twitter_bird_logo_2012.svg/18px-Twitter_bird_logo_2012.svg.png"></a>
                     </div>
                 </div>
             </li>

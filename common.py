@@ -10,12 +10,13 @@ DEBUG = True
 # Files and locations
 _CUR_PATH = dirname(os.path.abspath(__file__))
 _BASE_PATH = pjoin(_CUR_PATH, 'static')
-DATA_FILE_TMPL = '{lang}{project}/{year}/{month}/{day}.json'
+DATA_FILE_TMPL = '{lang}/{project}/{year}/{month}/{day}.json'
 DATA_PATH_TMPL = pjoin(_BASE_PATH, DATA_FILE_TMPL)
 HTML_BASE_PATH = pjoin(_CUR_PATH, 'static')
-HTML_FILE_TMPL = '{lang}{project}/{year}/{month}/{day}.html'
+HTML_FILE_TMPL = '{lang}/{project}/{year}/{month}/{day}.html'
 HTML_PATH_TMPL = pjoin(_BASE_PATH, HTML_FILE_TMPL)
-
+PERMALINK_TMPL = u'http://top.hatnote.com/{lang}/{project}/{year}/{month}/' \
+                  '{day}.html#title-{title}'
 
 # Valuable and important URLs
 TOP_API_URL = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/'\
