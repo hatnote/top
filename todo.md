@@ -11,7 +11,8 @@
     - Make "yesterday" into a link to previous issues
 - Set up top.hatnote.com
 - Make the nav bar follow on scroll?
-- Make each acticle tab a slightly different color 
+- Make each acticle tab a slightly different color
 - Rank delta from yesterday?
 - Overall top-level stats for the day
 - In prev stats, only look back until the first stats are missing
+- move templates/ dir under top/ (would do it myself, but don't want to create conflicts)
