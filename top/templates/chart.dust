@@ -51,10 +51,10 @@
                 <div class="column label">
                     <a id="rank-{rank}"></a>
                     <a id="title-{article}"></a>
-                    <p class="title"><a href="{url}" target="_blank">{title}</a><a href="{dir_depth}{current}#rank-{rank}"><img class="permalink" src="{dir_depth}img/permalink.png"></a></p>
+                    <p class="title"><a href="{url}" target="_blank">{title}</a><a href="{dir_depth}{current}#title-{article}"><img class="permalink" src="{dir_depth}img/permalink.png"></a></p>
                     <p class="summary">{summary}</p>
                     <div class="meta-area">
-                        <p class="views">{views} views <span class="meta">({view_trend|s}{view_delta} from yesterday)</span></p>
+                        <p class="views">{views} views <span class="meta">({@gt key=streak value=1}<a href="{dir_depth}{prev}#title-{article}" class="yesterday">{/gt}{view_trend|s}{view_delta} from yesterday{@gt key=streak value=1}</a>{/gt})</span></p>
                         <p class="streak">{@gt key=streak value=1}{streak} day streak{/gt}</p>
                         <a href="http://twitter.com/share?text={tweet}&amp;url={permalink}" target="_blank"><img class="twitter-icon" src="{dir_depth}img/twitter.png"></a>
                     </div>
@@ -68,6 +68,7 @@
         <div class="container footer">
             <h2>About</h2>
             {about|s}
+            <p><a href="#top" class="up">&uarr; Back to top</a></p>
         </div>
     </div>
 

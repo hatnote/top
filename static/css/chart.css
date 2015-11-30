@@ -56,10 +56,19 @@ h1 .ultra {
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
+@media (max-width: 800px) {
+        .container {
+            padding: 0 1em;
+        }
+    }
+
 .label:hover a {
     text-decoration: underline;
 }
 
+.up {
+    float: right;
+}
 
 .column {
     display: table-cell;
@@ -231,4 +240,14 @@ a.issue_nav:hover {
 .permalink {
     display: none;
     margin-left: 0.2em;
+}
+
+a.yesterday {
+    color: #74838A;
+    text-decoration: none;
+}
+
+a.yesterday:hover {
+    text-decoration: none;
+    color: #0098d8;
 }

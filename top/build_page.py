@@ -31,7 +31,7 @@ MOST_RECENT_CHART = date.today() - timedelta(days=1)
 
 
 def save_rendered(outfile_name, template_name, context):
-    ashes_env = ashes.AshesEnv(['templates'], keep_whitespace=True)
+    ashes_env = ashes.AshesEnv(['./top/templates'], keep_whitespace=True)
     rendered = ashes_env.render(template_name, context)
     try:
         out_file = codecs.open(outfile_name, 'w', 'utf-8')
