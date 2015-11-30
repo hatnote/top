@@ -133,7 +133,7 @@ h1 .ultra {
 
 .header {
     text-align: center;
-    padding-top: 4em;
+    padding-top: 1em;
     border-bottom: 4px solid #0d0f05;
     margin: 0 auto;
     background: #fbfbfb;
@@ -157,7 +157,7 @@ h1 .ultra {
     line-height: 1.5em;
 }
 
-.footer a:hover, a.learn:hover {
+.footer a:hover, a.learn:hover, .top-area a:hover, .about a:hover {
     background-color: rgb(224, 233, 251);
     -webkit-transition: background-color 500ms linear;
     -moz-transition: background-color 500ms linear;
@@ -206,4 +206,24 @@ a.issue_nav:hover {
     -moz-border-radius: 0 7px 0 0;
     -webkit-border-radius: 0 7px 0 0;
     width: 20%;
+}
+
+.top-area {
+    background-color: #fbfbfb;
+    text-align: center;
+}
+
+.top li {
+    display: inline-block;
+    list-style: none;
+}
+
+.top ul {
+    margin: 0em;
+    border-bottom: 1px solid #ccc;
+    font-size: 0.9em;
+}
+
+.top li {
+    padding: 0.5em 2em 0.5em 0;
 }

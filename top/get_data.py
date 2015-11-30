@@ -11,6 +11,7 @@ from datetime import date, timedelta, datetime
 from boltons.fileutils import mkdir_p
 
 from utils import grouper, shorten_number
+from build_page import update_charts
 from word_filter import word_filter
 from common import (DATA_PATH_TMPL,
                     PERMALINK_TMPL,
@@ -117,6 +118,7 @@ def get_summaries(titles, lang, project):
 def get_article_traffic(query_date, lang, project):
     '''\
     Get the traffic report for the top 1000 articles for a given day.
+    TODO: Get from local file, if available
     '''
     url = TOP_API_URL.format(lang=lang,
                              project=project,
@@ -269,12 +271,13 @@ def make_article_list(query_date, limit, lang, project):
                                                      project).encode('utf-8'),
                                       safe=':/')
 
-        article['permalink'] = quote_plus(PERMALINK_TMPL.format(lang=lang,
+        article['permalink'] = PERMALINK_TMPL.format(lang=lang,
                                                      project=project,
                                                      year=query_date.year,
                                                      month=query_date.month,
                                                      day=query_date.day,
-                                                     title=article['article']).encode('utf-8'))
+                                                     title=article['article'])
+        article['permalink'] = quote_plus(article['permalink'].encode('utf-8'))
         ret.append(article)
     return ret[:limit]
 
@@ -343,6 +346,14 @@ def save_traffic_stats(lang, project, query_date, limit=DEFAULT_LIMIT):
         dump(ret, out_file)
 
 
+def backfill(lang, project, days):
+    for day in range(int(days), 1, -1):
+        input_date = date.today() - timedelta(days=day)
+        save_traffic_stats(lang, project, input_date)
+        update_charts(input_date, lang, project)
+    print 'finished backfilling %s days' % days
+
+
 def get_argparser():
     desc = 'Generate your Wikipedia traffic report'
     prs = ArgumentParser(description=desc)
@@ -350,6 +361,7 @@ def get_argparser():
     prs.add_argument('--limit', default=DEFAULT_LIMIT)
     prs.add_argument('--project', default=DEFAULT_PROJECT)
     prs.add_argument('--date', default=None)
+    prs.add_argument('--backfill', default=None)
     prs.add_argument('--update', '-u', action='store_true')
     return prs
 
@@ -357,14 +369,16 @@ def get_argparser():
 if __name__ == '__main__':
     parser = get_argparser()
     args = parser.parse_args()
-    if not args.date:
-        input_date = date.today() - timedelta(days=1)
+    if args.backfill:
+        backfill(args.lang, args.project, args.backfill)
     else:
-        input_date = datetime.strptime(args.date, '%Y%m%d')
-    save_traffic_stats(args.lang, args.project, input_date)
-    if args.update:
-        from build_page import save_and_update
-        print save_and_update(input_date, args.lang, args.project)
-    if DEBUG:
-        import pdb
-        pdb.set_trace()
+        if not args.date:
+            input_date = date.today() - timedelta(days=1)
+        else:
+            input_date = datetime.strptime(args.date, '%Y%m%d')
+        save_traffic_stats(args.lang, args.project, input_date)
+        if args.update:
+            print update_charts(input_date, args.lang, args.project)
+        if DEBUG:
+            import pdb
+            pdb.set_trace()

@@ -1,0 +1,156 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>About Wikipedia Top 100</title>
+    <script src="js/jquery.js"></script>
+    <link href='css/fonts.css' rel='stylesheet' type='text/css'>
+    <link href='css/chart.css' rel='stylesheet' type='text/css'>
+    <style>
+
+    .top-area {
+        background-color: #fbfbfb;
+        text-align: center;
+    }
+
+    .top li {
+        display: inline-block;
+        list-style: none;
+    }
+
+    .top ul {
+        margin: 0em;
+        border-bottom: 1px solid #ccc;
+        font-size: 0.9em;
+    }
+
+    .top li {
+        padding: 0.5em 2em 0.5em 0;
+    }
+
+    .others-area {
+        display:none;
+        margin: 0;
+        padding: 1em 0;
+        color: #fbfbfb;
+        background-color: #0098D8;
+        text-align: center
+    }
+
+    .others {
+        text-align: center;
+    }
+
+    .others {
+        width: 58%;
+        display: inline-block;
+    }
+
+    .about {
+        width: 40%;
+        display: inline-block;
+    }
+
+     @media (max-width: 660px) {
+        .others, .about {
+            width: 90%;
+            padding: 0 1em;
+        }
+    }
+
+    .container, .about {
+        vertical-align: top;
+    }
+
+    .others ul {
+        margin: 0;
+        list-style: none;
+    }
+
+    .others li {
+        display: inline-block;
+        margin: 0.5em;
+        border: 2px solid #222;
+        width: 150px;
+        border-radius: 7px 7px 7px 7px;
+        -moz-border-radius: 7px 7px 7px 7px;
+        -webkit-border-radius: 7px 7px 7px 7px;
+    }
+
+    .others li:hover {
+         background-color: rgba(224, 233, 251, 1);
+        -webkit-transition: background-color 500ms linear;
+        -moz-transition: background-color 500ms linear;
+        -o-transition: background-color 500ms linear;
+        -ms-transition: background-color 500ms linear;
+        transition: background-color 500ms linear;
+    }
+
+
+    .others a {
+        display: block;
+        padding: 1em;
+        margin: 0;
+        color: #0098D8;
+
+    }
+
+    body {
+        background-color: #fbfbfb;
+    }
+
+    
+    </style>
+</head>
+<body>
+
+    <div class="top-area">
+        <div class="top container">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>More languages</li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="others-area">
+        <div class="others container">
+            
+        </div>
+    </div>
+
+    <div class="header">
+        <div class="container">
+            <h1>Wikipedia <span class="ultra">Top 100</span></h1>
+            <p>The most-visited Wikipedia articles, updated daily.</p> 
+            <div class="subtitle light"><span class="issue_nav left"> </span><p class="center"></p><span class="right issue_nav"></span>
+            <br style="clear: left;" />
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="others">
+            <h2>More  Wikipedia languages</h2>
+            <ul>   
+                {#languages}
+                <li><a href="{url}">{name}</a></li>
+                {/languages}
+            </ul>
+        </div>
+        <div class="about">
+            <h2>About</h2>
+            {about|s}
+        </div>
+    </div>
+
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-40320359-1', 'hatnote.com');
+    ga('send', 'pageview');
+    </script>
+</body>
+</html>
