@@ -227,3 +227,8 @@ a.issue_nav:hover {
 .top li {
     padding: 0.5em 2em 0.5em 0;
 }
+
+.permalink {
+    display: none;
+    margin-left: 0.2em;
+}

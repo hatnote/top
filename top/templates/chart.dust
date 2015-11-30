@@ -14,6 +14,13 @@
     }
     {/articles}
     </style>
+    <script>
+    $(function() {
+        $('.row').hover(function() {
+            $('.permalink', this).toggle();
+        });
+    });
+    </script>
 </head>
 <body>
     <div class="top-area">
@@ -44,7 +51,7 @@
                 <div class="column label">
                     <a id="rank-{rank}"></a>
                     <a id="title-{article}"></a>
-                    <p class="title"><a href="{url}" target="_blank">{title}</a></p>
+                    <p class="title"><a href="{url}" target="_blank">{title}</a><a href="{dir_depth}{current}#rank-{rank}"><img class="permalink" src="{dir_depth}img/permalink.png"></a></p>
                     <p class="summary">{summary}</p>
                     <div class="meta-area">
                         <p class="views">{views} views <span class="meta">({view_trend|s}{view_delta} from yesterday)</span></p>
