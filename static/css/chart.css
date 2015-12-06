@@ -102,6 +102,8 @@ h1 .ultra {
 
 .summary {
     margin: 0 1em 1em 1em;
+    font-size: 10pt;
+    line-height: 1.2;
 }
 
 .meta {
@@ -110,8 +112,7 @@ h1 .ultra {
 }
 
 .title {
-    font-family: 'Roboto Slab', serif;
-    font-weight: 800;
+    font-weight: 400;
     font-size: 2em;
     line-height: 1em;
     margin: 0.5em 0 0.5em 0.5em;
@@ -250,4 +251,54 @@ a.yesterday {
 a.yesterday:hover {
     text-decoration: none;
     color: #0098d8;
+}
+
+.peity {
+    margin-left: 1em;
+}
+
+.sparkline-area {
+    float: right;
+    margin-right: 1em;
+}
+
+.month {
+    margin: 2em 0;
+    width: 100%;
+    text-align: center;
+}
+
+.month a, .month .none {
+    padding: 1em;
+    display: block;
+}
+
+.none {
+    color: #757575;
+}
+
+.date a {
+    color: #fbfbfb;
+    text-decoration: none;
+}
+
+.date a:hover {
+    color: #fbfbfb;
+    text-decoration: none;
+}
+
+.month a:hover {
+    background: rgb(224, 233, 251);
+    border-radius: 7px 7px 7px 7px;
+    -moz-border-radius: 7px 7px 7px 7px;
+    -webkit-border-radius: 7px 7px 7px 7px;
+    -webkit-transition: background-color 100ms linear;
+    -moz-transition: background-color 100ms linear;
+    -o-transition: background-color 100ms linear;
+    -ms-transition: background-color 100ms linear;
+    transition: background-color 100ms linear;
+}
+
+.projects {
+    margin: 2em 4em;
 }

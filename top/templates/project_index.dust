@@ -1,0 +1,80 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{full_lang} {project} Top 100{?is_index} on {formatted_date}{/is_index}</title>
+    <script src="{dir_depth}js/jquery.js"></script>
+    <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
+    <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css">
+    <script>
+    
+    $(function() {
+       
+    });
+    </script>
+</head>
+<body>
+    <div class="top-area">
+        <div class="top container">
+            <ul>
+                <li><a href="{dir_depth}about.html" id="other-langs">More languages</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="header">
+        <div class="container">
+            <h1>{full_lang} {project} <span class="ultra">Top 100</span></h1>
+            <p>The most-visited {full_lang} {project} articles, updated daily. <a href="#about" class="learn">Learn more</a>...</p> 
+            <div class="subtitle light">{?prev}<a class="issue_nav left" href="{dir_depth}{prev}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev}<p class="center">All data </p>{?next}<a class="issue_nav right" href="{dir_depth}{next}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next}
+            <br style="clear: left;" />
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container">
+        {#years}
+        <h2><a href="{year}/{month}/index.html">{month_name} {year}</a></h2>
+        <table class="month">
+            <tr class="week">
+                <td>Mon</td>
+                <td>Tues</td>
+                <td>Wed</td>
+                <td>Thur</td>
+                <td>Fri</td>
+                <td>Sat</td>
+                <td>Sun</td>
+            </tr>
+            {#dates}
+            <tr class="week">
+            {#days}
+            {@gt key=day value=0}
+                <td class="day {^chart}none{/chart}">{?chart}<a href="{year}/{month}/{day}.html">{/chart}{day}{?chart}</a>{/chart}</td>
+            {:else}
+                <td class="day empty"></td>
+            {/gt}
+            {/days}
+            </tr>
+            {/dates}
+        </table>
+        {/years}
+    </div>
+
+    <div class="footer-area">
+        <div class="container footer">
+            <h2>About</h2>
+            {about|s}
+            <p><a href="#top" class="up">&uarr; Back to top</a></p>
+        </div>
+    </div>
+
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-40320359-1', 'hatnote.com');
+    ga('send', 'pageview');
+    </script>
+</body>
+</html>

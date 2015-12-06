@@ -1,8 +1,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{full_lang} {project} Top 100{?is_index} on {formatted_date}{/is_index}</title>
+    <title>{^is_index}{full_lang}{/is_index} {project} Top 100{^is_index} on {formatted_date}{/is_index}</title>
     <script src="{dir_depth}js/jquery.js"></script>
+    <script src="{dir_depth}js/jquery.peity.min.js"></script>
     <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
     <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css">
     <style>
@@ -15,7 +16,12 @@
     {/articles}
     </style>
     <script>
+    
     $(function() {
+        $('.sparkline').peity('line', {fill: null, 
+                                       width: 50,
+                                       height: 14,
+                                       stroke: 'rgba(116, 131, 138, 0.7)'})
         $('.row').hover(function() {
             $('.permalink', this).toggle();
         });
@@ -35,7 +41,7 @@
         <div class="container">
             <h1>{full_lang} {project} <span class="ultra">Top 100</span></h1>
             <p>The most-visited {full_lang} {project} articles, updated daily. <a href="#about" class="learn">Learn more</a>...</p> 
-            <div class="subtitle light">{?prev}<a class="issue_nav left" href="{dir_depth}{prev}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev}<p class="center">{formatted_date}</p>{?next}<a class="issue_nav right" href="{dir_depth}{next}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next}
+            <div class="subtitle light">{?prev}<a class="issue_nav left" href="{dir_depth}{prev}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev}<p class="center date"><a href="index.html">{formatted_date}</a></p>{?next}<a class="issue_nav right" href="{dir_depth}{next}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next}
             <br style="clear: left;" />
             </div>
         </div>
@@ -46,16 +52,19 @@
         <ul>
             {#articles}
             <li class="row">
-                <div class="column rank"><p><a href="{dir_depth}{current}#rank-{rank}">{rank}</a></p></div>
+                <div class="column rank">
+                    <p><a href="{dir_depth}{current}#rank-{rank}">{rank}</a></p>
+                </div>
                 <a class="column cover-art cover-{rank}" href="{url}" target="_blank"></a>
                 <div class="column label">
                     <a id="rank-{rank}"></a>
                     <a id="title-{article}"></a>
+                    <p class="sparkline-area"></p>
                     <p class="title"><a href="{url}" target="_blank">{title}</a><a href="{dir_depth}{current}#title-{article}"><img class="permalink" src="{dir_depth}img/permalink.png"></a></p>
                     <p class="summary">{summary}</p>
                     <div class="meta-area">
-                        <p class="views">{views} views <span class="meta">({@gt key=streak value=1}<a href="{dir_depth}{prev}#title-{article}" class="yesterday">{/gt}{view_trend|s}{view_delta} from yesterday{@gt key=streak value=1}</a>{/gt})</span></p>
-                        <p class="streak">{@gt key=streak value=1}{streak} day streak{/gt}</p>
+                        <p class="views">{views_short} views <span class="meta">({@gt key=streak_len value=1}<a href="{dir_depth}{prev}#title-{article}" class="yesterday">{/gt}{view_trend|s}{view_delta} from yesterday{@gt key=streak_len value=1}</a>{/gt})</span><span class="sparkline">{#history}{.}{@sep},{/sep}{/history}, {views}</span></p>
+                        <p class="streak">{@gt key=streak_len value=1}{streak_len} day streak{/gt}</p>
                         <a href="http://twitter.com/share?text={tweet}&amp;url={permalink}" target="_blank"><img class="twitter-icon" src="{dir_depth}img/twitter.png"></a>
                     </div>
                 </div>
