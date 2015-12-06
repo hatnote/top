@@ -124,14 +124,14 @@ def save_chart(query_date, lang, project):
     if lang is DEFAULT_LANG and project is DEFAULT_PROJECT:
         data['dir_depth'] = ''
         data['is_index'] = True
-        save_rendered(INDEX_PATH, DEFAULT_TEMPALTE_NAME, data)
+        #save_rendered(INDEX_PATH, DEFAULT_TEMPALTE_NAME, data)
 
 
 def update_charts(cur_date, lang, project):
     save_chart(cur_date, lang, project)
     if check_chart(cur_date, 1, lang, project):
         prev_date = cur_date - timedelta(days=1)
-        save_chart(cur_date, lang, project)
+        save_chart(prev_date, lang, project)
     if check_chart(cur_date, -1, lang, project):
         next_date = cur_date + timedelta(days=1)
         save_chart(next_date, lang, project)
@@ -146,12 +146,13 @@ def update_about():
     langs = project_map.keys()
     data = {'languages': [],
             'about': ABOUT}
-            #TODO: add generation metadata
+            # TODO: add generation metadata
     for lang in langs:
         lang_name = LOCAL_LANG_MAP[lang]
         for project in project_map[lang]:
             data['languages'].append({'name': lang_name,
                                   'url': '%s/%s/index.html' % (lang, project)})
+            # TODO: Add template support for projects other than Wikipedia
             update_lang(lang, project)
     save_rendered(ABOUT_PATH, ABOUT_TEMPLATE, data)
 
@@ -194,6 +195,7 @@ def yearly_calendar(year, lang, project):
                  'year': year}
         mdata['dates'] = monthly_calendar(year, month, lang, project)
         ret.append(mdata)
+    ret.reverse()
     return ret
 
 
@@ -244,7 +246,6 @@ def update_project(lang, project):
         data['years'] += year_data
     project_index = PROJECT_INDEX_PATH.format(lang=lang, project=project)
     save_rendered(project_index, PROJECT_INDEX_TMPL, data)
-
 
 
 def update_lang(lang, project):

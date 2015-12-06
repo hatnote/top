@@ -289,11 +289,11 @@ def add_extras(articles, lang, project):
             print 'Preparing results...'
         for article in article_group:
             title = article['title']
-            article['image_url'] = images[title]
+            article['image_url'] = images.get(title, DEFAULT_IMAGE)
             if word_filter(title) or word_filter(article['image_url']):
                 print 'no image for %s' % (title,)
                 article['image_url'] = DEFAULT_IMAGE
-            article['summary'] = summaries[title]
+            article['summary'] = summaries.get(title, '')
             ret.append(article)
     return ret
 
