@@ -104,7 +104,7 @@ def get_summaries(titles, lang, project):
     '''
     params = {'action': 'query',
               'prop': 'extracts',
-              'exsentences': 2,
+              'exsentences': 3,
               'explaintext': 1,
               'exintro': 1,
               'exlimit': 20,
@@ -115,7 +115,7 @@ def get_summaries(titles, lang, project):
     return summaries
 
 
-def get_article_traffic(query_date, lang, project):
+def get_traffic(query_date, lang, project):
     '''\
     Get the traffic report for the top 1000 articles for a given day.
     TODO: Get from local file, if available
@@ -133,48 +133,55 @@ def get_article_traffic(query_date, lang, project):
     return articles
 
 
-def load_prev_stats(query_date, limit=10, lang=DEFAULT_LANG,
-                    project=DEFAULT_PROJECT):
+def load_traffic(query_date, lang, project):
+    file_name = DATA_PATH_TMPL.format(lang=lang,
+                                      project=project,
+                                      year=query_date.year,
+                                      month=query_date.month,
+                                      day=query_date.day)
+    try:
+        data_file = codecs.open(file_name, 'r')
+    except IOError:
+        return None
+    with data_file:
+        return load(data_file)
+
+
+def load_prev_traffic(query_date, limit, lang=DEFAULT_LANG,
+                      project=DEFAULT_PROJECT):
     '''\
-    Load available local traffic data.
+    Load available local traffic data until we reach the limit.
     '''
     prev_stats = []
     for lookback in range(1, limit):
         prev = query_date - timedelta(days=lookback)
-        prevfile_name = DATA_PATH_TMPL.format(lang=lang,
-                                              project=project,
-                                              year=prev.year,
-                                              month=prev.month,
-                                              day=prev.day)
-        try:
-            data_file = codecs.open(prevfile_name, 'r')
-        except IOError:
-            print 'No file for %s' % prev.strftime('%Y%m%d')
+        article_data = load_traffic(prev, lang, project)
+        if not article_data:
             break
-        with data_file:
-            prev_stats.append(dict((art['article'], art) for art in
-                                   load(data_file)['articles']))
+        prev_stats.append(dict((art['article'], art) for
+                               art in article_data['articles']))
     return prev_stats
 
 
-def find_streaks(article_titles, prev_stats):
+def find_streaks(title, prev_stats):
     '''\
     Look for streaks in previous data.
     '''
-    ret = {}
-    for article in article_titles:
-        ret[article] = [l[article]['rank'] if l.get(article) else None
-                        for l in prev_stats]
-        streak = [a for a in takewhile(lambda r: r, ret[article])]
-        if len(streak) > 0:
-            try:
-                streak_min = min(ret[article])
-            except Exception as e:
-                # import pdb; pdb.set_trace()
-                raise e
-        else:
-            streak_min = None
-        ret[article] = (len(streak), streak_min)
+    ranks = [l[title]['rank'] if l.get(title) else None for l in prev_stats]
+    history = [l[title]['views'] if l.get(title) else 0 for l in prev_stats]
+    history.reverse()
+    streak = [a for a in takewhile(lambda r: r, ranks)]
+    if len(streak) > 0:
+        streak_min = min(ranks)
+    else:
+        streak_min = None
+    if prev_stats > 0 and len(streak) == len(prev_stats):
+        streak_len = '%s+' % len(streak)
+    else:
+        streak_len = len(streak) + 1
+    ret = {'streak_len': streak_len,
+           'streak_min': streak_min,
+           'history': history}
     return ret
 
 
@@ -187,13 +194,13 @@ def tweet_composer(article, lang, project):
     title = article['title']
     project = project.capitalize()
     lang = LOCAL_LANG_MAP[lang]
-    if type(article['streak']) is str:
-        streak = article['streak'].replace('+', '')
+    if type(article['streak_len']) is str:
+        streak = article['streak_len'].replace('+', '')
     else:
-        streak = article['streak']
+        streak = article['streak_len']
     if int(streak) > 1:
         msg = 'On a %s day streak, %s was the #%s most read article on %s #%s'\
-            ' w/ %s views' % (article['streak'],
+            ' w/ %s views' % (article['streak_len'],
                               title,
                               article['rank'],
                               lang,
@@ -214,72 +221,54 @@ def tweet_composer(article, lang, project):
     return msg
 
 
-def make_article_list(query_date, limit, lang, project):
-    # TODO: Clean up
+def make_article_list(query_date, lang, project):
     wiki_info = get_wiki_info(lang, project)
-    cur_articles = get_article_traffic(query_date, lang, project)
-    cur_articles = [art for art in cur_articles
-                    if is_article(art['article'], wiki_info)]
-    prev = query_date - timedelta(days=1)
-    prev_articles = get_article_traffic(prev, lang, project)
-    prev_articles = dict((art['article'], art) for art in prev_articles
-                         if is_article(art['article'], wiki_info))
-    prev_stats = load_prev_stats(query_date)
-    max_streak = len(prev_stats) + 1
-    streaks = find_streaks([a['article'] for a in cur_articles], prev_stats)
+    raw_traffic = get_traffic(query_date, lang, project)
+    articles = [a for a in raw_traffic if is_article(a['article'], wiki_info)]
+    prev_traffic = load_prev_traffic(query_date, 10, lang, project)
     ret = []
-    for article in cur_articles:
-        prev_article = prev_articles.get(article['article'], {})
+    for article in articles:
+        title = article['article']
+        if not prev_traffic:
+            prev_article = {}
+        else:
+            prev_article = prev_traffic[0].get(title, {})
+        permalink = PERMALINK_TMPL.format(lang=lang,
+                                          project=project,
+                                          year=query_date.year,
+                                          month=query_date.month,
+                                          day=query_date.day,
+                                          title=title)
+        streak = find_streaks(title, prev_traffic)
+        article.update(streak)
+        article['views_short'] = shorten_number(article['views'])
+        article['url'] = 'https://%s.%s.org/wiki/%s' % (lang, project, title)
+        article['title'] = title.replace('_', ' ')
+        article['permalink'] = quote_plus(permalink.encode('utf-8'))
+        article['rank'] = len(ret) + 1
         article['pviews'] = prev_article.get('views', None)
         article['prank'] = prev_article.get('rank', None)
-        if article['pviews'] and article['pviews'] < article['views']:
-            article['view_trend'] = '&uarr;'
-        elif not article['pviews']:
+        if not article['pviews'] or article['views'] > article['pviews']:
             article['view_trend'] = '&uarr;'
         elif article['views'] == article['pviews']:
-            article['view_trend'] = '-'
+            article['view_trend'] = None
         else:
             article['view_trend'] = '&darr;'
-        if article['prank'] and article['rank'] < article['prank']:
-            article['rank_trend'] = '&uarr;'
-        elif not article['prank']:
+        if not article['prank'] or article['rank'] < article['prank']:
             article['rank_trend'] = '&uarr;'
         elif article['rank'] == article['prank']:
-            article['rank_trend'] = '-'
+            article['rank_trend'] = None
         else:
             article['rank_trend'] = '&darr;'
         if article['pviews']:
-            article['view_delta'] = shorten_number(abs(article['views'] -
-                                                   article['pviews']))
+            view_delta = abs(article['views'] - article['pviews'])
+            article['view_delta'] = shorten_number(view_delta)
         else:
             article['view_delta'] = None
-        (streak, rank_max) = streaks.get(article['article'], (0, None))
-        streak = streak + 1
-        if streak == max_streak:
-            streak = '%s+' % (streak - 1,)
-        article['max_streak'] = max_streak
-        article['streak'] = streak
-        article['rank'] = len(ret) + 1
-        article['views_raw'] = article['views']
-        article['views'] = shorten_number(article['views'])
-        article['url'] = 'https://%s.%s.org/wiki/%s' % (lang,
-                                                        project,
-                                                        article['article'])
-        article['title'] = article['article'].replace('_', ' ')
-        article['tweet'] = quote_plus(tweet_composer(article,
-                                                     lang,
-                                                     project).encode('utf-8'),
-                                      safe=':/')
-
-        article['permalink'] = PERMALINK_TMPL.format(lang=lang,
-                                                     project=project,
-                                                     year=query_date.year,
-                                                     month=query_date.month,
-                                                     day=query_date.day,
-                                                     title=article['article'])
-        article['permalink'] = quote_plus(article['permalink'].encode('utf-8'))
+        tweet = tweet_composer(article, lang, project)
+        article['tweet'] = quote_plus(tweet.encode('utf-8'), safe=':/')
         ret.append(article)
-    return ret[:limit]
+    return ret
 
 
 def add_extras(articles, lang, project):
@@ -316,9 +305,9 @@ def save_traffic_stats(lang, project, query_date, limit=DEFAULT_LIMIT):
     3. Prepare and save results
     '''
     articles = make_article_list(query_date,
-                                 limit=limit,
                                  lang=lang,
                                  project=project)
+    articles = articles[:limit]
     articles = add_extras(articles, lang=lang, project=project)
     ret = {'articles': articles,
            'formatted_date': query_date.strftime('%d %B %Y'),
@@ -327,7 +316,10 @@ def save_traffic_stats(lang, project, query_date, limit=DEFAULT_LIMIT):
                     'year': query_date.year},
            'lang': lang,
            'full_lang': LOCAL_LANG_MAP[lang],
-           'examples': [articles[0], articles[query_date.day*2]],
+           'examples': [articles[0],
+                        articles[1],
+                        articles[2],
+                        articles[query_date.day*2]],
            'project': project.capitalize(),
            'meta': {'generated': datetime.now().strftime("%Y-%m-%d %H:%M:%S")}}
     outfile_name = DATA_PATH_TMPL.format(lang=lang,
@@ -346,11 +338,12 @@ def save_traffic_stats(lang, project, query_date, limit=DEFAULT_LIMIT):
         dump(ret, out_file)
 
 
-def backfill(lang, project, days):
+def backfill(lang, project, days, update=False):
     for day in range(int(days), 1, -1):
         input_date = date.today() - timedelta(days=day)
         save_traffic_stats(lang, project, input_date)
-        update_charts(input_date, lang, project)
+        if update:
+            update_charts(input_date, lang, project)
     print 'finished backfilling %s days' % days
 
 
@@ -370,7 +363,7 @@ if __name__ == '__main__':
     parser = get_argparser()
     args = parser.parse_args()
     if args.backfill:
-        backfill(args.lang, args.project, args.backfill)
+        backfill(args.lang, args.project, args.backfill, args.update)
     else:
         if not args.date:
             input_date = date.today() - timedelta(days=1)

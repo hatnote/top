@@ -12,13 +12,6 @@ _CUR_PATH = dirname(os.path.abspath(__file__))
 BASE_PATH = pjoin(_CUR_PATH, os.pardir, 'static', '')
 DATA_FILE_TMPL = '{lang}/{project}/{year}/{month}/{day}.json'
 DATA_PATH_TMPL = pjoin(BASE_PATH, DATA_FILE_TMPL)
-ABOUT_PATH = pjoin(BASE_PATH, 'about.html')
-INDEX_PATH = pjoin(BASE_PATH, 'index.html')
-LANG_INDEX_PATH = pjoin(BASE_PATH, '{lang}/index.html')
-PROJECT_INDEX_PATH = pjoin(BASE_PATH, '{lang}/{project}/index.html')
-HTML_BASE_PATH = BASE_PATH
-HTML_FILE_TMPL = '{lang}/{project}/{year}/{month}/{day}.html'
-HTML_PATH_TMPL = pjoin(BASE_PATH, HTML_FILE_TMPL)
 PERMALINK_TMPL = (u'http://top.hatnote.com/{lang}/{project}/{year}/{month}/'
                   '{day}.html#title-{title}')
 
