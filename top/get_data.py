@@ -244,7 +244,7 @@ def make_article_list(query_date, lang, project):
         article['views_short'] = shorten_number(article['views'])
         article['url'] = 'https://%s.%s.org/wiki/%s' % (lang, project, title)
         article['title'] = title.replace('_', ' ')
-        article['permalink'] = quote_plus(permalink.encode('utf-8'))
+        article['permalink'] = permalink.encode('utf-8')
         article['rank'] = len(ret) + 1
         article['pviews'] = prev_article.get('views', None)
         article['prank'] = prev_article.get('rank', None)

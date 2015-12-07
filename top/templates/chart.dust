@@ -10,15 +10,15 @@
     {#articles}
     .cover-{rank} {
         background: url({image_url});
-        background-size: cover; 
-        background-position: 50%; 
+        background-size: cover;
+        background-position: 50%;
     }
     {/articles}
     </style>
     <script>
-    
+
     $(function() {
-        $('.sparkline').peity('line', {fill: null, 
+        $('.sparkline').peity('line', {fill: null,
                                        width: 50,
                                        height: 14,
                                        stroke: 'rgba(116, 131, 138, 0.7)'})
@@ -40,7 +40,7 @@
     <div class="header">
         <div class="container">
             <h1>{full_lang} {project} <span class="ultra">Top 100</span></h1>
-            <p>The most-visited {full_lang} {project} articles, updated daily. <a href="#about" class="learn">Learn more</a>...</p> 
+            <p>The most-visited {full_lang} {project} articles, updated daily. <a href="#about" class="learn">Learn more</a>...</p>
             <div class="subtitle light">{?prev}<a class="issue_nav left" href="{dir_depth}{prev}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev}<p class="center date"><a href="index.html">{formatted_date}</a></p>{?next}<a class="issue_nav right" href="{dir_depth}{next}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next}
             <br style="clear: left;" />
             </div>
@@ -65,7 +65,7 @@
                     <div class="meta-area">
                         <p class="views">{views_short} views <span class="meta">({@gt key=streak_len value=1}<a href="{dir_depth}{prev}#title-{article}" class="yesterday">{/gt}{view_trend|s}{view_delta} from yesterday{@gt key=streak_len value=1}</a>{/gt})</span><span class="sparkline">{#history}{.}{@sep},{/sep}{/history}, {views}</span></p>
                         <p class="streak">{@gt key=streak_len value=1}{streak_len} day streak{/gt}</p>
-                        <a href="http://twitter.com/share?text={tweet}&amp;url={permalink}" target="_blank"><img class="twitter-icon" src="{dir_depth}img/twitter.png"></a>
+                        <a href="http://twitter.com/share?text={tweet}&amp;url={permalink|uc}" target="_blank"><img class="twitter-icon" src="{dir_depth}img/twitter.png"></a>
                     </div>
                 </div>
             </li>
