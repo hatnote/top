@@ -15,6 +15,7 @@ from build_page import update_charts
 from word_filter import word_filter
 from common import (DATA_PATH_TMPL,
                     PERMALINK_TMPL,
+                    DATE_PERMALINK_TMPL,
                     TOP_API_URL,
                     MW_API_URL,
                     DEBUG,
@@ -319,9 +320,14 @@ def save_traffic_stats(lang, project, query_date, limit=DEFAULT_LIMIT):
            'examples': [articles[0],
                         articles[1],
                         articles[2],
-                        articles[query_date.day*2]],
+                        articles[query_date.day * 2]],  # haha ok..
            'project': project.capitalize(),
-           'meta': {'generated': datetime.now().strftime("%Y-%m-%d %H:%M:%S")}}
+           'permalink': DATE_PERMALINK_TMPL.format(lang=lang,
+                                                   project=project,
+                                                   year=query_date.year,
+                                                   month=query_date.month,
+                                                   day=query_date.day),
+           'meta': {'generated': datetime.utcnow().isoformat()}}
     outfile_name = DATA_PATH_TMPL.format(lang=lang,
                                          project=project,
                                          year=query_date.year,

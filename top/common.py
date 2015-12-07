@@ -10,10 +10,17 @@ DEBUG = True
 # Files and locations
 _CUR_PATH = dirname(os.path.abspath(__file__))
 BASE_PATH = pjoin(_CUR_PATH, os.pardir, 'static', '')
+TEMPLATE_PATH = pjoin(_CUR_PATH, 'templates')
 DATA_FILE_TMPL = '{lang}/{project}/{year}/{month}/{day}.json'
 DATA_PATH_TMPL = pjoin(BASE_PATH, DATA_FILE_TMPL)
+LANG_PROJ_LINK_TMPL = u'http://top.hatnote.com/{lang}/{project}/'
+DATE_PERMALINK_TMPL = (u'http://top.hatnote.com/{lang}/{project}/'
+                       '{year}/{month}/{day}.html')
 PERMALINK_TMPL = (u'http://top.hatnote.com/{lang}/{project}/{year}/{month}/'
                   '{day}.html#title-{title}')
+FEED_FILE_TMPL = 'feeds/{lang}{project}.rss'
+FEED_PATH_TMPL = pjoin(BASE_PATH, FEED_FILE_TMPL)
+
 
 # Valuable and important URLs
 TOP_API_URL = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/'\
