@@ -1,17 +1,23 @@
 # -*- coding: utf-8 -*-
 import os
+import time
 import codecs
 import argparse
 from json import load
 from os import listdir
+from email.Utils import formatdate
 from os.path import join as pjoin, isdir, isfile, dirname
 from datetime import date, timedelta, datetime
 from calendar import monthcalendar, month_name
 
 import ashes
 from boltons.fileutils import mkdir_p
+from boltons.timeutils import UTC, isoparse
 
 from common import (DATA_PATH_TMPL,
+                    TEMPLATE_PATH,
+                    FEED_PATH_TMPL,
+                    LANG_PROJ_LINK_TMPL,
                     DEFAULT_LANG,
                     BASE_PATH,
                     LOCAL_LANG_MAP,
@@ -40,9 +46,14 @@ GENERIC_INDEX_TMPL = 'index.dust'
 MOST_RECENT_CHART = date.today() - timedelta(days=1)
 
 
+ASHES_ENV = None
+
+
 def save_rendered(outfile_name, template_name, context):
-    ashes_env = ashes.AshesEnv(['./top/templates'], keep_whitespace=True)
-    rendered = ashes_env.render(template_name, context)
+    global ASHES_ENV  # retain laziness
+    if not ASHES_ENV:
+        ASHES_ENV = ashes.AshesEnv([TEMPLATE_PATH], keep_whitespace=True)
+    rendered = ASHES_ENV.render(template_name, context)
     try:
         out_file = codecs.open(outfile_name, 'w', 'utf-8')
     except IOError:
@@ -95,15 +106,19 @@ def check_chart(cur_date, days, lang, project):
     return None
 
 
-def save_chart(query_date, lang, project):
-    date_str = query_date.strftime('%Y%m%d')
+def load_data(query_date, lang, project):
     file_name = DATA_PATH_TMPL.format(lang=lang,
                                       project=project,
                                       year=query_date.year,
                                       month=query_date.month,
                                       day=query_date.day)
-    with codecs.open(file_name, 'r') as data_file:
+    with open(file_name, 'r') as data_file:
         data = load(data_file)
+    return data
+
+
+def save_chart(query_date, lang, project):
+    data = load_data(query_date, lang, project)
     data['current'] = HTML_FILE_TMPL.format(lang=lang,
                                             project=project,
                                             year=query_date.year,
@@ -139,6 +154,39 @@ def update_charts(cur_date, lang, project):
     update_year(cur_date.year, lang, project)
     update_project(lang, project)
     return 'Saved and updated'
+
+
+def to_rss_timestamp(dt_obj, to_utc=False):
+    if to_utc and dt_obj.tzinfo:
+        dt_obj = dt_obj.astimezone(UTC)
+    return formatdate(time.mktime(dt_obj.timetuple()))
+
+
+def update_feeds(cur_date, lang, project, day_count=10):
+    canonical_url = LANG_PROJ_LINK_TMPL.format(lang=lang, project=project)
+    render_ctx = {'lang_code': lang,
+                  'lang_name': LOCAL_LANG_MAP[lang],
+                  'project': project.title(),
+                  'canonical_url': canonical_url,
+                  'cur_utc': to_rss_timestamp(datetime.now())}
+
+    data_list = []
+    for day_delta in range(0, day_count):
+        date_i = cur_date - timedelta(days=day_delta)
+        try:
+            date_i_data = load_data(date_i, lang, project)
+        except IOError:
+            print 'no data found for %r' % date_i
+            continue
+
+        utc_pub_dt = isoparse(date_i_data['meta']['generated'])
+        date_i_data['pub_timestamp'] = to_rss_timestamp(utc_pub_dt)
+        date_i_data['summary'] = ASHES_ENV.render('summary.html', date_i_data)
+        data_list.append(date_i_data)
+    render_ctx['entries'] = data_list
+    feed_path = FEED_PATH_TMPL.format(lang=lang, project=project)
+    save_rendered(feed_path, 'rss.xml', render_ctx)
+    import pdb;pdb.set_trace()
 
 
 def update_about():
@@ -277,3 +325,4 @@ if __name__ == '__main__':
         else:
             input_date = datetime.strptime(args.date, '%Y%m%d').date()
         update_charts(input_date, args.lang, args.project)
+        update_feeds(input_date, args.lang, args.project)
