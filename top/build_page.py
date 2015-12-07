@@ -179,8 +179,10 @@ def update_feeds(cur_date, lang, project, day_count=10):
             print 'no data found for %r' % date_i
             continue
 
-        utc_pub_dt = isoparse(date_i_data['meta']['generated'])
-        date_i_data['pub_timestamp'] = to_rss_timestamp(utc_pub_dt)
+        # utc_pub_dt = isoparse(date_i_data['meta']['generated'])
+        midnight_utc = datetime.utcfromtimestamp(0).timetz()
+        pub_dt = datetime.combine(date_i, midnight_utc)
+        date_i_data['pub_timestamp'] = to_rss_timestamp(pub_dt)
         date_i_data['summary'] = ASHES_ENV.render('summary.html', date_i_data)
         data_list.append(date_i_data)
     render_ctx['entries'] = data_list
