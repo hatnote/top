@@ -199,7 +199,7 @@ def tweet_composer(article, lang, project):
     else:
         streak = article['streak_len']
     if int(streak) > 1:
-        msg = 'On a %s day streak, %s was the #%s most read article on %s #%s'\
+        msg = 'On a %s-day streak, %s was the #%s most read article on %s #%s'\
             ' w/ %s views' % (article['streak_len'],
                               title,
                               article['rank'],
