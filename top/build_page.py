@@ -130,6 +130,7 @@ def save_chart(query_date, lang, project):
     data['about'] = ABOUT
     data['dir_depth'] = '../' * 4
     data['is_index'] = False
+    data['project_lower'] = project
     outfile_name = HTML_PATH_TMPL.format(lang=lang,
                                          project=project,
                                          year=query_date.year,
@@ -139,7 +140,7 @@ def save_chart(query_date, lang, project):
     if lang is DEFAULT_LANG and project is DEFAULT_PROJECT:
         data['dir_depth'] = ''
         data['is_index'] = True
-        #save_rendered(INDEX_PATH, DEFAULT_TEMPALTE_NAME, data)
+        #save_rendered(INDEX_PATH, DEFAULT_TEMPLATE_NAME, data)
 
 
 def update_charts(cur_date, lang, project):
@@ -188,7 +189,7 @@ def update_feeds(cur_date, lang, project, day_count=10):
     render_ctx['entries'] = data_list
     feed_path = FEED_PATH_TMPL.format(lang=lang, project=project)
     save_rendered(feed_path, 'rss.xml', render_ctx)
-    import pdb;pdb.set_trace()
+    return
 
 
 def update_about():

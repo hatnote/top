@@ -32,7 +32,9 @@
     <div class="top-area">
         <div class="top container">
             <ul>
+                <li><a href="#about">About</a></li>
                 <li><a href="{dir_depth}about.html" id="other-langs">More languages</a></li>
+                <li><a href="{dir_depth}feeds/{lang}{project_lower}.rss">Feed</a></li>
                 <li><a href="#">Blog</a></li>
             </ul>
         </div>
@@ -77,7 +79,7 @@
         <div class="container footer">
             <h2>About</h2>
             {about|s}
-            <p><a href="#top" class="up">&uarr; Back to top</a></p>
+            <p><a href="{dir_depth}feeds/{lang}{project_lower}.rss"><img src="{dir_depth}img/feed.png"></a> <a href="#top" class="up">&uarr; Back to top</a></p>
         </div>
     </div>
 
