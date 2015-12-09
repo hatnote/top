@@ -381,6 +381,6 @@ if __name__ == '__main__':
         save_traffic_stats(args.lang, args.project, input_date)
         if args.update:
             print update_charts(input_date, args.lang, args.project)
-        if DEBUG:
-            import pdb
-            pdb.set_trace()
+        #if DEBUG:
+        #    import pdb
+        #    pdb.set_trace()
