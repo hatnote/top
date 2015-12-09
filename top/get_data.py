@@ -23,6 +23,7 @@ from common import (DATA_PATH_TMPL,
                     LOCAL_LANG_MAP,
                     DEFAULT_PROJECT,
                     DEFAULT_LANG)
+import crisco
 
 DEFAULT_LIMIT = 100
 DEFAULT_IMAGE = 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/'\
@@ -294,7 +295,9 @@ def add_extras(articles, lang, project):
             if word_filter(title) or word_filter(article['image_url']):
                 print 'no image for %s' % (title,)
                 article['image_url'] = DEFAULT_IMAGE
-            article['summary'] = summaries.get(title, '')
+            summary = summaries.get(title, '')
+            summary = crisco.shorten(summary, lang, 400)
+            article['summary'] = summary
             ret.append(article)
     return ret
 
