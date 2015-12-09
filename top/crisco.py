@@ -30,14 +30,18 @@ def default_shorten(text, max_len=DEFAULT_MAX_LEN):
 
 
 def en_shorten(text, max_len=DEFAULT_MAX_LEN):
-    ret = ''
+    if not text:
+        return text
+    ret_sentences = []
     sentences = en_split_sentences(text)
+    cur_len = 0
     for sentence in sentences:
-        if (len(ret) + len(sentence)) < max_len:
-            ret += sentence
+        if (cur_len + len(sentence) + 1) < max_len:
+            cur_len += len(sentence)
+            ret_sentences.append(sentence)
         else:
             break
-    return ret
+    return ' '.join(ret_sentences)
 
 
 def en_split_sentences(text):
