@@ -293,7 +293,7 @@ def add_extras(articles, lang, project):
             title = article['title']
             article['image_url'] = images.get(title, DEFAULT_IMAGE)
             if word_filter(title) or word_filter(article['image_url']):
-                print 'no image for %s' % (title,)
+                print 'no image for %s' % (title.encode('utf-8'),)
                 article['image_url'] = DEFAULT_IMAGE
             summary = summaries.get(title, '')
             summary = crisco.shorten(summary, lang, 400)
@@ -381,6 +381,6 @@ if __name__ == '__main__':
         save_traffic_stats(args.lang, args.project, input_date)
         if args.update:
             print update_charts(input_date, args.lang, args.project)
-        if DEBUG:
-            import pdb
-            pdb.set_trace()
+        #if DEBUG:
+        #    import pdb
+        #    pdb.set_trace()
