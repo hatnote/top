@@ -15,6 +15,7 @@ from build_page import update_charts
 from word_filter import word_filter
 from common import (DATA_PATH_TMPL,
                     PERMALINK_TMPL,
+                    DATE_PERMALINK_TMPL,
                     TOP_API_URL,
                     MW_API_URL,
                     DEBUG,
@@ -199,7 +200,7 @@ def tweet_composer(article, lang, project):
     else:
         streak = article['streak_len']
     if int(streak) > 1:
-        msg = 'On a %s day streak, %s was the #%s most read article on %s #%s'\
+        msg = 'On a %s-day streak, %s was the #%s most read article on %s #%s'\
             ' w/ %s views' % (article['streak_len'],
                               title,
                               article['rank'],
@@ -244,7 +245,7 @@ def make_article_list(query_date, lang, project):
         article['views_short'] = shorten_number(article['views'])
         article['url'] = 'https://%s.%s.org/wiki/%s' % (lang, project, title)
         article['title'] = title.replace('_', ' ')
-        article['permalink'] = quote_plus(permalink.encode('utf-8'))
+        article['permalink'] = permalink.encode('utf-8')
         article['rank'] = len(ret) + 1
         article['pviews'] = prev_article.get('views', None)
         article['prank'] = prev_article.get('rank', None)
@@ -319,9 +320,14 @@ def save_traffic_stats(lang, project, query_date, limit=DEFAULT_LIMIT):
            'examples': [articles[0],
                         articles[1],
                         articles[2],
-                        articles[query_date.day*2]],
+                        articles[query_date.day * 2]],  # haha ok..
            'project': project.capitalize(),
-           'meta': {'generated': datetime.now().strftime("%Y-%m-%d %H:%M:%S")}}
+           'permalink': DATE_PERMALINK_TMPL.format(lang=lang,
+                                                   project=project,
+                                                   year=query_date.year,
+                                                   month=query_date.month,
+                                                   day=query_date.day),
+           'meta': {'generated': datetime.utcnow().isoformat()}}
     outfile_name = DATA_PATH_TMPL.format(lang=lang,
                                          project=project,
                                          year=query_date.year,
