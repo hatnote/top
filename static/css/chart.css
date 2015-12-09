@@ -270,7 +270,6 @@ a.yesterday:hover {
 
 .month a, .month .none {
     padding: 1em;
-    display: block;
 }
 
 .none {
