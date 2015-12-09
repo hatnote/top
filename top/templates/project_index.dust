@@ -6,9 +6,9 @@
     <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
     <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css">
     <script>
-    
+
     $(function() {
-       
+
     });
     </script>
 </head>
@@ -24,7 +24,7 @@
     <div class="header">
         <div class="container">
             <h1>{full_lang} {project} <span class="ultra">Top 100</span></h1>
-            <p>The most-visited {full_lang} {project} articles, updated daily. <a href="#about" class="learn">Learn more</a>...</p> 
+            <p>The most-visited {full_lang} {project} articles, updated daily. <a href="#about" class="learn">Learn more</a>...</p>
             <div class="subtitle light">{?prev}<a class="issue_nav left" href="{dir_depth}{prev}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev}<p class="center">All traffic data</p>{?next}<a class="issue_nav right" href="{dir_depth}{next}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next}
             <br style="clear: left;" />
             </div>
@@ -34,7 +34,7 @@
 
     <div class="container">
         {#years}
-        <h2><a href="{year}/{month}/index.html">{month_name} {year}</a></h2>
+        <h2><a href="{year}/{month}/">{month_name} {year}</a></h2>
         <table class="month">
             <tr class="week">
                 <td>Mon</td>

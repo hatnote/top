@@ -98,7 +98,7 @@
         background-color: #fbfbfb;
     }
 
-    
+
     </style>
 </head>
 <body>
@@ -106,7 +106,7 @@
     <div class="top-area">
         <div class="top container">
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li>More languages</li>
                 <li><a href="#">Blog</a></li>
             </ul>
@@ -115,14 +115,14 @@
 
     <div class="others-area">
         <div class="others container">
-            
+
         </div>
     </div>
 
     <div class="header">
         <div class="container">
             <h1>Wikipedia <span class="ultra">Top 100</span></h1>
-            <p>The most-visited Wikipedia articles, updated daily.</p> 
+            <p>The most-visited Wikipedia articles, updated daily.</p>
             <div class="subtitle light"><span class="issue_nav left"> </span><p class="center"></p><span class="right issue_nav"></span>
             <br style="clear: left;" />
             </div>
@@ -132,7 +132,7 @@
     <div class="container">
         <div class="others">
             <h2>More  Wikipedia languages</h2>
-            <ul>   
+            <ul>
                 {#languages}
                 <li><a href="{url}">{name}</a></li>
                 {/languages}

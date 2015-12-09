@@ -25,17 +25,17 @@ from common import (DATA_PATH_TMPL,
                     ABOUT)
 
 ABOUT_PATH = pjoin(BASE_PATH, 'about.html')
-INDEX_PATH = pjoin(BASE_PATH, 'index.html')
+INDEX_PATH = pjoin(BASE_PATH, '')
 HTML_FILE_TMPL = '{lang}/{project}/{year}/{month}/{day}.html'
 HTML_PATH_TMPL = pjoin(BASE_PATH, HTML_FILE_TMPL)
 MONTH_INDEX_PATH = pjoin(BASE_PATH,
-                         '{lang}/{project}/{year}/{month}/index.html')
+                         '{lang}/{project}/{year}/{month}/')
 YEAR_PATH = pjoin(BASE_PATH, '{lang}/{project}/{year}')
-YEAR_INDEX_PATH = pjoin(BASE_PATH, '{lang}/{project}/{year}/index.html')
+YEAR_INDEX_PATH = pjoin(BASE_PATH, '{lang}/{project}/{year}/')
 PROJECT_PATH = pjoin(BASE_PATH, '{lang}/{project}')
-PROJECT_INDEX_PATH = pjoin(BASE_PATH, '{lang}/{project}/index.html')
+PROJECT_INDEX_PATH = pjoin(BASE_PATH, '{lang}/{project}/')
 LANG_PATH = pjoin(BASE_PATH, '{lang}')
-LANG_INDEX_PATH = pjoin(BASE_PATH, '{lang}/index.html')
+LANG_INDEX_PATH = pjoin(BASE_PATH, '{lang}/')
 
 DEFAULT_TEMPALTE_NAME = 'chart.dust'
 ABOUT_TEMPLATE = 'about.dust'
@@ -202,7 +202,7 @@ def update_about():
         lang_name = LOCAL_LANG_MAP[lang]
         for project in project_map[lang]:
             data['languages'].append({'name': lang_name,
-                                  'url': '%s/%s/index.html' % (lang, project)})
+                                      'url': '%s/%s/' % (lang, project)})
             # TODO: Add template support for projects other than Wikipedia
             update_lang(lang, project)
     save_rendered(ABOUT_PATH, ABOUT_TEMPLATE, data)

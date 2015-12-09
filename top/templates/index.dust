@@ -38,21 +38,21 @@
             {?months}
             <ul>
                 {#months}
-                <li><a href="{month}/index.html">{month_name}</a></li>
+                <li><a href="{month}/">{month_name}</a></li>
                 {/months}
             </ul>
             {/months}
             {?years}
             <ul>
                 {#years}
-                <li><a href="{.}/index.html">{.}</a></li>
+                <li><a href="{.}/">{.}</a></li>
                 {/years}
             </ul>
             {/years}
             {?projects}
             <ul class="projects">
                 {#projects}
-                <li><a href="{.}/index.html">{full_lang} {.}</a></li>
+                <li><a href="{.}/">{full_lang} {.}</a></li>
                 {/projects}
             </ul>
             {/projects}
