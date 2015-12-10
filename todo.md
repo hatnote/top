@@ -1,9 +1,11 @@
 # TODOs
 
-- Cron 
-- Generate one-liner summary
-- RSS (look at Chert)
-- Replace the generic language index  with the most recent issue
+- Navigation between months
+- Confirm if [J/K navigation](https://github.com/livibetter-backup/jquery-jknav) is working OK on FireFox and Safari (it depends on an outdated jquery function)
+- RTL template support
+- Blog post
+- Use short numbers in tweets
+
+# Someday...
 - Overall top-level stats for the day
-- MediaWiki prop=extracts returns partial sentences
 - Color gradient scroll effect with the rank tab
