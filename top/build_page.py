@@ -37,7 +37,7 @@ PROJECT_INDEX_PATH = pjoin(BASE_PATH, '{lang}/{project}/')
 LANG_PATH = pjoin(BASE_PATH, '{lang}')
 LANG_INDEX_PATH = pjoin(BASE_PATH, '{lang}/')
 
-DEFAULT_TEMPALTE_NAME = 'chart.dust'
+DEFAULT_TEMPLATE_NAME = 'chart.dust'
 ABOUT_TEMPLATE = 'about.dust'
 MONTH_INDEX_TMPL = 'month_index.dust'
 YEAR_INDEX_TMPL = 'year_index.dust'
@@ -70,7 +70,13 @@ def check_most_recent(lang=DEFAULT_LANG, project=DEFAULT_PROJECT):
     sdir = pjoin(sdir, recent_year)
     recent_month = max([f for f in listdir(sdir) if isdir(pjoin(sdir, f))])
     sdir = pjoin(sdir, recent_month)
-    recent_day = max([f for f in listdir(sdir) if not f.startswith('.')])
+    try:
+        recent_day = max([f for
+                          f in listdir(sdir)
+                          if not f.startswith('.')
+                          and not f.startswith('index')])
+    except ValueError as e:
+        import pdb; pdb.set_trace()
     recent_day = recent_day.replace('.json', '')
     return date(year=int(recent_year),
                 month=int(recent_month),
@@ -136,11 +142,18 @@ def save_chart(query_date, lang, project):
                                          year=query_date.year,
                                          month=query_date.month,
                                          day=query_date.day)
-    save_rendered(outfile_name, DEFAULT_TEMPALTE_NAME, data)
-    if lang is DEFAULT_LANG and project is DEFAULT_PROJECT:
-        data['dir_depth'] = ''
+    save_rendered(outfile_name, DEFAULT_TEMPLATE_NAME, data)
+    if query_date == check_most_recent(lang=lang, project=project):
+        lang_index_path = LANG_INDEX_PATH.format(lang=lang)
+        lang_index = pjoin(lang_index_path, 'index.htm')
+        data['dir_depth'] = '../'
         data['is_index'] = True
-        #save_rendered(INDEX_PATH, DEFAULT_TEMPLATE_NAME, data)
+        save_rendered(lang_index, DEFAULT_TEMPLATE_NAME, data)
+        if lang is DEFAULT_LANG and project is DEFAULT_PROJECT:
+            main_index = pjoin(INDEX_PATH, 'index.html')
+            data['dir_depth'] = ''
+            data['is_index'] = True
+            #save_rendered(main_index, DEFAULT_TEMPLATE_NAME, data)
 
 
 def update_charts(cur_date, lang, project):
@@ -202,9 +215,9 @@ def update_about():
         lang_name = LOCAL_LANG_MAP[lang]
         for project in project_map[lang]:
             data['languages'].append({'name': lang_name,
-                                      'url': '%s/%s/' % (lang, project)})
+                                      'url': '%s/' % (lang,)})
             # TODO: Add template support for projects other than Wikipedia
-            update_lang(lang, project)
+            # update_lang(lang, project)
     save_rendered(ABOUT_PATH, ABOUT_TEMPLATE, data)
 
 
@@ -259,10 +272,11 @@ def update_month(year, month, lang, project):
             'year': year,
             'about': ABOUT}
     data['dates'] = monthly_calendar(year, month, lang, project)
-    month_index = MONTH_INDEX_PATH.format(lang=lang,
-                                          project=project,
-                                          year=year,
-                                          month=month)
+    month_index_path = MONTH_INDEX_PATH.format(lang=lang,
+                                               project=project,
+                                               year=year,
+                                               month=month)
+    month_index = pjoin(month_index_path, 'index.htm')
     save_rendered(month_index, MONTH_INDEX_TMPL, data)
     return data
 
@@ -276,9 +290,10 @@ def update_year(year, lang, project):
                  'dir_depth': '../' * 3,
                  'about': ABOUT}
     year_data['months'] = yearly_calendar(year, lang, project)
-    year_index = YEAR_INDEX_PATH.format(year=year,
-                                        lang=lang,
-                                        project=project)
+    year_index_path = YEAR_INDEX_PATH.format(year=year,
+                                             lang=lang,
+                                             project=project)
+    year_index = pjoin(year_index_path, 'index.htm')
     save_rendered(year_index, YEAR_INDEX_TMPL, year_data)
 
 
@@ -291,15 +306,16 @@ def update_project(lang, project):
             'about': ABOUT}
     project_path = PROJECT_PATH.format(lang=lang,
                                        project=project)
+    project_index = pjoin(project_path, 'index.htm')
     for year in [y for y in next(os.walk(project_path))[1]]:
         year = int(year)
         year_data = yearly_calendar(year, lang, project)
         data['years'] += year_data
-    project_index = PROJECT_INDEX_PATH.format(lang=lang, project=project)
     save_rendered(project_index, PROJECT_INDEX_TMPL, data)
 
 
 def update_lang(lang, project):
+    # NOTE: the lang index is now a copy of the most recent chart
     full_lang = LOCAL_LANG_MAP[lang]
     lang_path = LANG_PATH.format(lang=lang)
     lang_data = {'projects': [p.capitalize()
@@ -309,7 +325,8 @@ def update_lang(lang, project):
                  'full_lang': full_lang,
                  'dir_depth': '../',
                  'about': ABOUT}
-    lang_index = LANG_INDEX_PATH.format(lang=lang)
+    lang_index_path = LANG_INDEX_PATH.format(lang=lang)
+    lang_index = pjoin(lang_index_path, 'index.htm')
     save_rendered(lang_index, GENERIC_INDEX_TMPL, lang_data)
 
 
