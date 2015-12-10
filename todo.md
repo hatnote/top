@@ -1,5 +1,6 @@
 # TODOs
 
+- Fix font sizing on mobile
 - Navigation between months
 - Confirm if [J/K navigation](https://github.com/livibetter-backup/jquery-jknav) is working OK on FireFox and Safari (it depends on an outdated jquery function)
 - RTL template support
