@@ -145,7 +145,7 @@ def save_chart(query_date, lang, project):
     save_rendered(outfile_name, DEFAULT_TEMPLATE_NAME, data)
     if query_date == check_most_recent(lang=lang, project=project):
         lang_index_path = LANG_INDEX_PATH.format(lang=lang)
-        lang_index = pjoin(lang_index_path, 'index.htm')
+        lang_index = pjoin(lang_index_path, 'index.html')
         data['dir_depth'] = '../'
         data['is_index'] = True
         save_rendered(lang_index, DEFAULT_TEMPLATE_NAME, data)
@@ -276,7 +276,7 @@ def update_month(year, month, lang, project):
                                                project=project,
                                                year=year,
                                                month=month)
-    month_index = pjoin(month_index_path, 'index.htm')
+    month_index = pjoin(month_index_path, 'index.html')
     save_rendered(month_index, MONTH_INDEX_TMPL, data)
     return data
 
@@ -293,7 +293,7 @@ def update_year(year, lang, project):
     year_index_path = YEAR_INDEX_PATH.format(year=year,
                                              lang=lang,
                                              project=project)
-    year_index = pjoin(year_index_path, 'index.htm')
+    year_index = pjoin(year_index_path, 'index.html')
     save_rendered(year_index, YEAR_INDEX_TMPL, year_data)
 
 
@@ -306,7 +306,7 @@ def update_project(lang, project):
             'about': ABOUT}
     project_path = PROJECT_PATH.format(lang=lang,
                                        project=project)
-    project_index = pjoin(project_path, 'index.htm')
+    project_index = pjoin(project_path, 'index.html')
     for year in [y for y in next(os.walk(project_path))[1]]:
         year = int(year)
         year_data = yearly_calendar(year, lang, project)
@@ -326,7 +326,7 @@ def update_lang(lang, project):
                  'dir_depth': '../',
                  'about': ABOUT}
     lang_index_path = LANG_INDEX_PATH.format(lang=lang)
-    lang_index = pjoin(lang_index_path, 'index.htm')
+    lang_index = pjoin(lang_index_path, 'index.html')
     save_rendered(lang_index, GENERIC_INDEX_TMPL, lang_data)
 
 

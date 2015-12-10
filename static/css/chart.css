@@ -141,12 +141,27 @@ h1 .ultra {
 }
 
 
-.header {
+.header, .end-nav {
     text-align: center;
     padding-top: 1em;
     border-bottom: 4px solid #0d0f05;
     margin: 0 auto;
     background: #fbfbfb;
+}
+
+.end-nav {
+    background-color: #dfe0e2;
+    border-bottom: none;
+    padding-top: 0;
+    padding-bottom: 1em;
+
+}
+
+.end-nav .subtitle {
+    border-radius: 7px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+
 }
 
 .row:hover {
@@ -204,6 +219,12 @@ a.issue_nav:hover {
     width: 20%;
 }
 
+.end-nav .left {
+    border-radius: 7px 0 0 7px;
+    -moz-border-radius: 7px 0 0 7px;
+    -webkit-border-radius: 7px 0 0 7px;
+}
+
 .center {
     float: left;
     width: 50%;
@@ -216,6 +237,12 @@ a.issue_nav:hover {
     -moz-border-radius: 0 7px 0 0;
     -webkit-border-radius: 0 7px 0 0;
     width: 20%;
+}
+
+.end-nav .right {
+    border-radius: 0 7px 7px 0;
+    -moz-border-radius: 0 7px 7px 0;
+    -webkit-border-radius: 0 7px 7px 0;
 }
 
 .top-area {
