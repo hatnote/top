@@ -4,6 +4,8 @@
     <title>{^is_index}{full_lang}{/is_index} {project} Top 100{^is_index} on {formatted_date}{/is_index}</title>
     <script src="{dir_depth}js/jquery.js"></script>
     <script src="{dir_depth}js/jquery.peity.min.js"></script>
+    <script src="{dir_depth}js/jquery.jknav.js"></script>
+    <script src="{dir_depth}js/jquery.hotkeys.js"></script>
     <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
     <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css">
     <style>
@@ -18,6 +20,8 @@
     <script>
 
     $(function() {
+        $('.rank').jknav();
+        $.jknav.init({speed: 'fast', circular: true});
         $('.sparkline').peity('line', {fill: null,
                                        width: 50,
                                        height: 14,
