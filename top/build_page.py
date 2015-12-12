@@ -8,6 +8,7 @@ from os import listdir
 from email.Utils import formatdate
 from os.path import join as pjoin, isdir, isfile, dirname
 from datetime import date, timedelta, datetime
+from dateutil.relativedelta import relativedelta
 from calendar import monthcalendar, month_name
 
 import ashes
@@ -28,8 +29,8 @@ ABOUT_PATH = pjoin(BASE_PATH, 'about.html')
 INDEX_PATH = pjoin(BASE_PATH, '')
 HTML_FILE_TMPL = '{lang}/{project}/{year}/{month}/{day}.html'
 HTML_PATH_TMPL = pjoin(BASE_PATH, HTML_FILE_TMPL)
-MONTH_INDEX_PATH = pjoin(BASE_PATH,
-                         '{lang}/{project}/{year}/{month}/')
+MONTH_INDEX = '{lang}/{project}/{year}/{month}/'
+MONTH_INDEX_PATH = pjoin(BASE_PATH, MONTH_INDEX)
 YEAR_PATH = pjoin(BASE_PATH, '{lang}/{project}/{year}')
 YEAR_INDEX_PATH = pjoin(BASE_PATH, '{lang}/{project}/{year}/')
 PROJECT_PATH = pjoin(BASE_PATH, '{lang}/{project}')
@@ -71,13 +72,11 @@ def check_most_recent(lang=DEFAULT_LANG, project=DEFAULT_PROJECT):
     recent_month = max([f for f in listdir(sdir) if isdir(pjoin(sdir, f))])
     sdir = pjoin(sdir, recent_month)
     try:
-        recent_day = max([f for
-                          f in listdir(sdir)
-                          if not f.startswith('.')
-                          and not f.startswith('index')])
+        recent_day = max([int(f.replace('.json', ''))
+                          for f
+                          in listdir(sdir) if '.json' in f])
     except ValueError as e:
         import pdb; pdb.set_trace()
-    recent_day = recent_day.replace('.json', '')
     return date(year=int(recent_year),
                 month=int(recent_month),
                 day=int(recent_day))
@@ -112,6 +111,20 @@ def check_chart(cur_date, days, lang, project):
     return None
 
 
+def check_month(cur_date, months, lang, project):
+    query_date = cur_date - relativedelta(months=months)
+    dirname = MONTH_INDEX_PATH.format(lang=lang,
+                                      project=project,
+                                      year=query_date.year,
+                                      month=query_date.month)
+    if isdir(dirname):
+        return MONTH_INDEX.format(lang=lang,
+                                  project=project,
+                                  year=query_date.year,
+                                  month=query_date.month)
+    return None
+
+
 def load_data(query_date, lang, project):
     file_name = DATA_PATH_TMPL.format(lang=lang,
                                       project=project,
@@ -137,12 +150,14 @@ def save_chart(query_date, lang, project):
     data['dir_depth'] = '../' * 4
     data['is_index'] = False
     data['project_lower'] = project
+    data.get('meta', {})['generated'] = datetime.utcnow().isoformat()
     outfile_name = HTML_PATH_TMPL.format(lang=lang,
                                          project=project,
                                          year=query_date.year,
                                          month=query_date.month,
                                          day=query_date.day)
     save_rendered(outfile_name, DEFAULT_TEMPLATE_NAME, data)
+    print check_most_recent(lang=lang, project=project)
     if query_date == check_most_recent(lang=lang, project=project):
         lang_index_path = LANG_INDEX_PATH.format(lang=lang)
         lang_index = pjoin(lang_index_path, 'index.html')
@@ -164,7 +179,9 @@ def update_charts(cur_date, lang, project):
     if check_chart(cur_date, -1, lang, project):
         next_date = cur_date + timedelta(days=1)
         save_chart(next_date, lang, project)
-    update_month(cur_date.year, cur_date.month, lang, project)
+    update_month(cur_date, lang, project)
+    prev_month = cur_date - relativedelta(months=1)
+    update_month(prev_month, lang, project)
     update_year(cur_date.year, lang, project)
     update_project(lang, project)
     return 'Saved and updated'
@@ -209,8 +226,8 @@ def update_about():
     project_map = check_projects()
     langs = project_map.keys()
     data = {'languages': [],
-            'about': ABOUT}
-            # TODO: add generation metadata
+            'about': ABOUT,
+            'meta': {'generated': datetime.utcnow().isoformat()}}
     for lang in langs:
         lang_name = LOCAL_LANG_MAP[lang]
         for project in project_map[lang]:
@@ -263,14 +280,18 @@ def yearly_calendar(year, lang, project):
     return ret
 
 
-def update_month(year, month, lang, project):
-    # TODO: Navigation between months
+def update_month(query_date, lang, project):
+    year = query_date.year
+    month = query_date.month
     data = {'dir_depth': '../' * 4,
             'month_name': month_name[month],
             'project': project.capitalize(),
             'full_lang': LOCAL_LANG_MAP[lang],
+            'prev_month': check_month(query_date, 1, lang, project),
+            'next_month': check_month(query_date, -1, lang, project),
             'year': year,
-            'about': ABOUT}
+            'about': ABOUT,
+            'meta': {'generated': datetime.utcnow().isoformat()}}
     data['dates'] = monthly_calendar(year, month, lang, project)
     month_index_path = MONTH_INDEX_PATH.format(lang=lang,
                                                project=project,

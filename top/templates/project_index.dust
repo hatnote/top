@@ -5,12 +5,9 @@
     <script src="{dir_depth}js/jquery.js"></script>
     <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
     <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css">
-    <script>
-
-    $(function() {
-
-    });
-    </script>
+    <!-- 
+        Generated: {meta.generated}
+    -->
 </head>
 <body>
     <div class="top-area">

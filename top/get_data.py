@@ -4,6 +4,7 @@ import codecs
 import urllib2
 from itertools import takewhile
 from json import load, loads, dump
+from csv import DictReader as csvDictReader
 from argparse import ArgumentParser
 from urllib import urlencode, quote_plus
 from datetime import date, timedelta, datetime
@@ -18,6 +19,7 @@ from common import (DATA_PATH_TMPL,
                     DATE_PERMALINK_TMPL,
                     TOP_API_URL,
                     MW_API_URL,
+                    TOTAL_TRAFFIC_URL,
                     DEBUG,
                     PREFIXES,
                     LOCAL_LANG_MAP,
@@ -63,6 +65,20 @@ def is_article(title, wiki_info):
         if title.startswith(prefix + ':'):
             return False
     return True
+
+
+def get_project_traffic(date, lang, project):
+    if project == 'wikipedia':
+        project = 'wiki'
+    url = TOTAL_TRAFFIC_URL.format(lang=lang, project=project)
+    resp = urllib2.urlopen(url)
+    data = csvDictReader(resp)
+    date_str = date.strftime('%Y-%m-%d')
+    try:
+        total_traffic = int([d['Total'] for d in data if d['Date'] == date_str][0])
+    except IndexError as e:
+        total_traffic = None
+    return total_traffic
 
 
 def get_query(params, lang, project, extractor, default_val):
@@ -311,6 +327,7 @@ def save_traffic_stats(lang, project, query_date, limit=DEFAULT_LIMIT):
     articles = make_article_list(query_date,
                                  lang=lang,
                                  project=project)
+    total_traffic = get_project_traffic(query_date, lang, project)
     articles = articles[:limit]
     articles = add_extras(articles, lang=lang, project=project)
     ret = {'articles': articles,
@@ -320,6 +337,8 @@ def save_traffic_stats(lang, project, query_date, limit=DEFAULT_LIMIT):
                     'year': query_date.year},
            'lang': lang,
            'full_lang': LOCAL_LANG_MAP[lang],
+           'total_traffic': total_traffic,
+           'total_traffic_short': shorten_number(total_traffic),
            'examples': [articles[0],
                         articles[1],
                         articles[2],
@@ -330,7 +349,7 @@ def save_traffic_stats(lang, project, query_date, limit=DEFAULT_LIMIT):
                                                    year=query_date.year,
                                                    month=query_date.month,
                                                    day=query_date.day),
-           'meta': {'generated': datetime.utcnow().isoformat()}}
+           'meta': {'fetched': datetime.utcnow().isoformat()}}
     outfile_name = DATA_PATH_TMPL.format(lang=lang,
                                          project=project,
                                          year=query_date.year,
@@ -375,7 +394,7 @@ if __name__ == '__main__':
         backfill(args.lang, args.project, args.backfill, args.update)
     else:
         if not args.date:
-            input_date = date.today() - timedelta(days=1)
+            input_date = date.today()  # data is available after midnight UTC
         else:
             input_date = datetime.strptime(args.date, '%Y%m%d').date()
         save_traffic_stats(args.lang, args.project, input_date)

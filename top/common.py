@@ -26,6 +26,9 @@ FEED_PATH_TMPL = pjoin(BASE_PATH, FEED_FILE_TMPL)
 TOP_API_URL = 'http://wikimedia.org/api/rest_v1/metrics/pageviews/'\
               'top/{lang}.{project}/all-access/{year}/{month}/{day}'
 MW_API_URL = 'http://{lang}.{project}.org/w/api.php?'
+TOTAL_TRAFFIC_URL = 'https://metrics.wmflabs.org/static/public/'\
+                    'datafiles/Pageviews/{lang}{project}.csv'
+
 
 # Other variables
 LOCAL_LANG_MAP = {'en': u'English',

@@ -31,6 +31,11 @@
         });
     });
     </script>
+    <!-- 
+        Generated: {meta.generated}
+        Fetched: {meta.fetched}
+        Total Traffic: {total_traffic_short}
+    -->
 </head>
 <body>
     <div class="top-area">

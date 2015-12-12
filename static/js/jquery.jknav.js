@@ -1,43 +1,13 @@
-jQuery.uaMatch = function( ua ) {
-    ua = ua.toLowerCase();
-    var match = /(chrome)[ \/]([\w.]+)/.exec( ua ) ||
-        /(webkit)[ \/]([\w.]+)/.exec( ua ) ||
-        /(opera)(?:.*version|)[ \/]([\w.]+)/.exec( ua ) ||
-        /(msie) ([\w.]+)/.exec( ua ) ||
-        ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec( ua ) || [];
-    return {
-        browser: match[ 1 ] || "",
-        version: match[ 2 ] || "0"
-    };
-};
-if ( !jQuery.browser ) {
-    var 
-    matched = jQuery.uaMatch( navigator.userAgent ),
-    browser = {};
-    if ( matched.browser ) {
-        browser[ matched.browser ] = true;
-        browser.version = matched.version;
-    }
-    // Chrome is Webkit, but Webkit is also Safari.
-    if ( browser.chrome ) {
-        browser.webkit = true;
-    } else if ( browser.webkit ) {
-        browser.safari = true;
-    }
-    jQuery.browser = browser;
-}
-
-
 /**
  * @preserve jknav
  * @name      jquery.jknav.js
- * @author    Yu-Jie Lin http://j.mp/Google-livibetter
- * @version   0.5.0.1
- * @date      05-24-2011
- * @copyright (c) 2010, 2011 Yu-Jie Lin <livibetter@gmail.com>
- * @license   BSD License
- * @homepage  http://code.google.com/p/lilbtn/wiki/JsJqueryJknav
- * @example   http://lilbtn.googlecode.com/hg/src/static/js/jquery/jquery.jknav.demo.html
+ * @author    Yu-Jie Lin
+ * @version   0.5.1
+ * @date      2013-03-26
+ * @copyright (c) 2010-2013 Yu-Jie Lin <livibetter@gmail.com>
+ * @license   MIT License
+ * @homepage  https://github.com/livibetter/jquery-jknav
+ * @example   http://livibetter.github.com/jquery-jknav/jquery.jknav.demo.html
 */
 (function ($) {
     /**
@@ -49,7 +19,10 @@ if ( !jQuery.browser ) {
         if ($.jknav.DEBUG && console && console.log)
             console.log('jknav: ' + message);
         }
-
+    /**
+     * Simple check if it is webkit, inspired by the jQuery Migrate plugin
+     */
+    function isWebkit(ua) { return ua.toLowerCase().match(/(chrome|webkit)[ \/]([\w.]+)/) };
     /**
      * Add jQuery objects to navgation list
      *
@@ -190,8 +163,8 @@ if ( !jQuery.browser ) {
         DEBUG: false,
         TARGET_KEYUP: 'html',
         // IE, Firefox, and Opera must use <html> to scroll
-        // Webkit must use <bod> to scroll
-        TARGET: (!$.browser.webkit)?'html':'body',
+        // Webkit must use <body> to scroll
+        TARGET: isWebkit(navigator.userAgent) ? 'body' : 'html',
         /**
          * Initialization function
          * @param {Object} options Options
@@ -199,7 +172,7 @@ if ( !jQuery.browser ) {
         init: function (options) {
             var opts = $.extend($.extend({}, $.jknav.default_options), options);
             $.jknav.index[opts.name] = null;
-            $.jknav.opts[opts.name] = opts;
+            $.jknav.opts[opts.name] = opts;         
             $($.jknav.TARGET_KEYUP).keyup(function (e) {
                 keyup(e, opts);
                 });

@@ -295,8 +295,14 @@ a.yesterday:hover {
     text-align: center;
 }
 
-.month a, .month .none {
+.month a {
+    display: block;
     padding: 1em;
+}
+
+.month .none {
+    padding: 1em;
+    
 }
 
 .none {

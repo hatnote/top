@@ -5,13 +5,11 @@
     <script src="{dir_depth}js/jquery.js"></script>
     <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
     <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css">
-    <script>
-    
-    $(function() {
-       
-    });
-    </script>
+    <!-- 
+        Generated: {meta.generated}
+    -->
 </head>
+
 <body>
     <div class="top-area">
         <div class="top container">
@@ -25,7 +23,7 @@
         <div class="container">
             <h1>{full_lang} {project} <span class="ultra">Top 100</span></h1>
             <p>The most-visited {full_lang} {project} articles, updated daily. <a href="#about" class="learn">Learn more</a>...</p> 
-            <div class="subtitle light">{?prev}<a class="issue_nav left" href="{dir_depth}{prev}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev}<p class="center">{month_name} {year} </p>{?next}<a class="issue_nav right" href="{dir_depth}{next}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next}
+            <div class="subtitle light">{?prev_month}<a class="issue_nav left" href="{dir_depth}{prev_month}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev_month}<p class="center">{month_name} {year} </p>{?next_month}<a class="issue_nav right" href="{dir_depth}{next_month}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next_month}
             <br style="clear: left;" />
             </div>
         </div>
