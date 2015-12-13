@@ -2,7 +2,7 @@ body {
     margin: 0;
     font-family: 'Lato', sans-serif;
     font-weight: 400;
-    font-size: 85%;
+    font-size: 90%;
     background: #dfe0e2;
 }
 
@@ -34,6 +34,7 @@ h1 {
 }
 
 .subtitle p {
+    padding-top: 0.5em;
     margin: 0;
 }
 
@@ -58,7 +59,7 @@ h1 .ultra {
 @media (max-width: 800px) {
 
         body {
-            font-size: 90%;
+ 
         }
 
         .ultra {
@@ -110,6 +111,7 @@ h1 .ultra {
 }
 
 .summary {
+    unicode-bidi: embed;
     margin: 0 1em 1em 1em;
     line-height: 1.2;
 }
@@ -297,6 +299,10 @@ a.yesterday:hover {
 .sparkline-area {
     float: right;
     margin-right: 1em;
+}
+
+.sparkline {
+    display: none;
 }
 
 .month {
