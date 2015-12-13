@@ -227,7 +227,7 @@ def tweet_composer(article, lang, project):
         if len(msg) < max_tweet_len:
             return msg
     msg = '%s was viewed %s times on %s #%s' % (title,
-                                                article['views'],
+                                                article['views_short'],
                                                 lang,
                                                 project)
     if len(msg) < max_tweet_len:

@@ -2,7 +2,7 @@ body {
     margin: 0;
     font-family: 'Lato', sans-serif;
     font-weight: 400;
-    font-size: 11pt;
+    font-size: 85%;
     background: #dfe0e2;
 }
 
@@ -35,7 +35,6 @@ h1 {
 
 .subtitle p {
     margin: 0;
-    padding: 0.5em;
 }
 
 h1 .ultra {
@@ -57,6 +56,16 @@ h1 .ultra {
 }
 
 @media (max-width: 800px) {
+
+        body {
+            font-size: 90%;
+        }
+
+        .ultra {
+            display: block;
+            
+        }
+
         .container {
             padding: 0 1em;
         }
@@ -102,7 +111,6 @@ h1 .ultra {
 
 .summary {
     margin: 0 1em 1em 1em;
-    font-size: 10pt;
     line-height: 1.2;
 }
 
@@ -212,7 +220,7 @@ a.issue_nav:hover {
 }
 
 .left {
-    padding: 0.5em;
+    padding: 0.5em 0;
     float: left;
     border-radius: 7px 0 0 0;
     -moz-border-radius: 7px 0 0 0;
@@ -228,11 +236,12 @@ a.issue_nav:hover {
 
 .center {
     float: left;
-    width: 50%;
+    width: 59%;
+    padding: 0.5em 0;
 }
     
 .right {
-    padding: 0.5em;
+    padding: 0.5em 0;
     float: right;
     border-radius: 0 7px 0 0;
     -moz-border-radius: 0 7px 0 0;
