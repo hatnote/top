@@ -74,10 +74,9 @@ def get_project_traffic(date, lang, project):
     resp = urllib2.urlopen(url)
     data = csvDictReader(resp)
     date_str = date.strftime('%Y-%m-%d')
-    try:
-        total_traffic = int([d['Total'] for d in data if d['Date'] == date_str][0])
-    except IndexError as e:
-        total_traffic = None
+
+    date_total_list = [(d['Date'], d['Total']) for d in data]
+    total_traffic = dict(date_total_list).get(date_str, 0)
     return total_traffic
 
 
