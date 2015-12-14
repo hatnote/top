@@ -158,14 +158,14 @@ def save_chart(query_date, lang, project):
                                          month=query_date.month,
                                          day=query_date.day)
     save_rendered(outfile_name, DEFAULT_TEMPLATE_NAME, data)
-    print check_most_recent(lang=lang, project=project)
-    if query_date == check_most_recent(lang=lang, project=project):
+    most_recent = check_most_recent(lang=lang, project=project)
+    if query_date == most_recent:
         lang_index_path = LANG_INDEX_PATH.format(lang=lang)
         lang_index = pjoin(lang_index_path, 'index.html')
         data['dir_depth'] = '../'
         data['is_index'] = True
         save_rendered(lang_index, DEFAULT_TEMPLATE_NAME, data)
-        if lang is DEFAULT_LANG and project is DEFAULT_PROJECT:
+        if lang == DEFAULT_LANG and project == DEFAULT_PROJECT:
             main_index = pjoin(INDEX_PATH, 'index.html')
             data['dir_depth'] = ''
             data['is_index'] = True
