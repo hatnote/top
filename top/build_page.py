@@ -172,13 +172,18 @@ def save_chart(query_date, lang, project):
 
 
 def update_charts(cur_date, lang, project):
+    # Update the current chart
     save_chart(cur_date, lang, project)
+    # Update the prev and next charts (for navigation)
     if check_chart(cur_date, 1, lang, project):
         prev_date = cur_date - timedelta(days=1)
         save_chart(prev_date, lang, project)
     if check_chart(cur_date, -1, lang, project):
         next_date = cur_date + timedelta(days=1)
         save_chart(next_date, lang, project)
+    # Update the feed
+    update_feeds(cur_date, lang, project)
+    # Update the monthly and yearly navigation
     update_month(cur_date, lang, project)
     prev_month = cur_date - relativedelta(months=1)
     update_month(prev_month, lang, project)
@@ -222,11 +227,23 @@ def update_feeds(cur_date, lang, project, day_count=10):
     return
 
 
+def list_feeds():
+    FEED_INDEX = pjoin(BASE_PATH, 'feeds')
+    fdir = FEED_INDEX
+    feeds = [{'name': LOCAL_LANG_MAP[f[:2]], 'url': 'feeds/%s' % f}
+             for f
+             in listdir(fdir)
+             if '.rss' in f]
+    return feeds
+
+
 def update_about():
     project_map = check_projects()
     langs = project_map.keys()
+    feeds = list_feeds()
     data = {'languages': [],
             'about': ABOUT,
+            'feeds': feeds,
             'meta': {'generated': datetime.utcnow().isoformat()}}
     for lang in langs:
         lang_name = LOCAL_LANG_MAP[lang]
@@ -366,4 +383,4 @@ if __name__ == '__main__':
         else:
             input_date = datetime.strptime(args.date, '%Y%m%d').date()
         update_charts(input_date, args.lang, args.project)
-        update_feeds(input_date, args.lang, args.project)
+        
