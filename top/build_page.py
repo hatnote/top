@@ -150,7 +150,8 @@ def save_chart(query_date, lang, project):
     data['dir_depth'] = '../' * 4
     data['is_index'] = False
     data['project_lower'] = project
-    data.get('meta', {})['generated'] = datetime.utcnow().isoformat()
+    data.setdefault('meta', {})['generated'] = datetime.utcnow().isoformat()
+
     outfile_name = HTML_PATH_TMPL.format(lang=lang,
                                          project=project,
                                          year=query_date.year,
@@ -383,4 +384,4 @@ if __name__ == '__main__':
         else:
             input_date = datetime.strptime(args.date, '%Y%m%d').date()
         update_charts(input_date, args.lang, args.project)
-        
+        update_feeds(input_date, args.lang, args.project)
