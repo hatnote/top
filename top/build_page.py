@@ -169,7 +169,7 @@ def save_chart(query_date, lang, project):
             main_index = pjoin(INDEX_PATH, 'index.html')
             data['dir_depth'] = ''
             data['is_index'] = True
-            #save_rendered(main_index, DEFAULT_TEMPLATE_NAME, data)
+            save_rendered(main_index, DEFAULT_TEMPLATE_NAME, data)
 
 
 def update_charts(cur_date, lang, project):
