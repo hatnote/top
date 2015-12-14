@@ -76,7 +76,7 @@ def check_most_recent(lang=DEFAULT_LANG, project=DEFAULT_PROJECT):
                           for f
                           in listdir(sdir) if '.json' in f])
     except ValueError as e:
-        import pdb; pdb.set_trace()
+        pass  # import pdb; pdb.set_trace()
     return date(year=int(recent_year),
                 month=int(recent_month),
                 day=int(recent_day))
