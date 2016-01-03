@@ -140,7 +140,7 @@ def get_traffic(query_date, lang, project):
     url = TOP_API_URL.format(lang=lang,
                              project=project,
                              year=query_date.year,
-                             month=query_date.month,
+                             month='%02d' % query_date.month,
                              day='%02d' % query_date.day)
     if DEBUG:
         print 'Getting %s' % url
