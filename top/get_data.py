@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 import os
+import sys
+import time
+
 import codecs
 import urllib2
 from itertools import takewhile
@@ -28,10 +31,12 @@ from common import (DATA_PATH_TMPL,
 import crisco
 
 DEFAULT_LIMIT = 100
-DEFAULT_IMAGE = 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/'\
-                'Wikipedia%27s_W.svg/400px-Wikipedia%27s_W.svg.png'
+DEFAULT_IMAGE = ('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/'
+                 'Wikipedia%27s_W.svg/400px-Wikipedia%27s_W.svg.png')
 DEFAULT_SUMMARY = None
 DEFAULT_GROUP_SIZE = 20
+
+POLL_INCR_MINS = 5
 
 
 def get_wiki_info(lang, project):
@@ -383,22 +388,57 @@ def get_argparser():
     prs.add_argument('--date', default=None)
     prs.add_argument('--backfill', default=None)
     prs.add_argument('--update', '-u', action='store_true')
+    prs.add_argument('--poll', type=int,
+                     help="number of minutes to continue retrying")
     return prs
 
 
-if __name__ == '__main__':
+def main():
     parser = get_argparser()
     args = parser.parse_args()
     if args.backfill:
         backfill(args.lang, args.project, args.backfill, args.update)
+        return
+
+    if not args.date:
+        input_date = date.today()
     else:
-        if not args.date:
-            input_date = date.today()  # data is available after midnight UTC
-        else:
-            input_date = datetime.strptime(args.date, '%Y%m%d').date()
+        input_date = datetime.strptime(args.date, '%Y%m%d').date()
+
+    if args.poll:
+        if args.poll % POLL_INCR_MINS:
+            raise ValueError('poll time must be in increments of %r minutes'
+                             % POLL_INCR_MINS)
+        err_write = sys.stderr.write
+        count = 0
+        max_time = time.time() + (args.poll * 60)
+        while 1:
+            count += 1
+            try:
+                save_traffic_stats(args.lang, args.project, input_date)
+                break
+            except urllib2.HTTPError as he:
+                if he.getcode() != 404:
+                    raise
+                if (time.time() + POLL_INCR_MINS) <= max_time:
+                    err_write('#' + str(count).rjust(2) + ' - ')
+                    err_write(datetime.now().isoformat())
+                    err_write(' - received 404 - next attempt in %r minutes\n'
+                              % POLL_INCR_MINS)
+                    time.sleep(POLL_INCR_MINS * 60)
+                else:
+                    err_write('!! - ')
+                    err_write(datetime.now().isoformat())
+                    err_write(' - no results after %r attempts and %r minutes,'
+                              ' exiting.\n\n' % (count, args.poll))
+    else:
         save_traffic_stats(args.lang, args.project, input_date)
-        if args.update:
-            print update_charts(input_date, args.lang, args.project)
-        #if DEBUG:
-        #    import pdb
-        #    pdb.set_trace()
+    if args.update:
+        print update_charts(input_date, args.lang, args.project)
+    #if DEBUG:
+    #    import pdb
+    #    pdb.set_trace()
+
+
+if __name__ == '__main__':
+    main()
