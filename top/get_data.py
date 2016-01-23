@@ -13,6 +13,7 @@ from urllib import urlencode, quote_plus
 from datetime import date, timedelta, datetime
 
 from boltons.fileutils import mkdir_p
+from boltons.timeutils import parse_timedelta
 
 from utils import grouper, shorten_number
 from build_page import update_charts
@@ -36,7 +37,7 @@ DEFAULT_IMAGE = ('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/'
 DEFAULT_SUMMARY = None
 DEFAULT_GROUP_SIZE = 20
 
-POLL_INCR_MINS = 5
+POLL_INTERVAL = parse_timedelta('10m')
 
 
 def get_wiki_info(lang, project):
@@ -388,8 +389,10 @@ def get_argparser():
     prs.add_argument('--date', default=None)
     prs.add_argument('--backfill', default=None)
     prs.add_argument('--update', '-u', action='store_true')
-    prs.add_argument('--poll', type=int,
-                     help="number of minutes to continue retrying")
+    prs.add_argument('--poll',
+                     help="length of time to poll (e.g., 5m, 4h, 1h30m")
+    prs.add_argument('--poll-interval',
+                     help="length of time between poll attempts")
     return prs
 
 
@@ -406,12 +409,18 @@ def main():
         input_date = datetime.strptime(args.date, '%Y%m%d').date()
 
     if args.poll:
-        if args.poll % POLL_INCR_MINS:
-            raise ValueError('poll time must be in increments of %r minutes'
-                             % POLL_INCR_MINS)
+        poll_td = parse_timedelta(args.poll)
+        if args.poll_interval:
+            poll_interval = parse_timedelta(args.poll_interval)
+        else:
+            poll_interval = POLL_INTERVAL
+
+        # if args.poll % POLL_INCR_MINS:
+        #     raise ValueError('poll time must be in increments of %r minutes'
+        #                      % POLL_INCR_MINS)
         err_write = sys.stderr.write
         count = 0
-        max_time = time.time() + (args.poll * 60)
+        max_time = datetime.now() + poll_td
         while 1:
             count += 1
             try:
@@ -420,17 +429,19 @@ def main():
             except urllib2.HTTPError as he:
                 if he.getcode() != 404:
                     raise
-                if (time.time() + POLL_INCR_MINS) <= max_time:
-                    err_write('#' + str(count).rjust(2) + ' - ')
-                    err_write(datetime.now().isoformat())
-                    err_write(' - received 404 - next attempt in %r minutes\n'
-                              % POLL_INCR_MINS)
-                    time.sleep(POLL_INCR_MINS * 60)
+                if (datetime.now() + poll_interval) <= max_time:
+                    if count == 1:
+                        err_write('# ' + datetime.now().isoformat())
+                        err_write(' - got 404 - polling every %r mins until %s.\n'
+                                  % (poll_interval.total_seconds() / 60.0,
+                                     max_time.isoformat()))
+                    time.sleep(poll_interval.total_seconds())
                 else:
-                    err_write('!! - ')
+                    err_write('\n!! - ')
                     err_write(datetime.now().isoformat())
                     err_write(' - no results after %r attempts and %r minutes,'
-                              ' exiting.\n\n' % (count, args.poll))
+                              ' exiting.\n\n' % (count,
+                                                 poll_td.total_seconds() / 60))
     else:
         save_traffic_stats(args.lang, args.project, input_date)
     if args.update:
