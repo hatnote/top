@@ -427,13 +427,16 @@ def main():
                 save_traffic_stats(args.lang, args.project, input_date)
                 break
             except urllib2.HTTPError as he:
-                if he.getcode() != 404:
-                    raise
+                # tried to be nice but the API gives back all sorts of statuses
+                # if he.getcode() != 404:
+                #     raise
+                status_code = he.getcode()
                 if (datetime.now() + poll_interval) <= max_time:
                     if count == 1:
                         err_write('# ' + datetime.now().isoformat())
-                        err_write(' - got 404 - polling every %r mins until %s.\n'
-                                  % (poll_interval.total_seconds() / 60.0,
+                        err_write(' - got %s - polling every %r mins until %s.\n'
+                                  % (status_code,
+                                     poll_interval.total_seconds() / 60.0,
                                      max_time.isoformat()))
                     time.sleep(poll_interval.total_seconds())
                 else:
