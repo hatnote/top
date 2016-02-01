@@ -98,6 +98,13 @@
         background-color: #fbfbfb;
     }
 
+    .feeds {
+        margin: 0 2em;
+    }
+
+    .feeds-icon {
+        margin: 0 0.5em;
+    }
 
     </style>
     <!-- 
@@ -111,7 +118,7 @@
             <ul>
                 <li><a href="/">Home</a></li>
                 <li>More languages</li>
-                <li><a href="#">Blog</a></li>
+                <li><a href="http://blog.hatnote.com/post/135182048397/announcing-the-hatnote-top-100">Blog</a></li>
             </ul>
         </div>
     </div>
@@ -144,6 +151,13 @@
         <div class="about">
             <h2>About</h2>
             {about|s}
+            <h2>RSS Feeds<img src="img/feed.png" class="feeds-icon"></h2>
+	    <p>Stay up to date on the most visited Wikipedia articles and more, via <a href="https://ifttt.com/recipes/351696-daily-wikipedia-top-100">IFTTT</a> or your <a href="https://en.wikipedia.org/wiki/Comparison_of_feed_aggregators">favorite feed reader</a>.</p>
+            <ul class="feeds">
+                {#feeds}
+                <li><a href="{url}" class="feed">{name}</a></li>
+                {/feeds}
+            </ul>
         </div>
     </div>
 

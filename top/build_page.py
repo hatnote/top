@@ -76,7 +76,7 @@ def check_most_recent(lang=DEFAULT_LANG, project=DEFAULT_PROJECT):
                           for f
                           in listdir(sdir) if '.json' in f])
     except ValueError as e:
-        import pdb; pdb.set_trace()
+        pass  # import pdb; pdb.set_trace()
     return date(year=int(recent_year),
                 month=int(recent_month),
                 day=int(recent_day))
@@ -150,35 +150,41 @@ def save_chart(query_date, lang, project):
     data['dir_depth'] = '../' * 4
     data['is_index'] = False
     data['project_lower'] = project
-    data.get('meta', {})['generated'] = datetime.utcnow().isoformat()
+    data.setdefault('meta', {})['generated'] = datetime.utcnow().isoformat()
+
     outfile_name = HTML_PATH_TMPL.format(lang=lang,
                                          project=project,
                                          year=query_date.year,
                                          month=query_date.month,
                                          day=query_date.day)
     save_rendered(outfile_name, DEFAULT_TEMPLATE_NAME, data)
-    print check_most_recent(lang=lang, project=project)
-    if query_date == check_most_recent(lang=lang, project=project):
+    most_recent = check_most_recent(lang=lang, project=project)
+    if query_date == most_recent:
         lang_index_path = LANG_INDEX_PATH.format(lang=lang)
         lang_index = pjoin(lang_index_path, 'index.html')
         data['dir_depth'] = '../'
         data['is_index'] = True
         save_rendered(lang_index, DEFAULT_TEMPLATE_NAME, data)
-        if lang is DEFAULT_LANG and project is DEFAULT_PROJECT:
+        if lang == DEFAULT_LANG and project == DEFAULT_PROJECT:
             main_index = pjoin(INDEX_PATH, 'index.html')
             data['dir_depth'] = ''
             data['is_index'] = True
-            #save_rendered(main_index, DEFAULT_TEMPLATE_NAME, data)
+            save_rendered(main_index, DEFAULT_TEMPLATE_NAME, data)
 
 
 def update_charts(cur_date, lang, project):
+    # Update the current chart
     save_chart(cur_date, lang, project)
+    # Update the prev and next charts (for navigation)
     if check_chart(cur_date, 1, lang, project):
         prev_date = cur_date - timedelta(days=1)
         save_chart(prev_date, lang, project)
     if check_chart(cur_date, -1, lang, project):
         next_date = cur_date + timedelta(days=1)
         save_chart(next_date, lang, project)
+    # Update the feed
+    update_feeds(cur_date, lang, project)
+    # Update the monthly and yearly navigation
     update_month(cur_date, lang, project)
     prev_month = cur_date - relativedelta(months=1)
     update_month(prev_month, lang, project)
@@ -222,11 +228,23 @@ def update_feeds(cur_date, lang, project, day_count=10):
     return
 
 
+def list_feeds():
+    FEED_INDEX = pjoin(BASE_PATH, 'feeds')
+    fdir = FEED_INDEX
+    feeds = [{'name': LOCAL_LANG_MAP[f[:2]], 'url': 'feeds/%s' % f}
+             for f
+             in listdir(fdir)
+             if '.rss' in f]
+    return feeds
+
+
 def update_about():
     project_map = check_projects()
     langs = project_map.keys()
+    feeds = list_feeds()
     data = {'languages': [],
             'about': ABOUT,
+            'feeds': feeds,
             'meta': {'generated': datetime.utcnow().isoformat()}}
     for lang in langs:
         lang_name = LOCAL_LANG_MAP[lang]

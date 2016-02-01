@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 import os
+import sys
+import time
+
 import codecs
 import urllib2
 from itertools import takewhile
@@ -10,6 +13,7 @@ from urllib import urlencode, quote_plus
 from datetime import date, timedelta, datetime
 
 from boltons.fileutils import mkdir_p
+from boltons.timeutils import parse_timedelta
 
 from utils import grouper, shorten_number
 from build_page import update_charts
@@ -28,10 +32,12 @@ from common import (DATA_PATH_TMPL,
 import crisco
 
 DEFAULT_LIMIT = 100
-DEFAULT_IMAGE = 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/'\
-                'Wikipedia%27s_W.svg/400px-Wikipedia%27s_W.svg.png'
+DEFAULT_IMAGE = ('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/'
+                 'Wikipedia%27s_W.svg/400px-Wikipedia%27s_W.svg.png')
 DEFAULT_SUMMARY = None
 DEFAULT_GROUP_SIZE = 20
+
+POLL_INTERVAL = parse_timedelta('10m')
 
 
 def get_wiki_info(lang, project):
@@ -74,10 +80,9 @@ def get_project_traffic(date, lang, project):
     resp = urllib2.urlopen(url)
     data = csvDictReader(resp)
     date_str = date.strftime('%Y-%m-%d')
-    try:
-        total_traffic = int([d['Total'] for d in data if d['Date'] == date_str][0])
-    except IndexError as e:
-        total_traffic = None
+
+    date_total_list = [(d['Date'], d['Total']) for d in data]
+    total_traffic = dict(date_total_list).get(date_str, 0)
     return total_traffic
 
 
@@ -141,7 +146,7 @@ def get_traffic(query_date, lang, project):
     url = TOP_API_URL.format(lang=lang,
                              project=project,
                              year=query_date.year,
-                             month=query_date.month,
+                             month='%02d' % query_date.month,
                              day='%02d' % query_date.day)
     if DEBUG:
         print 'Getting %s' % url
@@ -384,22 +389,70 @@ def get_argparser():
     prs.add_argument('--date', default=None)
     prs.add_argument('--backfill', default=None)
     prs.add_argument('--update', '-u', action='store_true')
+    prs.add_argument('--poll',
+                     help="length of time to poll (e.g., 5m, 4h, 1h30m")
+    prs.add_argument('--poll-interval',
+                     help="length of time between poll attempts")
     return prs
 
 
-if __name__ == '__main__':
+def main():
     parser = get_argparser()
     args = parser.parse_args()
     if args.backfill:
         backfill(args.lang, args.project, args.backfill, args.update)
+        return
+
+    if not args.date:
+        input_date = date.today()
     else:
-        if not args.date:
-            input_date = date.today()  # data is available after midnight UTC
+        input_date = datetime.strptime(args.date, '%Y%m%d').date()
+
+    if args.poll:
+        poll_td = parse_timedelta(args.poll)
+        if args.poll_interval:
+            poll_interval = parse_timedelta(args.poll_interval)
         else:
-            input_date = datetime.strptime(args.date, '%Y%m%d').date()
+            poll_interval = POLL_INTERVAL
+
+        # if args.poll % POLL_INCR_MINS:
+        #     raise ValueError('poll time must be in increments of %r minutes'
+        #                      % POLL_INCR_MINS)
+        err_write = sys.stderr.write
+        count = 0
+        max_time = datetime.now() + poll_td
+        while 1:
+            count += 1
+            try:
+                save_traffic_stats(args.lang, args.project, input_date)
+                break
+            except urllib2.HTTPError as he:
+                # tried to be nice but the API gives back all sorts of statuses
+                # if he.getcode() != 404:
+                #     raise
+                status_code = he.getcode()
+                if (datetime.now() + poll_interval) <= max_time:
+                    if count == 1:
+                        err_write('# ' + datetime.now().isoformat())
+                        err_write(' - got %s - polling every %r mins until %s.\n'
+                                  % (status_code,
+                                     poll_interval.total_seconds() / 60.0,
+                                     max_time.isoformat()))
+                    time.sleep(poll_interval.total_seconds())
+                else:
+                    err_write('\n!! - ')
+                    err_write(datetime.now().isoformat())
+                    err_write(' - no results after %r attempts and %r minutes,'
+                              ' exiting.\n\n' % (count,
+                                                 poll_td.total_seconds() / 60))
+    else:
         save_traffic_stats(args.lang, args.project, input_date)
-        if args.update:
-            print update_charts(input_date, args.lang, args.project)
-        #if DEBUG:
-        #    import pdb
-        #    pdb.set_trace()
+    if args.update:
+        print update_charts(input_date, args.lang, args.project)
+    #if DEBUG:
+    #    import pdb
+    #    pdb.set_trace()
+
+
+if __name__ == '__main__':
+    main()
