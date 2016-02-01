@@ -2,7 +2,15 @@
 WORD_FILTERS = ['penis',
                 'sex',
                 'masturbat',
-                'missionary']
+                'missionary',
+                'Luxurieux',
+                'xxx',
+                'fellatio',
+                'reproductive',
+                'brust',
+                'Kamasutra',
+                'Condom',
+                'Klimt']
 
 
 def word_filter(text):
