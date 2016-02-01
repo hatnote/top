@@ -2,11 +2,12 @@
 import os
 import sys
 import time
+import json
 
 import codecs
 import urllib2
 from itertools import takewhile
-from json import load, loads, dump
+
 from csv import DictReader as csvDictReader
 from argparse import ArgumentParser
 from urllib import urlencode, quote_plus
@@ -14,8 +15,9 @@ from datetime import date, timedelta, datetime
 
 from boltons.fileutils import mkdir_p
 from boltons.timeutils import parse_timedelta
+from boltons.iterutils import chunked
 
-from utils import grouper, shorten_number
+from utils import shorten_number
 from build_page import update_charts
 from word_filter import word_filter
 from common import (DATA_PATH_TMPL,
@@ -30,6 +32,8 @@ from common import (DATA_PATH_TMPL,
                     DEFAULT_PROJECT,
                     DEFAULT_LANG)
 import crisco
+from log import tlog
+
 
 DEFAULT_LIMIT = 100
 DEFAULT_IMAGE = ('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/'
@@ -40,6 +44,7 @@ DEFAULT_GROUP_SIZE = 20
 POLL_INTERVAL = parse_timedelta('10m')
 
 
+@tlog.wrap('critical')
 def get_wiki_info(lang, project):
     '''\
     Get the mainpage title and local namespace map.
@@ -50,7 +55,7 @@ def get_wiki_info(lang, project):
               'format': 'json',
               'siprop': 'general|namespaces'}
     resp = urllib2.urlopen(url + urlencode(params))
-    data = loads(resp.read())
+    data = json.loads(resp.read())
     mainpage = data['query']['general']['mainpage'].replace(' ', '_')
     namespaces = [ns_info['*'].replace(' ', '_') for ns_id, ns_info in
                   data['query']['namespaces'].iteritems() if ns_id is not 0]
@@ -73,6 +78,7 @@ def is_article(title, wiki_info):
     return True
 
 
+# TODO: switch to new JSON API
 def get_project_traffic(date, lang, project):
     if project == 'wikipedia':
         project = 'wiki'
@@ -92,7 +98,7 @@ def get_query(params, lang, project, extractor, default_val):
     '''
     url = MW_API_URL.format(lang=lang, project=project)
     resp = urllib2.urlopen(url + urlencode(params))
-    data = loads(resp.read())
+    data = json.loads(resp.read())
     ret = {}
     for page_id, page_info in data['query']['pages'].iteritems():
         if int(page_id) < 0:
@@ -100,15 +106,20 @@ def get_query(params, lang, project, extractor, default_val):
         else:
             try:
                 ret[page_info['title']] = extractor(page_info)
-            except Exception as e:
+            except Exception:
                 ret[page_info['title']] = default_val
     return ret
 
 
-def get_images(titles, lang, project):
+@tlog.wrap('debug', inject_as='log_rec')
+def get_images(titles, lang, project, log_rec):
     '''\
     Get thumbnails for a group of pages via MediaWiki API.
     '''
+    log_rec['count'] = len(titles)
+    log_rec['lang'] = lang
+    log_rec['project'] = project
+
     params = {'action': 'query',
               'prop': 'pageimages',
               'pithumbsize': 500,
@@ -118,13 +129,21 @@ def get_images(titles, lang, project):
     extractor = lambda page: page.get('thumbnail', {}).get('source',
                                                            DEFAULT_IMAGE)
     images = get_query(params, lang, project, extractor, DEFAULT_IMAGE)
+
+    log_rec.success('finished getting images for {count} {lang}'
+                    ' {project} articles')
     return images
 
 
-def get_summaries(titles, lang, project):
+@tlog.wrap('debug', inject_as='log_rec')
+def get_summaries(titles, lang, project, log_rec):
     '''\
     Get summaries for a group of pages via MediaWiki API.
     '''
+    log_rec['count'] = len(titles)
+    log_rec['lang'] = lang
+    log_rec['project'] = project
+
     params = {'action': 'query',
               'prop': 'extracts',
               'exsentences': 3,
@@ -135,6 +154,9 @@ def get_summaries(titles, lang, project):
               'titles': '|'.join(titles).encode('utf-8')}
     extractor = lambda page: page['extract']
     summaries = get_query(params, lang, project, extractor, DEFAULT_SUMMARY)
+
+    log_rec.success('finished getting summaries for {count} {lang}'
+                    ' {project} articles')
     return summaries
 
 
@@ -150,12 +172,19 @@ def get_traffic(query_date, lang, project):
                              day='%02d' % query_date.day)
     if DEBUG:
         print 'Getting %s' % url
-    resp = urllib2.urlopen(url)
-    data = loads(resp.read())
-    articles = data['items'][0]['articles']
+    with tlog.critical('fetch_traffic') as rec:
+        resp = urllib2.urlopen(url)
+        resp_bytes = resp.read()
+        rec.success('Fetched {len_bytes} bytes from {url}',
+                    len_bytes=len(resp_bytes), url=url)
+
+    with tlog.critical('deserialize_traffic'):
+        data = json.loads(resp_bytes)
+        articles = data['items'][0]['articles']
     return articles
 
 
+@tlog.wrap('debug')
 def load_traffic(query_date, lang, project):
     file_name = DATA_PATH_TMPL.format(lang=lang,
                                       project=project,
@@ -167,7 +196,7 @@ def load_traffic(query_date, lang, project):
     except IOError:
         return None
     with data_file:
-        return load(data_file)
+        return json.load(data_file)
 
 
 def load_prev_traffic(query_date, limit, lang=DEFAULT_LANG,
@@ -217,7 +246,7 @@ def tweet_composer(article, lang, project):
     title = article['title']
     project = project.capitalize()
     lang = LOCAL_LANG_MAP[lang]
-    if type(article['streak_len']) is str:
+    if isinstance(article['streak_len'], str):
         streak = article['streak_len'].replace('+', '')
     else:
         streak = article['streak_len']
@@ -244,6 +273,7 @@ def tweet_composer(article, lang, project):
     return msg
 
 
+@tlog.wrap('critical')
 def make_article_list(query_date, lang, project):
     wiki_info = get_wiki_info(lang, project)
     raw_traffic = get_traffic(query_date, lang, project)
@@ -294,32 +324,30 @@ def make_article_list(query_date, lang, project):
     return ret
 
 
-def add_extras(articles, lang, project):
+@tlog.wrap('info', inject_as='log_rec')
+def add_extras(articles, lang, project, log_rec):
     '''\
     Add images and summaries to articles in groups.
     '''
+    log_rec['len_art'] = len(articles)
     ret = []
-    article_groups = grouper(articles, DEFAULT_GROUP_SIZE)
+    article_groups = chunked(articles, DEFAULT_GROUP_SIZE)
     for article_group in article_groups:
         titles = [a['article'] for a in article_group]
-        if DEBUG:
-            print 'Getting images for %s articles' % len(titles)
         images = get_images(titles, lang, project)
-        if DEBUG:
-            print 'Getting summaries for %s articles' % len(titles)
         summaries = get_summaries(titles, lang, project)
-        if DEBUG:
-            print 'Preparing results...'
+
         for article in article_group:
             title = article['title']
             article['image_url'] = images.get(title, DEFAULT_IMAGE)
             if word_filter(title) or word_filter(article['image_url']):
-                print 'no image for %s' % (title.encode('utf-8'),)
                 article['image_url'] = DEFAULT_IMAGE
             summary = summaries.get(title, '')
             summary = crisco.shorten(summary, lang, 400)
             article['summary'] = summary
             ret.append(article)
+
+    log_rec.success('finished adding images/summaries for {len_art} articles')
     return ret
 
 
@@ -360,24 +388,34 @@ def save_traffic_stats(lang, project, query_date, limit=DEFAULT_LIMIT):
                                          year=query_date.year,
                                          month=query_date.month,
                                          day=query_date.day)
-    try:
-        out_file = codecs.open(outfile_name, 'w')
-    except IOError:
-        mkdir_p(os.path.dirname(outfile_name))
-        out_file = codecs.open(outfile_name, 'w')
-    with out_file:
-        if DEBUG:
-            print 'Saving %s ...' % outfile_name
-        dump(ret, out_file)
+
+    with tlog.critical('saving_single_day_stats') as rec:
+        rec['out_file'] = os.path.abspath(outfile_name)
+        try:
+            out_file = codecs.open(outfile_name, 'w')
+        except IOError:
+            mkdir_p(os.path.dirname(outfile_name))
+            out_file = codecs.open(outfile_name, 'w')
+        with out_file:
+            data_bytes = json.dumps(ret, indent=2, sort_keys=True)
+            rec['len_bytes'] = len(data_bytes)
+            out_file.write(data_bytes)
+
+        rec.success('wrote {len_bytes} bytes to {out_file}')
+
+    return
 
 
-def backfill(lang, project, days, update=False):
+@tlog.wrap('backfill', inject_as='log_rec')
+def backfill(lang, project, days, update, log_rec):
     for day in range(int(days), 1, -1):
         input_date = date.today() - timedelta(days=day)
         save_traffic_stats(lang, project, input_date)
         if update:
             update_charts(input_date, lang, project)
-    print 'finished backfilling %s days' % days
+
+    log_rec.success('finished backfilling {} days', days)
+    return
 
 
 def get_argparser():
