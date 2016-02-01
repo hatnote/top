@@ -44,7 +44,12 @@ LOCAL_LANG_MAP = {'en': u'English',
                   'fa': u'فارسی',
                   'ur': u'اردو',
                   'zh': u'中文',
-                  'kn': u'ಕನ್ನಡ'}
+                  'kn': u'ಕನ್ನಡ',
+                  'no': u'bokmål',
+                  'bn': u'বাং',
+                  'id': u'Bahasa Indonesia',
+                  'ta': u'தமிழ்',
+                  'lv': u'latviešu valoda'}
 DEFAULT_LANG = 'en'
 DEFAULT_PROJECT = 'wikipedia'
 
