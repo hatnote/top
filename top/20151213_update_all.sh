@@ -3,7 +3,7 @@ TOP_LOG_BASE_PATH=/home/hatnote/top/logs/cron_out
 TOP_PYTHON_SCRIPT=/home/hatnote/top/top/get_data.py
 TOP_PYTHON_BIN=/home/hatnote/virtualenvs/top/bin/python
 
-TOP_TARGET_DATE=20151213
+TOP_TARGET_DATE=20160128
 
 
 $TOP_PYTHON_BIN $TOP_PYTHON_SCRIPT --update --lang ko --project wikipedia --date $TOP_TARGET_DATE
@@ -19,3 +19,8 @@ $TOP_PYTHON_BIN $TOP_PYTHON_SCRIPT --update --lang es --project wikipedia --date
 $TOP_PYTHON_BIN $TOP_PYTHON_SCRIPT --update --lang zh --project wikipedia --date $TOP_TARGET_DATE
 $TOP_PYTHON_BIN $TOP_PYTHON_SCRIPT --update --lang ur --project wikipedia --date $TOP_TARGET_DATE
 $TOP_PYTHON_BIN $TOP_PYTHON_SCRIPT --update --lang kn --project wikipedia --date $TOP_TARGET_DATE
+$TOP_PYTHON_BIN $TOP_PYTHON_SCRIPT --update --lang no --project wikipedia --date $TOP_TARGET_DATE
+$TOP_PYTHON_BIN $TOP_PYTHON_SCRIPT --update --lang bn --project wikipedia --date $TOP_TARGET_DATE
+$TOP_PYTHON_BIN $TOP_PYTHON_SCRIPT --update --lang id --project wikipedia --date $TOP_TARGET_DATE
+$TOP_PYTHON_BIN $TOP_PYTHON_SCRIPT --update --lang ta --project wikipedia --date $TOP_TARGET_DATE
+$TOP_PYTHON_BIN $TOP_PYTHON_SCRIPT --update --lang lv --project wikipedia --date $TOP_TARGET_DATE

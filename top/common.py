@@ -46,7 +46,7 @@ LOCAL_LANG_MAP = {'en': u'English',
                   'zh': u'中文',
                   'kn': u'ಕನ್ನಡ',
                   'no': u'bokmål',
-                  'bn': u'বাং',
+                  'bn': u'বাংলা',
                   'id': u'Bahasa Indonesia',
                   'ta': u'தமிழ்',
                   'lv': u'latviešu valoda'}
