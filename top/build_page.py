@@ -22,8 +22,7 @@ from common import (DATA_PATH_TMPL,
                     DEFAULT_LANG,
                     BASE_PATH,
                     LOCAL_LANG_MAP,
-                    DEFAULT_PROJECT,
-                    ABOUT)
+                    DEFAULT_PROJECT)
 
 ABOUT_PATH = pjoin(BASE_PATH, 'about.html')
 INDEX_PATH = pjoin(BASE_PATH, '')
@@ -146,7 +145,6 @@ def save_chart(query_date, lang, project):
     #TODO: Shouldn't need to format HTML_FILE_TMPL and HTML_PATH_TMPL
     data['prev'] = check_chart(query_date, 1, lang, project)
     data['next'] = check_chart(query_date, -1, lang, project)
-    data['about'] = ABOUT
     data['dir_depth'] = '../' * 4
     data['is_index'] = False
     data['project_lower'] = project
@@ -163,6 +161,7 @@ def save_chart(query_date, lang, project):
         lang_index = pjoin(lang_index_path, 'index.html')
         data['dir_depth'] = '../'
         data['is_index'] = True
+        # TODO: Check for localized template
         save_rendered(lang_index, DEFAULT_TEMPLATE_NAME, data)
         if lang is DEFAULT_LANG and project is DEFAULT_PROJECT:
             main_index = pjoin(INDEX_PATH, 'index.html')
@@ -183,7 +182,7 @@ def update_charts(cur_date, lang, project):
     prev_month = cur_date - relativedelta(months=1)
     update_month(prev_month, lang, project)
     update_year(cur_date.year, lang, project)
-    update_project(lang, project)
+    update_project(lang, project)  # Can this be replaced with a month or year template?
     return 'Saved and updated'
 
 
@@ -226,7 +225,6 @@ def update_about():
     project_map = check_projects()
     langs = project_map.keys()
     data = {'languages': [],
-            'about': ABOUT,
             'meta': {'generated': datetime.utcnow().isoformat()}}
     for lang in langs:
         lang_name = LOCAL_LANG_MAP[lang]
@@ -290,7 +288,6 @@ def update_month(query_date, lang, project):
             'prev_month': check_month(query_date, 1, lang, project),
             'next_month': check_month(query_date, -1, lang, project),
             'year': year,
-            'about': ABOUT,
             'meta': {'generated': datetime.utcnow().isoformat()}}
     data['dates'] = monthly_calendar(year, month, lang, project)
     month_index_path = MONTH_INDEX_PATH.format(lang=lang,
@@ -308,8 +305,7 @@ def update_year(year, lang, project):
                  'year': year,
                  'project': project.capitalize(),
                  'full_lang': full_lang,
-                 'dir_depth': '../' * 3,
-                 'about': ABOUT}
+                 'dir_depth': '../' * 3}
     year_data['months'] = yearly_calendar(year, lang, project)
     year_index_path = YEAR_INDEX_PATH.format(year=year,
                                              lang=lang,
@@ -323,8 +319,7 @@ def update_project(lang, project):
     data = {'years': [],
             'project': project.capitalize(),
             'full_lang': full_lang,
-            'dir_depth': '../' * 2,
-            'about': ABOUT}
+            'dir_depth': '../' * 2}
     project_path = PROJECT_PATH.format(lang=lang,
                                        project=project)
     project_index = pjoin(project_path, 'index.html')
@@ -344,8 +339,7 @@ def update_lang(lang, project):
                               in next(os.walk(lang_path))[1]],
                  'project': project.capitalize(),
                  'full_lang': full_lang,
-                 'dir_depth': '../',
-                 'about': ABOUT}
+                 'dir_depth': '../'}
     lang_index_path = LANG_INDEX_PATH.format(lang=lang)
     lang_index = pjoin(lang_index_path, 'index.html')
     save_rendered(lang_index, GENERIC_INDEX_TMPL, lang_data)

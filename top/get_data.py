@@ -2,6 +2,7 @@
 import os
 import codecs
 import urllib2
+import yaml
 from itertools import takewhile
 from json import load, loads, dump
 from csv import DictReader as csvDictReader
@@ -33,6 +34,10 @@ DEFAULT_IMAGE = 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/'\
 DEFAULT_SUMMARY = None
 DEFAULT_GROUP_SIZE = 20
 
+DEFAULT_TWEETS = {'long': ('On a %s-day streak, %s was the #%s most read '
+                           'article on %s #%s w/ %s views'),
+                  'medium': '%s was viewed %s times on %s #%s',
+                  'short': '%s was #%s on #%s'}
 
 def get_wiki_info(lang, project):
     '''\
@@ -141,7 +146,7 @@ def get_traffic(query_date, lang, project):
     url = TOP_API_URL.format(lang=lang,
                              project=project,
                              year=query_date.year,
-                             month=query_date.month,
+                             month='%02d' % query_date.month,
                              day='%02d' % query_date.day)
     if DEBUG:
         print 'Getting %s' % url
@@ -203,11 +208,12 @@ def find_streaks(title, prev_stats):
     return ret
 
 
-def tweet_composer(article, lang, project):
+def tweet_composer(article, lang, project, tweets=DEFAULT_TWEETS):
     '''\
     Compose a short tweet for an article based on its stats and a few
     templates.
     '''
+    # TODO: load internationalized tweets from the strings YAML
     max_tweet_len = 118  # Plus room for link
     title = article['title']
     project = project.capitalize()
@@ -217,25 +223,24 @@ def tweet_composer(article, lang, project):
     else:
         streak = article['streak_len']
     if int(streak) > 1:
-        msg = 'On a %s-day streak, %s was the #%s most read article on %s #%s'\
-            ' w/ %s views' % (article['streak_len'],
-                              title,
-                              article['rank'],
-                              lang,
-                              project,
-                              article['views_short'])
+        msg = tweets['long']  % (article['streak_len'],
+                                     title,
+                                     article['rank'],
+                                     lang,
+                                     project,
+                                     article['views_short'])
         if len(msg) < max_tweet_len:
             return msg
-    msg = '%s was viewed %s times on %s #%s' % (title,
-                                                article['views_short'],
-                                                lang,
-                                                project)
+    msg = tweets['medium'] % (title,
+                                  article['views_short'],
+                                  lang,
+                                  project)
     if len(msg) < max_tweet_len:
         return msg
-    msg = '%s was #%s on #%s' % (title, article['rank'], project)
+    msg = tweets['short'] % (title, article['rank'], project)
     if len(msg) < max_tweet_len:
         return msg
-    msg = '%s was #%s on #%s' % (title[:50] + '...', article['rank'], project)
+    msg = tweets['short'] % (title[:50] + '...', article['rank'], project)
     return msg
 
 

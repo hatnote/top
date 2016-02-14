@@ -22,6 +22,10 @@ def shorten_number(num):
         formatting-long-numbers-as-strings-in-python
     '''
     magnitude = 0
+    if not num:
+        return 0
+    if not isinstance(num, int):
+        num = int(num)
     while abs(num) >= 1000:
         magnitude += 1
         num /= 1000.0

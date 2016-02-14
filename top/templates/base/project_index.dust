@@ -5,29 +5,24 @@
     <script src="{dir_depth}js/jquery.js"></script>
     <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
     <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css">
-    <script>
-
-    $(function() {
-
-    });
-    </script>
+    <!-- 
+        Generated: {meta.generated}
+    -->
 </head>
 <body>
     <div class="top-area">
         <div class="top container">
             <ul>
-                <li><a href="#about">$about_link$</a></li>
                 <li><a href="{dir_depth}about.html" id="other-langs">$more_langs_link$</a></li>
-                <li><a href="{dir_depth}feeds/{lang}{project_lower}.rss">$feed_link$</a></li>
                 <li><a href="#">$blog_link$</a></li>
             </ul>
         </div>
     </div>
     <div class="header">
         <div class="container">
-            <h1><span class="ultra">$title$</span></h1>
-            <p>$alt_tagline$</p>
-            <div class="subtitle light">{?prev}<a class="issue_nav left" href="{dir_depth}{prev}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev}<p class="center">Available wikis</p>{?next}<a class="issue_nav right" href="{dir_depth}{next}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next}
+            <h1>{full_lang} {project} <span class="ultra">$title$</span></h1>
+            <p>$tagline$</p>
+            <div class="subtitle light">{?prev}<a class="issue_nav left" href="{dir_depth}{prev}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev}<p class="center">All traffic data</p>{?next}<a class="issue_nav right" href="{dir_depth}{next}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next}
             <br style="clear: left;" />
             </div>
         </div>
@@ -35,35 +30,38 @@
     </div>
 
     <div class="container">
-            {?months}
-            <ul>
-                {#months}
-                <li><a href="{month}/">{month_name}</a></li>
-                {/months}
-            </ul>
-            {/months}
-            {?years}
-            <ul>
-                {#years}
-                <li><a href="{.}/">{.}</a></li>
-                {/years}
-            </ul>
-            {/years}
-            {?projects}
-            <ul class="projects">
-                {#projects}
-                <li><a href="{.}/">{full_lang} {.}</a></li>
-                {/projects}
-            </ul>
-            {/projects}
+        {#years}
+        <h2><a href="{year}/{month}/">{month_name} {year}</a></h2>
+        <table class="month">
+            <tr class="week">
+                <td>$monday$</td>
+                <td>$tuesday$</td>
+                <td>$wednesday$</td>
+                <td>$thursday$</td>
+                <td>$friday$</td>
+                <td>$saturday$</td>
+                <td>$sunday$</td>
+            </tr>
+            {#dates}
+            <tr class="week">
+            {#days}
+            {@gt key=day value=0}
+                <td class="day {^chart}none{/chart}">{?chart}<a href="{year}/{month}/{day}.html">{/chart}{day}{?chart}</a>{/chart}</td>
+            {:else}
+                <td class="day empty"></td>
+            {/gt}
+            {/days}
+            </tr>
+            {/dates}
         </table>
+        {/years}
     </div>
 
     <div class="footer-area">
         <div class="container footer">
             <h2>$about_header$</h2>
             $about_section$
-            <p><a href="#top" class="up">&uarr; $top$</a></p>
+            <p><a href="#top" class="up">&uarr; Back to top</a></p>
         </div>
     </div>
 
