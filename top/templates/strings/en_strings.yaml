@@ -107,5 +107,8 @@ all_traffic_data: All traffic data
 #------------------------------------------------------------------------------
 
 rss_intro: The new English Wikipedia numbers are in!
-rss_description: came in at #1, with 467.2K views, continuing its 9+-day streak on the chart (&amp;uarr;181.2K views since yesterday).
+rss_description: >-
+    came in at #1, with 467.2K views, continuing its 9+-day streak on the chart
+    (&amp;uarr;181.2K views since yesterday).
+
 rss_read_more: Read more...
