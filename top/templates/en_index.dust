@@ -1,29 +1,33 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{?is_index}English Wikipedia Top 100{:else}English Wikipedia Top 100 on {formatted_date}{/is_index}</title>
+    <title>{^is_index}English Wikipedia Top 100{:else}English Wikipedia Top 100 on {formatted_date}{/is_index}</title>
     <script src="{dir_depth}js/jquery.js"></script>
     <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
     <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css">
-    <!-- 
-        Generated: {meta.generated}
-    -->
-</head>
+    <script>
 
+    $(function() {
+
+    });
+    </script>
+</head>
 <body>
     <div class="top-area">
         <div class="top container">
             <ul>
+                <li><a href="#about">About</a></li>
                 <li><a href="{dir_depth}about.html" id="other-langs">More languages</a></li>
-                <li><a href="http://blog.hatnote.com/post/135182048397/announcing-the-hatnote-top-100">Blog</a></li>
+                <li><a href="{dir_depth}feeds/{lang}{project_lower}.rss">Feed</a></li>
+                <li><a href="#">Blog</a></li>
             </ul>
         </div>
     </div>
     <div class="header">
         <div class="container">
-            <h1>English Wikipedia <span class="ultra">Top 100</span></h1>
-            <p>The most-visited English Wikipedia articles, updated daily. <a href="#about" class="learn">Learn more</a>...</p>
-            <div class="subtitle light">{?prev_month}<a class="issue_nav left" href="{dir_depth}{prev_month}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev_month}<p class="center">{month_name} {year} </p>{?next_month}<a class="issue_nav right" href="{dir_depth}{next_month}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next_month}
+            <h1><span class="ultra">Top 100</span></h1>
+            <p>The most-visited English Wikipedia articles, updated daily.</p>
+            <div class="subtitle light">{?prev}<a class="issue_nav left" href="{dir_depth}{prev}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev}<p class="center">Available wikis</p>{?next}<a class="issue_nav right" href="{dir_depth}{next}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next}
             <br style="clear: left;" />
             </div>
         </div>
@@ -31,27 +35,27 @@
     </div>
 
     <div class="container">
-        <table class="month">
-            <tr class="week">
-                <td>{weekdays.mon}</td>
-                <td>{weekdays.tues}</td>
-                <td>{weekdays.wed}</td>
-                <td>{weekdays.thurs}</td>
-                <td>{weekdays.fri}</td>
-                <td>{weekdays.sat}</td>
-                <td>{weekdays.sun}</td>
-            </tr>
-            {#dates}
-            <tr class="week">
-            {#days}
-            {@gt key=day value=0}
-                <td class="day {^chart}none{/chart}">{?chart}<a href="{day}.html">{/chart}{day}{?chart}</a>{/chart}</td>
-            {:else}
-                <td class="day empty"></td>
-            {/gt}
-            {/days}
-            </tr>
-            {/dates}
+            {?months}
+            <ul>
+                {#months}
+                <li><a href="{month}/">{month_name}</a></li>
+                {/months}
+            </ul>
+            {/months}
+            {?years}
+            <ul>
+                {#years}
+                <li><a href="{.}/">{.}</a></li>
+                {/years}
+            </ul>
+            {/years}
+            {?projects}
+            <ul class="projects">
+                {#projects}
+                <li><a href="{.}/">{full_lang} {.}</a></li>
+                {/projects}
+            </ul>
+            {/projects}
         </table>
     </div>
 

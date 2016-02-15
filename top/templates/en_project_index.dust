@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{?is_index}English Wikipedia Top 100{:else}English Wikipedia Top 100 on {formatted_date}{/is_index}</title>
+    <title>{^is_index}English Wikipedia Top 100{:else}English Wikipedia Top 100 on {formatted_date}{/is_index}</title>
     <script src="{dir_depth}js/jquery.js"></script>
     <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
     <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css">
@@ -9,13 +9,12 @@
         Generated: {meta.generated}
     -->
 </head>
-
 <body>
     <div class="top-area">
         <div class="top container">
             <ul>
                 <li><a href="{dir_depth}about.html" id="other-langs">More languages</a></li>
-                <li><a href="http://blog.hatnote.com/post/135182048397/announcing-the-hatnote-top-100">Blog</a></li>
+                <li><a href="#">Blog</a></li>
             </ul>
         </div>
     </div>
@@ -23,7 +22,7 @@
         <div class="container">
             <h1>English Wikipedia <span class="ultra">Top 100</span></h1>
             <p>The most-visited English Wikipedia articles, updated daily. <a href="#about" class="learn">Learn more</a>...</p>
-            <div class="subtitle light">{?prev_month}<a class="issue_nav left" href="{dir_depth}{prev_month}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev_month}<p class="center">{month_name} {year} </p>{?next_month}<a class="issue_nav right" href="{dir_depth}{next_month}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next_month}
+            <div class="subtitle light">{?prev}<a class="issue_nav left" href="{dir_depth}{prev}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev}<p class="center">All traffic data</p>{?next}<a class="issue_nav right" href="{dir_depth}{next}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next}
             <br style="clear: left;" />
             </div>
         </div>
@@ -31,6 +30,8 @@
     </div>
 
     <div class="container">
+        {#years}
+        <h2><a href="{year}/{month}/">{month_name} {year}</a></h2>
         <table class="month">
             <tr class="week">
                 <td>{weekdays.mon}</td>
@@ -45,7 +46,7 @@
             <tr class="week">
             {#days}
             {@gt key=day value=0}
-                <td class="day {^chart}none{/chart}">{?chart}<a href="{day}.html">{/chart}{day}{?chart}</a>{/chart}</td>
+                <td class="day {^chart}none{/chart}">{?chart}<a href="{year}/{month}/{day}.html">{/chart}{day}{?chart}</a>{/chart}</td>
             {:else}
                 <td class="day empty"></td>
             {/gt}
@@ -53,6 +54,7 @@
             </tr>
             {/dates}
         </table>
+        {/years}
     </div>
 
     <div class="footer-area">
