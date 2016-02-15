@@ -1,7 +1,7 @@
 #------------------
 # Wikipedia Top 100
-#    If you want to translate the chart on top.hatnote.com, please make a copy
-#    of this file for translation and leave us a note at:
+#    If you want to translate the charts on top.hatnote.com, start with a copy
+#    of this file and leave us a note at:
 #    https://github.com/hatnote/top/issues
 #------------------------------------------------------------------------------
 
@@ -20,13 +20,13 @@ rss_title: >-
   English Wikipedia's 100 most-visited articles
 
 wikipedia: Wikipedia
-language_project: TKEnglish Wikipedia
+language_project: English Wikipedia
 tagline: >-
-    The most-visited {full_lang} {project} articles, updated daily. <a
+    The most-visited English Wikipedia articles, updated daily. <a
     href="#about" class="learn">Learn more</a>...
 
 alt_tagline: >-
-    The most-visited {full_lang} {project} articles, updated daily.
+    The most-visited English Wikipedia articles, updated daily.
 
 #------
 # Links
@@ -41,7 +41,7 @@ top: Back to top
 #---------
 # Articles
 #
-#   Each article has a few statistics at the bottom, which look like this:
+#   Each article has statistics at the bottom like this:
 #   934.8K views (↑300.5K from yesterday)
 #------------------------------------------------------------------------------
 
@@ -107,5 +107,9 @@ all_traffic_data: All traffic data
 #------------------------------------------------------------------------------
 
 rss_intro: The new English Wikipedia numbers are in!
-rss_description: came in at #1, with 467.2K views, continuing its 9+-day streak on the chart (&amp;uarr;181.2K views since yesterday).
+rss_description: >-
+    <a href="{permalink|s}">{title}</a> came in at #1, with {views_short} 
+    views{?streak_min}, continuing its {streak_len}-day streak on the chart 
+    ({view_trend|s}{view_delta} views since yesterday){/streak_min}.
+
 rss_read_more: Read more...
