@@ -2,3 +2,7 @@ static/
 test/
 .DS_Store
 *.pyc
+*.*~
+\#*.*\#
+test_*.yaml
+test_*.dust

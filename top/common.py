@@ -20,7 +20,7 @@ PERMALINK_TMPL = (u'http://top.hatnote.com/{lang}/{project}/{year}/{month}/'
                   '{day}.html#title-{title}')
 FEED_FILE_TMPL = 'feeds/{lang}{project}.rss'
 FEED_PATH_TMPL = pjoin(BASE_PATH, FEED_FILE_TMPL)
-
+STRINGS_PATH_TMPL = pjoin(TEMPLATE_PATH, 'strings', '{lang}_strings.yaml')
 
 # Valuable and important URLs
 TOP_API_URL = 'http://wikimedia.org/api/rest_v1/metrics/pageviews/'\
@@ -44,9 +44,15 @@ LOCAL_LANG_MAP = {'en': u'English',
                   'fa': u'فارسی',
                   'ur': u'اردو',
                   'zh': u'中文',
-                  'kn': u'ಕನ್ನಡ'}
+                  'kn': u'ಕನ್ನಡ',
+                  'no': u'bokmål',
+                  'bn': u'বাং',
+                  'id': u'Bahasa Indonesia',
+                  'ta': u'தமிழ்',
+                  'lv': u'latviešu valoda'}
 DEFAULT_LANG = 'en'
 DEFAULT_PROJECT = 'wikipedia'
+
 
 # These prefixes are not for articles
 PREFIXES = ['Special', 'Template', 'Sp?cial', 'Project']

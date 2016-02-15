@@ -51,8 +51,8 @@
 
     <div class="header">
         <div class="container">
-            <h1>{full_lang} {project} <span class="ultra">$title$</span></h1>
-            <p>The most-visited {full_lang} $tagline$</p>
+            <h1>$language_project$ <span class="ultra">$title$</span></h1>
+            <p>$tagline$</p>
             <div class="subtitle light">{?prev}<a class="issue_nav left" href="{dir_depth}{prev}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev}<p class="center date"><a href="{dir_depth}/{lang}/{project}/{date.year}/{date.month}">{formatted_date}</a></p>{?next}<a class="issue_nav right" href="{dir_depth}{next}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next}
             <br style="clear: left;" />
             </div>
@@ -94,8 +94,9 @@
 
     <div class="footer-area">
         <div class="container footer">
-            <h2>$about_link$</h2>
-            {about|s}
+            <h2>$about_header$</h2>
+	    <a name="about"></a>
+            $about_section$
             <p><a href="{dir_depth}feeds/{lang}{project_lower}.rss"><img src="{dir_depth}img/feed.png"></a> <a href="#top" class="up">&uarr; $top$</a></p>
         </div>
     </div>

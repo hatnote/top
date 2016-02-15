@@ -17,8 +17,8 @@
     </div>
     <div class="header">
         <div class="container">
-            <h1>{full_lang} {project} <span class="ultra">$title$</span></h1>
-            <p>$alt_tagline$</p>
+            <h1>$language_project$ <span class="ultra">$title$</span></h1>
+            <p>$tagline$</p>
             <div class="subtitle light">{?prev}<a class="issue_nav left" href="{dir_depth}{prev}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev}<p class="center">{month_name} {year} </p>{?next}<a class="issue_nav right" href="{dir_depth}{next}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next}
             <br style="clear: left;" />
             </div>
@@ -31,13 +31,13 @@
         <h2><a href="{month}/">{month_name} {year}</a></h2>
         <table class="month">
             <tr class="week">
-                <td>$monday$</td>
-                <td>$tuesday$</td>
-                <td>$wednesday$</td>
-                <td>$thursday$</td>
-                <td>$friday$</td>
-                <td>$saturday$</td>
-                <td>$sunday$</td>
+                <td>{weekdays.mon}</td>
+                <td>{weekdays.tues}</td>
+                <td>{weekdays.wed}</td>
+                <td>{weekdays.thurs}</td>
+                <td>{weekdays.fri}</td>
+                <td>{weekdays.sat}</td>
+                <td>{weekdays.sun}</td>
             </tr>
             {#dates}
             <tr class="week">
@@ -56,8 +56,9 @@
 
     <div class="footer-area">
         <div class="container footer">
-            <h2>$about_link$</h2>
-            {about|s}
+            <h2>$about_header$</h2>
+	    <a name="about"></a>
+            $about_section$
             <p><a href="#top" class="up">&uarr; $top$</a></p>
         </div>
     </div>

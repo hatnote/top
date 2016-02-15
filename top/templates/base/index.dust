@@ -62,6 +62,7 @@
     <div class="footer-area">
         <div class="container footer">
             <h2>$about_header$</h2>
+	    <a name="about"></a>
             $about_section$
             <p><a href="#top" class="up">&uarr; $top$</a></p>
         </div>

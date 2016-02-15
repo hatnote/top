@@ -164,7 +164,7 @@
         TARGET_KEYUP: 'html',
         // IE, Firefox, and Opera must use <html> to scroll
         // Webkit must use <body> to scroll
-        TARGET: isWebkit(navigator.userAgent) ? 'body' : 'html',
+        TARGET: isWebkit(navigator.userAgent) ? 'body' : 'body,html',
         /**
          * Initialization function
          * @param {Object} options Options

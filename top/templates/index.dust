@@ -16,10 +16,10 @@
     <div class="top-area">
         <div class="top container">
             <ul>
-                <li><a href="#about">$about_link$</a></li>
-                <li><a href="{dir_depth}about.html" id="other-langs">$more_langs_link$</a></li>
-                <li><a href="{dir_depth}feeds/{lang}{project_lower}.rss">$feed_link$</a></li>
-                <li><a href="#">$blog_link$</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="{dir_depth}about.html" id="other-langs">More languages</a></li>
+                <li><a href="{dir_depth}feeds/{lang}{project_lower}.rss">Feed</a></li>
+                <li><a href="http://blog.hatnote.com/post/135182048397/announcing-the-hatnote-top-100">Blog</a></li>
             </ul>
         </div>
     </div>

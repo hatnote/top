@@ -3,7 +3,7 @@
     <channel>
       <title>$index_title$</title>
       <link>{canonical_url}</link>
-      <description>The 100 most-visited {lang_name} {project} articles. Updated daily.</description>
+      <description>$alt_tagline$</description>
       <generator>Hatnote Top 0.1</generator>  <!-- TODO -->
       <language>{lang_code}</language>
       <copyright>{copyright}</copyright>

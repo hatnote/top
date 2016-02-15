@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
 import os
+import sys
+import time
+
 import codecs
 import urllib2
 import yaml
+from babel.dates import format_date
 from itertools import takewhile
 from json import load, loads, dump
 from csv import DictReader as csvDictReader
@@ -11,6 +15,7 @@ from urllib import urlencode, quote_plus
 from datetime import date, timedelta, datetime
 
 from boltons.fileutils import mkdir_p
+from boltons.timeutils import parse_timedelta
 
 from utils import grouper, shorten_number
 from build_page import update_charts
@@ -24,20 +29,18 @@ from common import (DATA_PATH_TMPL,
                     DEBUG,
                     PREFIXES,
                     LOCAL_LANG_MAP,
+                    STRINGS_PATH_TMPL,
                     DEFAULT_PROJECT,
                     DEFAULT_LANG)
 import crisco
 
 DEFAULT_LIMIT = 100
-DEFAULT_IMAGE = 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/'\
-                'Wikipedia%27s_W.svg/400px-Wikipedia%27s_W.svg.png'
+DEFAULT_IMAGE = ('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/'
+                 'Wikipedia%27s_W.svg/400px-Wikipedia%27s_W.svg.png')
 DEFAULT_SUMMARY = None
 DEFAULT_GROUP_SIZE = 20
 
-DEFAULT_TWEETS = {'long': ('On a %s-day streak, %s was the #%s most read '
-                           'article on %s #%s w/ %s views'),
-                  'medium': '%s was viewed %s times on %s #%s',
-                  'short': '%s was #%s on #%s'}
+POLL_INTERVAL = parse_timedelta('10m')
 
 def get_wiki_info(lang, project):
     '''\
@@ -79,10 +82,9 @@ def get_project_traffic(date, lang, project):
     resp = urllib2.urlopen(url)
     data = csvDictReader(resp)
     date_str = date.strftime('%Y-%m-%d')
-    try:
-        total_traffic = int([d['Total'] for d in data if d['Date'] == date_str][0])
-    except IndexError as e:
-        total_traffic = None
+
+    date_total_list = [(d['Date'], d['Total']) for d in data]
+    total_traffic = dict(date_total_list).get(date_str, 0)
     return total_traffic
 
 
@@ -208,7 +210,22 @@ def find_streaks(title, prev_stats):
     return ret
 
 
-def tweet_composer(article, lang, project, tweets=DEFAULT_TWEETS):
+def get_tweet_templates(lang):
+    strings_path = STRINGS_PATH_TMPL.format(lang=lang)
+    try:
+        string_file = open(strings_path, 'r')
+    except IOError as e:
+        default_strings_path = STRINGS_PATH_TMPL.format(lang=DEFAULT_LANG)
+        string_file = open(default_strings_path, 'r')
+    with string_file:
+        strings = yaml.load(string_file)
+        tweets = {'long': strings['long_tweet'],
+                  'medium': strings['medium_tweet'],
+                  'short': strings['short_tweet']}
+        return tweets
+
+
+def tweet_composer(article, lang, project, tweets):
     '''\
     Compose a short tweet for an article based on its stats and a few
     templates.
@@ -223,24 +240,34 @@ def tweet_composer(article, lang, project, tweets=DEFAULT_TWEETS):
     else:
         streak = article['streak_len']
     if int(streak) > 1:
-        msg = tweets['long']  % (article['streak_len'],
-                                     title,
-                                     article['rank'],
-                                     lang,
-                                     project,
-                                     article['views_short'])
+        msg = tweets['long'].decode('utf-8')
+        msg = msg.format(streak=article['streak_len'],
+                         title=title,
+                         rank=article['rank'],
+                         project=project,
+                         views=article['views_short'])
         if len(msg) < max_tweet_len:
             return msg
-    msg = tweets['medium'] % (title,
-                                  article['views_short'],
-                                  lang,
-                                  project)
+    msg = tweets['medium'].decode('utf-8')
+    try:
+        msg = msg.format(title=title,
+                         views=article['views_short'],
+                         project=project)
+    except Exception as e:
+        import pdb;pdb.set_trace()
+
     if len(msg) < max_tweet_len:
         return msg
-    msg = tweets['short'] % (title, article['rank'], project)
+    msg = tweets['short'].decode('utf-8')
+    msg = msg.format(title=title, 
+                     rank=article['rank'], 
+                     project=project)
     if len(msg) < max_tweet_len:
         return msg
-    msg = tweets['short'] % (title[:50] + '...', article['rank'], project)
+    msg = tweets['short'].decode('utf-8')
+    msg = msg.format(title=title[:50] + '...', 
+                     rank=article['rank'], 
+                     project=project)
     return msg
 
 
@@ -249,6 +276,7 @@ def make_article_list(query_date, lang, project):
     raw_traffic = get_traffic(query_date, lang, project)
     articles = [a for a in raw_traffic if is_article(a['article'], wiki_info)]
     prev_traffic = load_prev_traffic(query_date, 10, lang, project)
+    tweet_templates = get_tweet_templates(lang)
     ret = []
     for article in articles:
         title = article['article']
@@ -288,7 +316,7 @@ def make_article_list(query_date, lang, project):
             article['view_delta'] = shorten_number(view_delta)
         else:
             article['view_delta'] = None
-        tweet = tweet_composer(article, lang, project)
+        tweet = tweet_composer(article, lang, project, tweets=tweet_templates)
         article['tweet'] = quote_plus(tweet.encode('utf-8'), safe=':/')
         ret.append(article)
     return ret
@@ -336,7 +364,9 @@ def save_traffic_stats(lang, project, query_date, limit=DEFAULT_LIMIT):
     articles = articles[:limit]
     articles = add_extras(articles, lang=lang, project=project)
     ret = {'articles': articles,
-           'formatted_date': query_date.strftime('%d %B %Y'),
+           'formatted_date': format_date(query_date, 
+                                         format='d MMMM yyyy', 
+                                         locale=lang),
            'date': {'day': query_date.day,
                     'month': query_date.month,
                     'year': query_date.year},
@@ -389,22 +419,70 @@ def get_argparser():
     prs.add_argument('--date', default=None)
     prs.add_argument('--backfill', default=None)
     prs.add_argument('--update', '-u', action='store_true')
+    prs.add_argument('--poll',
+                     help="length of time to poll (e.g., 5m, 4h, 1h30m")
+    prs.add_argument('--poll-interval',
+                     help="length of time between poll attempts")
     return prs
 
 
-if __name__ == '__main__':
+def main():
     parser = get_argparser()
     args = parser.parse_args()
     if args.backfill:
         backfill(args.lang, args.project, args.backfill, args.update)
+        return
+
+    if not args.date:
+        input_date = date.today()
     else:
-        if not args.date:
-            input_date = date.today()  # data is available after midnight UTC
+        input_date = datetime.strptime(args.date, '%Y%m%d').date()
+
+    if args.poll:
+        poll_td = parse_timedelta(args.poll)
+        if args.poll_interval:
+            poll_interval = parse_timedelta(args.poll_interval)
         else:
-            input_date = datetime.strptime(args.date, '%Y%m%d').date()
+            poll_interval = POLL_INTERVAL
+
+        # if args.poll % POLL_INCR_MINS:
+        #     raise ValueError('poll time must be in increments of %r minutes'
+        #                      % POLL_INCR_MINS)
+        err_write = sys.stderr.write
+        count = 0
+        max_time = datetime.now() + poll_td
+        while 1:
+            count += 1
+            try:
+                save_traffic_stats(args.lang, args.project, input_date)
+                break
+            except urllib2.HTTPError as he:
+                # tried to be nice but the API gives back all sorts of statuses
+                # if he.getcode() != 404:
+                #     raise
+                status_code = he.getcode()
+                if (datetime.now() + poll_interval) <= max_time:
+                    if count == 1:
+                        err_write('# ' + datetime.now().isoformat())
+                        err_write(' - got %s - polling every %r mins until %s.\n'
+                                  % (status_code,
+                                     poll_interval.total_seconds() / 60.0,
+                                     max_time.isoformat()))
+                    time.sleep(poll_interval.total_seconds())
+                else:
+                    err_write('\n!! - ')
+                    err_write(datetime.now().isoformat())
+                    err_write(' - no results after %r attempts and %r minutes,'
+                              ' exiting.\n\n' % (count,
+                                                 poll_td.total_seconds() / 60))
+    else:
         save_traffic_stats(args.lang, args.project, input_date)
-        if args.update:
-            print update_charts(input_date, args.lang, args.project)
-        #if DEBUG:
-        #    import pdb
-        #    pdb.set_trace()
+    if args.update:
+        print update_charts(input_date, args.lang, args.project)
+    #if DEBUG:
+    #    import pdb
+    #    pdb.set_trace()
+
+
+if __name__ == '__main__':
+    main()

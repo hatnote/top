@@ -9,7 +9,8 @@ from email.Utils import formatdate
 from os.path import join as pjoin, isdir, isfile, dirname
 from datetime import date, timedelta, datetime
 from dateutil.relativedelta import relativedelta
-from calendar import monthcalendar, month_name
+from calendar import monthcalendar
+from babel.dates import get_month_names, get_day_names
 
 import ashes
 from boltons.fileutils import mkdir_p
@@ -49,6 +50,15 @@ MOST_RECENT_CHART = date.today() - timedelta(days=1)
 ASHES_ENV = None
 
 
+def choose_template(template, lang):
+    local_template = lang + '_' + template
+    if os.path.isfile(pjoin(TEMPLATE_PATH, local_template)):
+        ret = local_template
+    else:
+        ret = DEFAULT_LANG + '_' + template
+    return ret
+
+
 def save_rendered(outfile_name, template_name, context):
     global ASHES_ENV  # retain laziness
     if not ASHES_ENV:
@@ -75,7 +85,7 @@ def check_most_recent(lang=DEFAULT_LANG, project=DEFAULT_PROJECT):
                           for f
                           in listdir(sdir) if '.json' in f])
     except ValueError as e:
-        import pdb; pdb.set_trace()
+        pass  # import pdb; pdb.set_trace()
     return date(year=int(recent_year),
                 month=int(recent_month),
                 day=int(recent_day))
@@ -148,36 +158,44 @@ def save_chart(query_date, lang, project):
     data['dir_depth'] = '../' * 4
     data['is_index'] = False
     data['project_lower'] = project
-    data.get('meta', {})['generated'] = datetime.utcnow().isoformat()
+    data.setdefault('meta', {})['generated'] = datetime.utcnow().isoformat()
+
     outfile_name = HTML_PATH_TMPL.format(lang=lang,
                                          project=project,
                                          year=query_date.year,
                                          month=query_date.month,
                                          day=query_date.day)
-    save_rendered(outfile_name, DEFAULT_TEMPLATE_NAME, data)
-    print check_most_recent(lang=lang, project=project)
-    if query_date == check_most_recent(lang=lang, project=project):
+    chart_template = choose_template(template=DEFAULT_TEMPLATE_NAME,
+                                     lang=lang)
+    save_rendered(outfile_name, chart_template, data)
+    most_recent = check_most_recent(lang=lang, project=project)
+    if query_date == most_recent:
         lang_index_path = LANG_INDEX_PATH.format(lang=lang)
         lang_index = pjoin(lang_index_path, 'index.html')
         data['dir_depth'] = '../'
         data['is_index'] = True
         # TODO: Check for localized template
-        save_rendered(lang_index, DEFAULT_TEMPLATE_NAME, data)
-        if lang is DEFAULT_LANG and project is DEFAULT_PROJECT:
+        save_rendered(lang_index, chart_template, data)
+        if lang == DEFAULT_LANG and project == DEFAULT_PROJECT:
             main_index = pjoin(INDEX_PATH, 'index.html')
             data['dir_depth'] = ''
             data['is_index'] = True
-            #save_rendered(main_index, DEFAULT_TEMPLATE_NAME, data)
+            save_rendered(main_index, chart_template, data)
 
 
 def update_charts(cur_date, lang, project):
+    # Update the current chart
     save_chart(cur_date, lang, project)
+    # Update the prev and next charts (for navigation)
     if check_chart(cur_date, 1, lang, project):
         prev_date = cur_date - timedelta(days=1)
         save_chart(prev_date, lang, project)
     if check_chart(cur_date, -1, lang, project):
         next_date = cur_date + timedelta(days=1)
         save_chart(next_date, lang, project)
+    # Update the feed
+    update_feeds(cur_date, lang, project)
+    # Update the monthly and yearly navigation
     update_month(cur_date, lang, project)
     prev_month = cur_date - relativedelta(months=1)
     update_month(prev_month, lang, project)
@@ -217,13 +235,26 @@ def update_feeds(cur_date, lang, project, day_count=10):
         data_list.append(date_i_data)
     render_ctx['entries'] = data_list
     feed_path = FEED_PATH_TMPL.format(lang=lang, project=project)
-    save_rendered(feed_path, 'rss.xml', render_ctx)
+    rss_template = choose_template(template='rss.xml',
+                                   lang=lang)
+    save_rendered(feed_path, rss_template, render_ctx)
     return
+
+
+def list_feeds():
+    FEED_INDEX = pjoin(BASE_PATH, 'feeds')
+    fdir = FEED_INDEX
+    feeds = [{'name': LOCAL_LANG_MAP[f[:2]], 'url': 'feeds/%s' % f}
+             for f
+             in listdir(fdir)
+             if '.rss' in f]
+    return feeds
 
 
 def update_about():
     project_map = check_projects()
     langs = project_map.keys()
+    feeds = list_feeds()
     data = {'languages': [],
             'meta': {'generated': datetime.utcnow().isoformat()}}
     for lang in langs:
@@ -268,10 +299,19 @@ def yearly_calendar(year, lang, project):
                                  project=project)
     for month in next(os.walk(year_path))[1]:
         month = int(month)
+        month_name = get_month_names(locale=lang)
+        weekdays = get_day_names(locale=lang)
         mname = month_name[month]
         mdata = {'month_name': mname,
                  'month': month,
-                 'year': year}
+                 'year': year,
+                 'weekdays': {'mon': weekdays[0],
+                              'tues': weekdays[1],
+                              'wed': weekdays[2],
+                              'thurs': weekdays[3],
+                              'fri': weekdays[4],
+                              'sat': weekdays[5],
+                              'sun': weekdays[6]}}
         mdata['dates'] = monthly_calendar(year, month, lang, project)
         ret.append(mdata)
     ret.reverse()
@@ -281,6 +321,8 @@ def yearly_calendar(year, lang, project):
 def update_month(query_date, lang, project):
     year = query_date.year
     month = query_date.month
+    month_name = get_month_names(locale=lang)
+    weekdays = get_day_names(locale=lang)
     data = {'dir_depth': '../' * 4,
             'month_name': month_name[month],
             'project': project.capitalize(),
@@ -288,14 +330,23 @@ def update_month(query_date, lang, project):
             'prev_month': check_month(query_date, 1, lang, project),
             'next_month': check_month(query_date, -1, lang, project),
             'year': year,
-            'meta': {'generated': datetime.utcnow().isoformat()}}
+            'meta': {'generated': datetime.utcnow().isoformat()},
+            'weekdays': {'mon': weekdays[0],
+                         'tues': weekdays[1],
+                         'wed': weekdays[2],
+                         'thurs': weekdays[3],
+                         'fri': weekdays[4],
+                         'sat': weekdays[5],
+                         'sun': weekdays[6]}}
     data['dates'] = monthly_calendar(year, month, lang, project)
     month_index_path = MONTH_INDEX_PATH.format(lang=lang,
                                                project=project,
                                                year=year,
                                                month=month)
     month_index = pjoin(month_index_path, 'index.html')
-    save_rendered(month_index, MONTH_INDEX_TMPL, data)
+    month_template = choose_template(template=MONTH_INDEX_TMPL,
+                                     lang=lang)
+    save_rendered(month_index, month_template, data)
     return data
 
 
@@ -305,13 +356,16 @@ def update_year(year, lang, project):
                  'year': year,
                  'project': project.capitalize(),
                  'full_lang': full_lang,
+                 'meta': {'generated': datetime.utcnow().isoformat()},
                  'dir_depth': '../' * 3}
     year_data['months'] = yearly_calendar(year, lang, project)
     year_index_path = YEAR_INDEX_PATH.format(year=year,
                                              lang=lang,
                                              project=project)
     year_index = pjoin(year_index_path, 'index.html')
-    save_rendered(year_index, YEAR_INDEX_TMPL, year_data)
+    year_template = choose_template(template=YEAR_INDEX_TMPL,
+                                    lang=lang)
+    save_rendered(year_index, year_template, year_data)
 
 
 def update_project(lang, project):
@@ -327,7 +381,9 @@ def update_project(lang, project):
         year = int(year)
         year_data = yearly_calendar(year, lang, project)
         data['years'] += year_data
-    save_rendered(project_index, PROJECT_INDEX_TMPL, data)
+    project_index_template = choose_template(template=PROJECT_INDEX_TMPL,
+                                             lang=lang)
+    save_rendered(project_index, project_index_template, data)
 
 
 def update_lang(lang, project):
@@ -342,7 +398,9 @@ def update_lang(lang, project):
                  'dir_depth': '../'}
     lang_index_path = LANG_INDEX_PATH.format(lang=lang)
     lang_index = pjoin(lang_index_path, 'index.html')
-    save_rendered(lang_index, GENERIC_INDEX_TMPL, lang_data)
+    generic_template = choose_template(template=GENERIC_INDEX_TMPL,
+                                       lang=lang)
+    save_rendered(lang_index, generic_template, lang_data)
 
 
 if __name__ == '__main__':

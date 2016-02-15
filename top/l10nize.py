@@ -11,6 +11,8 @@ BASE_TMPL_DIR = 'base'
 L10N_SRC_MAP = {'chart.dust': {},
                 'month_index.dust': {},
                 'year_index.dust': {},
+                'project_index.dust': {},
+                'index.dust': {},
                 'rss.xml': {}}
 
 
