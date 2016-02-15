@@ -1,7 +1,15 @@
-# Page title
-############
-title: Top 100
+#------------------
+# Wikipedia Top 100
+#    If you want to translate the chart on top.hatnote.com, please make a copy
+#    of this file for translation and leave us a note at:
+#    https://github.com/hatnote/top/issues
+#------------------------------------------------------------------------------
 
+#-----------
+# Page title
+#------------------------------------------------------------------------------
+
+title: Top 100
 full_title: >-
   English Wikipedia Top 100 on {formatted_date}
 
@@ -13,17 +21,6 @@ rss_title: >-
 
 wikipedia: Wikipedia
 language_project: TKEnglish Wikipedia
-
-# Links
-#######
-about_link: About
-more_langs_link: More languages
-feed_link: Feed
-blog_link: Blog
-top: Back to top 
-
-# Tag lines
-###########
 tagline: >-
     The most-visited {full_lang} {project} articles, updated daily. <a
     href="#about" class="learn">Learn more</a>...
@@ -31,14 +28,31 @@ tagline: >-
 alt_tagline: >-
     The most-visited {full_lang} {project} articles, updated daily.
 
+#------
+# Links
+#------------------------------------------------------------------------------
+
+about_link: About
+more_langs_link: More languages
+feed_link: Feed
+blog_link: Blog
+top: Back to top 
+
+#---------
 # Articles
-##########
+#
+#   Each article has a few statistics at the bottom, which look like this:
+#   934.8K views (↑300.5K from yesterday)
+#------------------------------------------------------------------------------
+
 views: views
 from_yesterday: from yesterday
 streak: day streak
 
-# Page footer
-#############
+#------------
+# About section
+#------------------------------------------------------------------------------
+
 about_header: About
 about_section: >-
      <p>Learn more on the <a href="#">Hatnote Blog</a>.</p> 
@@ -67,8 +81,14 @@ about_section: >-
 
      <p><a href="https://twitter.com/hatnotable">@hatnotable</a></p>
 
-# Tweets
-########
+#------- 
+# Tweets 
+#
+#   We can provide three possible tweets. They shouldn't be longer than 117 
+#   characters (including the article title, so there is enough space to 
+#   include a link.
+#------------------------------------------------------------------------------
+
 long_tweet: >- 
     On a {streak}-day streak, {title} was the #{rank} most
     read article on #{project} w/ {views} views
@@ -76,13 +96,16 @@ long_tweet: >-
 medium_tweet: "{title} was viewed {views} times on #{project}"
 short_tweet: "{title} was #{rank} on #{project}"
 
+#-------------
 # Archive page
-##############
+#------------------------------------------------------------------------------
+
 all_traffic_data: All traffic data
 
+#----
 # RSS
-#####
+#------------------------------------------------------------------------------
+
 rss_intro: The new English Wikipedia numbers are in!
 rss_description: came in at #1, with 467.2K views, continuing its 9+-day streak on the chart (&amp;uarr;181.2K views since yesterday).
 rss_read_more: Read more...
-
