@@ -20,7 +20,7 @@ rss_title: >-
   English Wikipedia's 100 most-visited articles
 
 wikipedia: Wikipedia
-language_project: TKEnglish Wikipedia
+language_project: English Wikipedia
 tagline: >-
     The most-visited English Wikipedia articles, updated daily. <a
     href="#about" class="learn">Learn more</a>...
@@ -41,7 +41,7 @@ top: Back to top
 #---------
 # Articles
 #
-#   Each article has a few statistics at the bottom, which look like this:
+#   Each article has statistics at the bottom like this:
 #   934.8K views (↑300.5K from yesterday)
 #------------------------------------------------------------------------------
 
@@ -108,7 +108,7 @@ all_traffic_data: All traffic data
 
 rss_intro: The new English Wikipedia numbers are in!
 rss_description: >-
-    came in at #1, with 467.2K views, continuing its 9+-day streak on the chart
-    (&amp;uarr;181.2K views since yesterday).
+    {title} came in at {rank}, with {views} views, continuing its {streak}-day
+    streak on the chart ({trend}{increase} views since yesterday).
 
 rss_read_more: Read more...
