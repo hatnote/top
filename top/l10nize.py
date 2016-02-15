@@ -13,7 +13,8 @@ L10N_SRC_MAP = {'chart.dust': {},
                 'year_index.dust': {},
                 'project_index.dust': {},
                 'index.dust': {},
-                'rss.xml': {}}
+                'rss.xml': {},
+                'summary.html': {}}
 
 
 def get_argparser():
