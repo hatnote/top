@@ -22,11 +22,11 @@ rss_title: >-
 wikipedia: Wikipedia
 language_project: TKEnglish Wikipedia
 tagline: >-
-    The most-visited {full_lang} {project} articles, updated daily. <a
+    The most-visited English Wikipedia articles, updated daily. <a
     href="#about" class="learn">Learn more</a>...
 
 alt_tagline: >-
-    The most-visited {full_lang} {project} articles, updated daily.
+    The most-visited English Wikipedia articles, updated daily.
 
 #------
 # Links
