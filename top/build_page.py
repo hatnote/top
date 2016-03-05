@@ -219,6 +219,10 @@ def update_feeds(cur_date, lang, project, day_count=10):
                   'cur_utc': to_rss_timestamp(datetime.now())}
 
     data_list = []
+    summary_template = choose_template(template='summary.html',
+                                       lang=lang)
+    rss_template = choose_template(template='rss.xml',
+                                   lang=lang)
     for day_delta in range(0, day_count):
         date_i = cur_date - timedelta(days=day_delta)
         try:
@@ -226,17 +230,14 @@ def update_feeds(cur_date, lang, project, day_count=10):
         except IOError:
             print 'no data found for %r' % date_i
             continue
-
         # utc_pub_dt = isoparse(date_i_data['meta']['generated'])
         midnight_utc = datetime.utcfromtimestamp(0).timetz()
         pub_dt = datetime.combine(date_i, midnight_utc)
         date_i_data['pub_timestamp'] = to_rss_timestamp(pub_dt)
-        date_i_data['summary'] = ASHES_ENV.render('summary.html', date_i_data)
+        date_i_data['summary'] = ASHES_ENV.render(summary_template, date_i_data)
         data_list.append(date_i_data)
     render_ctx['entries'] = data_list
     feed_path = FEED_PATH_TMPL.format(lang=lang, project=project)
-    rss_template = choose_template(template='rss.xml',
-                                   lang=lang)
     save_rendered(feed_path, rss_template, render_ctx)
     return
 

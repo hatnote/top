@@ -108,7 +108,7 @@ all_traffic_data: All traffic data
 
 rss_intro: The new English Wikipedia numbers are in!
 rss_description: >-
-    <a href="{permalink|s}">{title}</a> came in at #1, with {views_short} 
+    <a href="{permalink|s}">{title}</a> came in at #{rank}, with {views_short} 
     views{?streak_min}, continuing its {streak_len}-day streak on the chart 
     ({view_trend|s}{view_delta} views since yesterday){/streak_min}.
 
