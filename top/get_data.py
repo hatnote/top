@@ -270,7 +270,9 @@ def tweet_composer(article, lang, project, tweets):
     else:
         streak = article['streak_len']
     if int(streak) > 1:
-        msg = tweets['long'].decode('utf-8')
+        msg = tweets['long']
+        if not isinstance(msg, unicode): 
+            msg = msg.decode('utf-8')
         msg = msg.format(streak=article['streak_len'],
                          title=title,
                          rank=article['rank'],
@@ -278,7 +280,9 @@ def tweet_composer(article, lang, project, tweets):
                          views=article['views_short'])
         if len(msg) < max_tweet_len:
             return msg
-    msg = tweets['medium'].decode('utf-8')
+    msg = tweets['medium']
+    if not isinstance(msg, unicode): 
+        msg = msg.decode('utf-8')
     try:
         msg = msg.format(title=title,
                          views=article['views_short'],
@@ -288,13 +292,17 @@ def tweet_composer(article, lang, project, tweets):
 
     if len(msg) < max_tweet_len:
         return msg
-    msg = tweets['short'].decode('utf-8')
+    msg = tweets['short']
+    if not isinstance(msg, unicode): 
+        msg = msg.decode('utf-8')
     msg = msg.format(title=title, 
                      rank=article['rank'], 
                      project=project)
     if len(msg) < max_tweet_len:
         return msg
-    msg = tweets['short'].decode('utf-8')
+    msg = tweets['short']
+    if not isinstance(msg, unicode): 
+        msg = msg.decode('utf-8')
     msg = msg.format(title=title[:50] + '...', 
                      rank=article['rank'], 
                      project=project)
