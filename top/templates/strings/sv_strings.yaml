@@ -1,0 +1,109 @@
+#------------------
+# Wikipedia Top 100
+#    If you want to translate the charts on top.hatnote.com, start with a copy
+#    of this file and leave us a note at:
+#    https://github.com/hatnote/top/issues
+#------------------------------------------------------------------------------
+
+#-----------
+# Page title
+#------------------------------------------------------------------------------
+
+title: Topp 100
+full_title: >-
+  Svenska Wikipedia topp 100 {formatted_date}
+
+index_title: >-
+  Svenska Wikipedia topp 100
+
+rss_title: >-
+  Svenska Wikipedias 100 mest besökta artiklar
+
+wikipedia: Wikipedia
+language_project: Svenska Wikipedia
+tagline: >-
+    De mest besökta artiklarna på svenska Wikipedia, updaterad varje dag. <a
+    href="#about" class="learn">Läs mer</a>...
+
+alt_tagline: >-
+    De mest besökta artiklarna på svenska Wikipedia, updaterad varje dag.
+
+#------
+# Links
+#------------------------------------------------------------------------------
+
+about_link: Om
+more_langs_link: Fler språk
+feed_link: Feed
+blog_link: Blogg
+top: Tillbaks till toppen 
+
+#---------
+# Articles
+#
+#   Each article has statistics at the bottom like this:
+#   934.8K views (↑300.5K from yesterday)
+#------------------------------------------------------------------------------
+
+views: visningar
+from_yesterday: från igår
+streak: dagar i rad
+
+#------------
+# About section
+#------------------------------------------------------------------------------
+
+about_header: Om
+about_section: >-
+     <p>Lläs mer på <a href="#">Hatnote bloggen</a>.</p> 
+     <p>En daglig lista på de mest besökta artiklarna på Wikipedia skapad av <a
+     href="https://twitter.com/sklaporte">Stephen LaPorte</a> och <a
+     href="https://twitter.com/mhashemi">Mahmoud Hashemi</a>. Den är också tillgänglig på <a
+     href="http://top.hatnote.com/about.html">fler språk</a>. Om du tycker att denna lista är intressant kommer du också att gilla <a
+     href="http://weekly.hatnote.com">The Weeklypedia</a>, en veckovis sammanställning på de mest redigerade Wikipedia artiklarna.</p>
+
+     <p>Denna sida har gjorts möjlig genom <a
+     href="https://wikimedia.org/api/rest_v1/?doc#!/Pageviews_data/get_metrics_\
+     pageviews_top_project_access_year_month_day">Wikipedias nya sidvisnings-API</a>, med fina bilder och sammanfattningar från <a
+     href="https://www.mediawiki.org/wiki/API:Query">MediaWiki-API:et</a>. Du kan läsa mer om kod och dokumentation <a
+     href="https://github.com/hatnote/top">på
+     github</a>.</p>
+
+     <p>Vill du ha en lista på de mest besökta artiklarna på en annan språkversion av Wikipedia? Det vill vi med! <a
+     href="https://github.com/hatnote/top/\ issues">Skicka en begäran</a>
+     och berätta för oss om du kan hjälpa till att översätta mallarna.</p>
+
+     <p><a href="https://twitter.com/hatnotable">@hatnotable</a></p>
+
+#------- 
+# Tweets 
+#
+#   We can provide three possible tweets. They shouldn't be longer than 117 
+#   characters (including the article title, so there is enough space to 
+#   include a link.
+#------------------------------------------------------------------------------
+
+long_tweet: >- 
+    {streak} dagar i rad, var {title} den #{rank} mest
+    lästa artikeln på #{project} med {views} visningar
+
+medium_tweet: "{title} visades {views} gånger på #{project}"
+short_tweet: "{title} var #{rank} på #{project}"
+
+#-------------
+# Archive page
+#------------------------------------------------------------------------------
+
+all_traffic_data: All traffic data
+
+#----
+# RSS
+#------------------------------------------------------------------------------
+
+rss_intro: Nu finns de nya siffrorna för svenska Wikipedia!
+rss_description: >-
+    <a href="{permalink|s}">{title}</a> kom på #{rank}, med {views_short} 
+    visningar{?streak_min}, för {streak_len} dagen i rad på listan 
+    ({view_trend|s}{view_delta} visningar sedan igår){/streak_min}.
+
+rss_read_more: Läs mer...
