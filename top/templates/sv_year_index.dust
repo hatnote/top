@@ -1,0 +1,78 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{?is_index}Svenska Wikipedia topp 100{:else}Svenska Wikipedia topp 100 {formatted_date}{/is_index}</title>
+    <script src="{dir_depth}js/jquery.js"></script>
+    <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
+    <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="top-area">
+        <div class="top container">
+            <ul>
+                <li><a href="{dir_depth}about.html" id="other-langs">Fler språk</a></li>
+                <li><a href="http://blog.hatnote.com/post/135182048397/announcing-the-hatnote-top-100">Blogg</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="header">
+        <div class="container">
+            <h1>Svenska Wikipedia <span class="ultra">Topp 100</span></h1>
+            <p>De mest besökta artiklarna på svenska Wikipedia, updaterad varje dag. <a href="#about" class="learn">Läs mer</a>...</p>
+            <div class="subtitle light">{?prev}<a class="issue_nav left" href="{dir_depth}{prev}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev}<p class="center">{month_name} {year} </p>{?next}<a class="issue_nav right" href="{dir_depth}{next}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next}
+            <br style="clear: left;" />
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container">
+        {#months}
+        <h2><a href="{month}/">{month_name} {year}</a></h2>
+        <table class="month">
+            <tr class="week">
+                <td>{weekdays.mon}</td>
+                <td>{weekdays.tues}</td>
+                <td>{weekdays.wed}</td>
+                <td>{weekdays.thurs}</td>
+                <td>{weekdays.fri}</td>
+                <td>{weekdays.sat}</td>
+                <td>{weekdays.sun}</td>
+            </tr>
+            {#dates}
+            <tr class="week">
+            {#days}
+            {@gt key=day value=0}
+                <td class="day {^chart}none{/chart}">{?chart}<a href="{month}/{day}.html">{/chart}{day}{?chart}</a>{/chart}</td>
+            {:else}
+                <td class="day empty"></td>
+            {/gt}
+            {/days}
+            </tr>
+            {/dates}
+        </table>
+        {/months}
+    </div>
+
+    <div class="footer-area">
+        <div class="container footer">
+            <h2>Om</h2>
+	    <a name="about"></a>
+            <p>Lläs mer på <a href="#">Hatnote bloggen</a>.</p>  <p>En daglig lista på de mest besökta artiklarna på Wikipedia skapad av <a href="https://twitter.com/sklaporte">Stephen LaPorte</a> och <a href="https://twitter.com/mhashemi">Mahmoud Hashemi</a>. Den är också tillgänglig på <a href="http://top.hatnote.com/about.html">fler språk</a>. Om du tycker att denna lista är intressant kommer du också att gilla <a href="http://weekly.hatnote.com">The Weeklypedia</a>, en veckovis sammanställning på de mest redigerade Wikipedia artiklarna.</p>
+<p>Denna sida har gjorts möjlig genom <a href="https://wikimedia.org/api/rest_v1/?doc#!/Pageviews_data/get_metrics_\ pageviews_top_project_access_year_month_day">Wikipedias nya sidvisnings-API</a>, med fina bilder och sammanfattningar från <a href="https://www.mediawiki.org/wiki/API:Query">MediaWiki-API:et</a>. Du kan läsa mer om kod och dokumentation <a href="https://github.com/hatnote/top">på github</a>.</p>
+<p>Vill du ha en lista på de mest besökta artiklarna på en annan språkversion av Wikipedia? Det vill vi med! <a href="https://github.com/hatnote/top/\ issues">Skicka en begäran</a> och berätta för oss om du kan hjälpa till att översätta mallarna.</p>
+<p><a href="https://twitter.com/hatnotable">@hatnotable</a></p>
+            <p><a href="#top" class="up">&uarr; Tillbaks till toppen</a></p>
+        </div>
+    </div>
+
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-40320359-1', 'hatnote.com');
+    ga('send', 'pageview');
+    </script>
+</body>
+</html>
