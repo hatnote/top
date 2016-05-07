@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{^is_index}English Wikipedia Top 100{:else}English Wikipedia Top 100 on {formatted_date}{/is_index}</title>
+    <title>{^is_index}{full_lang} Wikipedia Top 100{:else}{full_lang} Wikipedia Top 100 on {formatted_date}{/is_index}</title>
     <script src="{dir_depth}js/jquery.js"></script>
     <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
     <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css">
@@ -26,7 +26,7 @@
     <div class="header">
         <div class="container">
             <h1><span class="ultra">Top 100</span></h1>
-            <p>The most-visited English Wikipedia articles, updated daily.</p>
+            <p>The most-visited {full_lang} Wikipedia articles, updated daily.</p>
             <div class="subtitle light">{?prev}<a class="issue_nav left" href="{dir_depth}{prev}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev}<p class="center">Available wikis</p>{?next}<a class="issue_nav right" href="{dir_depth}{next}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next}
             <br style="clear: left;" />
             </div>
