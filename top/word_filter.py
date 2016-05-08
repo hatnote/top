@@ -27,7 +27,7 @@ def word_filter(text):
     for word in words:
         for word_filter in WORD_FILTERS:
             if word_filter.lower() in word.lower():
-                print ' -> filtering:', word
+                #print ' -> filtering:', word, 'from', text
                 return True
     return False
 
