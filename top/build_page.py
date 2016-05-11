@@ -256,7 +256,9 @@ def update_about():
     project_map = check_projects()
     langs = project_map.keys()
     feeds = list_feeds()
+    # TODO: Load about from en_strings.yaml
     data = {'languages': [],
+            'feeds': feeds,
             'meta': {'generated': datetime.utcnow().isoformat()}}
     for lang in langs:
         lang_name = LOCAL_LANG_MAP[lang]
