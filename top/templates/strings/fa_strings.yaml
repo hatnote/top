@@ -1,0 +1,112 @@
+#------------------
+# Wikipedia Top 100
+#    If you want to translate the charts on top.hatnote.com, start with a copy
+#    of this file and leave us a note at:
+#    https://github.com/hatnote/top/issues
+#------------------------------------------------------------------------------
+
+#-----------
+# Page title
+#------------------------------------------------------------------------------
+
+title: صد پربیننده
+full_title: >-
+  صد مقالهٔ پربینندهٔ ویکی‌پدیای فارسی در {formatted_date}
+
+index_title: >-
+  صد مقالهٔ پربینندهٔ ویکی‌پدیای فارسی
+
+rss_title: >-
+  صد مقالهٔ پربینندهٔ ویکی‌پدیای فارسی
+
+wikipedia: ویکی‌پدیا
+language_project: ویکی‌پدیای فارسی
+tagline: >-
+    به‌روزرسانی پربیننده‌ترین مقالات ویکی‌پدیای فارسی. <a
+    href="#about" class="learn">اطلاعات بیشتر</a>...
+
+alt_tagline: >-
+    به‌روزرسانی پربیننده‌ترین مقالات ویکی‌پدیای فارسی.
+
+#------
+# Links
+#------------------------------------------------------------------------------
+
+about_link: درباره
+more_langs_link: زبان‌های دیگر
+feed_link: خوراک
+blog_link: وبلاگ
+top: بازگشت به بالا
+
+#---------
+# Articles
+#
+#   Each article has statistics at the bottom like this:
+#   934.8K views (↑300.5K from yesterday)
+#------------------------------------------------------------------------------
+
+views: بازدید
+from_yesterday: از دیروز
+streak: روز پشت سر هم در فهرست پربیننده
+
+#------------
+# About section
+#------------------------------------------------------------------------------
+
+about_header: درباره
+about_section: >-
+     <p>یادگیری بیشتر در <a href="#">وب‌لاگ هت‌نوت</a>.</p> 
+     <p>فهرست روزانهٔ بیشترین تعداد بازدید از مقالات ویکی‌پدیای فارسی، تولید شده توسط<a
+     href="https://twitter.com/sklaporte">Stephen LaPorte</a> و <a
+     href="https://twitter.com/mhashemi">Mahmoud Hashemi</a> همچنین موجود در <a
+     href="http://top.hatnote.com/about.html">سایر زبان‌ها</a>. اگر
+     این فهرست برایتان جالب بود،<a
+     href="http://weekly.hatnote.com">ویکی‌پدیای هفتگی</a> را هم مشاهده کنید، نتیجهٔ ویرایش هفتگی ویکی‌پدیا.</p>
+
+     <p>این صفحه به کمک <a
+     href="https://wikimedia.org/api/rest_v1/?doc#!/Pageviews_data/get_metrics_\
+     pageviews_top_project_access_year_month_day">ای‌پی‌آی جدید ویکی‌پدیا برای مشاهدهٔ تعداد بازدید مقالات جدید
+     </a>، همراه با توضیحات و تصاویر برگرفته از <a
+     href="https://www.mediawiki.org/wiki/API:Query">ای‌پی‌آی مدیاویکی
+     </a>. کدها و مطالب بیشتری را می‌توانید در  <a
+     href="https://github.com/hatnote/top">گیت‌هاب
+     </a> پیدا کنید.</p>
+
+     <p>اگر دوست دارید این فهرست را به زبان‌های دیگر مشاهده کنید، لطفاً در <a
+     href="https://github.com/hatnote/top/\ issues">گیت‌هاب پروژه درخواست دهید</a>
+     و در ترجمهٔ الگوهای آن کمک کنید.</p>
+
+     <p><a href="https://twitter.com/hatnotable">@hatnotable</a></p>
+
+#------- 
+# Tweets 
+#
+#   We can provide three possible tweets. They shouldn't be longer than 117 
+#   characters (including the article title, so there is enough space to 
+#   include a link.
+#------------------------------------------------------------------------------
+
+long_tweet: >- 
+    در {streak}-روز پشت سر هم {title} از نظر تعداد بیشترین بازدید رتبهٔ #{rank}
+     در میان مقالات  #{project} w/ {views} کسب کرد.
+
+medium_tweet: "{title} {views} بار در  #{project} دیده‌شده‌است."
+short_tweet: "{title} رتبهٔ #{rank} در #{project}"
+
+#-------------
+# Archive page
+#------------------------------------------------------------------------------
+
+all_traffic_data: تمام اطلاعات بازدید
+
+#----
+# RSS
+#------------------------------------------------------------------------------
+
+rss_intro: عددهای جدید ویکی‌پدیای فارسی در !
+rss_description: >-
+    <a href="{permalink|s}">{title}</a> با رتبهٔ #{rank} و بازدید {views_short} 
+    views{?streak_min} و {streak_len} پشت سر هم در جدول کوچک 
+    ({view_trend|s}{view_delta} دیده‌شده‌ها از دیروز){/streak_min}.
+
+rss_read_more: مطالعه بیشتر ...
