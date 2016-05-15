@@ -300,23 +300,24 @@ def yearly_calendar(year, lang, project):
     year_path = YEAR_PATH.format(year=year,
                                  lang=lang,
                                  project=project)
-    for month in next(os.walk(year_path))[1]:
-        month = int(month)
-        month_name = get_month_names(locale=lang)
-        weekdays = get_day_names(locale=lang)
-        mname = month_name[month]
-        mdata = {'month_name': mname,
-                 'month': month,
-                 'year': year,
-                 'weekdays': {'mon': weekdays[0],
-                              'tues': weekdays[1],
-                              'wed': weekdays[2],
-                              'thurs': weekdays[3],
-                              'fri': weekdays[4],
-                              'sat': weekdays[5],
-                              'sun': weekdays[6]}}
-        mdata['dates'] = monthly_calendar(year, month, lang, project)
-        ret.append(mdata)
+    for root, dirs, files in os.walk(year_path):
+        for month in sorted(dirs, key=int):
+            month = int(month)
+            month_name = get_month_names(locale=lang)
+            weekdays = get_day_names(locale=lang)
+            mname = month_name[month]
+            mdata = {'month_name': mname,
+                     'month': month,
+                     'year': year,
+                     'weekdays': {'mon': weekdays[0],
+                                  'tues': weekdays[1],
+                                  'wed': weekdays[2],
+                                  'thurs': weekdays[3],
+                                  'fri': weekdays[4],
+                                  'sat': weekdays[5],
+                                  'sun': weekdays[6]}}
+            mdata['dates'] = monthly_calendar(year, month, lang, project)
+            ret.append(mdata)
     ret.reverse()
     return ret
 
@@ -380,10 +381,11 @@ def update_project(lang, project):
     project_path = PROJECT_PATH.format(lang=lang,
                                        project=project)
     project_index = pjoin(project_path, 'index.html')
-    for year in [y for y in next(os.walk(project_path))[1]]:
-        year = int(year)
-        year_data = yearly_calendar(year, lang, project)
-        data['years'] += year_data
+    for root, dirs, files in os.walk(project_path):
+        for year in sorted(dirs, key=int, reverse=True):
+            year = int(year)
+            year_data = yearly_calendar(year, lang, project)
+            data['years'] += year_data
     project_index_template = choose_template(template=PROJECT_INDEX_TMPL,
                                              lang=lang)
     save_rendered(project_index, project_index_template, data)
