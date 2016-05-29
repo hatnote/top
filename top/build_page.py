@@ -16,6 +16,8 @@ import ashes
 from boltons.fileutils import mkdir_p
 from boltons.timeutils import UTC, isoparse
 
+from utils import int_to_local_str
+
 from common import (DATA_PATH_TMPL,
                     TEMPLATE_PATH,
                     FEED_PATH_TMPL,
@@ -155,6 +157,19 @@ def save_chart(query_date, lang, project):
     #TODO: Shouldn't need to format HTML_FILE_TMPL and HTML_PATH_TMPL
     data['prev'] = check_chart(query_date, 1, lang, project)
     data['next'] = check_chart(query_date, -1, lang, project)
+    data['formatted_date'] = int_to_local_str(data['formatted_date'],
+                                               locale=lang)
+    for i, article in enumerate(data['articles']):
+        data['articles'][i]['local_rank'] = int_to_local_str(article['rank'],
+                                                             locale=lang)
+        data['articles'][i]['rank'] = article['rank']
+        views = data['articles'][i]['views_short']
+        data['articles'][i]['local_views_short'] = int_to_local_str(views, locale=lang)
+        view_delta = data['articles'][i]['view_delta']
+        data['articles'][i]['local_view_delta'] = int_to_local_str(views, locale=lang)
+        streak_len = data['articles'][i]['streak_len']
+        data['articles'][i]['local_streak_len'] = int_to_local_str(streak_len,
+                                                                locale=lang)
     data['dir_depth'] = '../' * 4
     data['is_index'] = False
     data['project_lower'] = project
@@ -286,8 +301,10 @@ def monthly_calendar(year, month, lang, project):
                 if isfile(filename):
                     chart = True
             ret_week['days'].append({'year': year,
+                                     'local_year': int_to_local_str(year, locale=lang),
                                      'month': month,
                                      'day': day,
+                                     'local_day': int_to_local_str(day, locale=lang),
                                      'lang': lang,
                                      'project': project,
                                      'chart': chart})
@@ -309,6 +326,7 @@ def yearly_calendar(year, lang, project):
             mdata = {'month_name': mname,
                      'month': month,
                      'year': year,
+                     'local_year': int_to_local_str(year, locale=lang),
                      'weekdays': {'mon': weekdays[0],
                                   'tues': weekdays[1],
                                   'wed': weekdays[2],
@@ -334,6 +352,7 @@ def update_month(query_date, lang, project):
             'prev_month': check_month(query_date, 1, lang, project),
             'next_month': check_month(query_date, -1, lang, project),
             'year': year,
+            'local_year': int_to_local_str(year, locale=lang),
             'meta': {'generated': datetime.utcnow().isoformat()},
             'weekdays': {'mon': weekdays[0],
                          'tues': weekdays[1],
@@ -358,6 +377,7 @@ def update_year(year, lang, project):
     full_lang = LOCAL_LANG_MAP[lang]
     year_data = {'months': [],
                  'year': year,
+                 'local_year': int_to_local_str(year, locale=lang),
                  'project': project.capitalize(),
                  'full_lang': full_lang,
                  'meta': {'generated': datetime.utcnow().isoformat()},
