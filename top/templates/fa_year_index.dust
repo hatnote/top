@@ -1,4 +1,4 @@
-<html dir="auto">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>{?is_index}صد مقالهٔ پربینندهٔ ویکی‌پدیای فارسی{:else}صد مقالهٔ پربینندهٔ ویکی‌پدیای فارسی در {formatted_date}{/is_index}</title>
@@ -6,7 +6,7 @@
     <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
     <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body dir="auto">
     <div class="top-area">
         <div class="top container">
             <ul>
@@ -19,7 +19,7 @@
         <div class="container">
             <h1>ویکی‌پدیای فارسی <span class="ultra">صد پربیننده</span></h1>
             <p>به‌روزرسانی پربیننده‌ترین مقالات ویکی‌پدیای فارسی. <a href="#about" class="learn">اطلاعات بیشتر</a>...</p>
-            <div class="subtitle light">{?prev}<a class="issue_nav left" href="{dir_depth}{prev}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev}<p class="center">{month_name} {year} </p>{?next}<a class="issue_nav right" href="{dir_depth}{next}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next}
+            <div class="subtitle light">{?prev}<a class="issue_nav left" href="{dir_depth}{prev}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev}<p class="center">{month_name} {local_year} </p>{?next}<a class="issue_nav right" href="{dir_depth}{next}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next}
             <br style="clear: left;" />
             </div>
         </div>
@@ -28,7 +28,7 @@
 
     <div class="container">
         {#months}
-        <h2><a href="{month}/">{month_name} {year}</a></h2>
+        <h2><a href="{month}/">{month_name} {local_year}</a></h2>
         <table class="month">
             <tr class="week">
                 <td>{weekdays.mon}</td>
@@ -43,7 +43,7 @@
             <tr class="week">
             {#days}
             {@gt key=day value=0}
-                <td class="day {^chart}none{/chart}">{?chart}<a href="{month}/{day}.html">{/chart}{day}{?chart}</a>{/chart}</td>
+                <td class="day {^chart}none{/chart}">{?chart}<a href="{month}/{day}.html">{/chart}{local_day}{?chart}</a>{/chart}</td>
             {:else}
                 <td class="day empty"></td>
             {/gt}

@@ -64,7 +64,7 @@
             {#articles}
             <li class="row">
                 <div class="column rank">
-                    <p><a href="{dir_depth}{current}#rank-{rank}">{rank}</a></p>
+                    <p><a href="{dir_depth}{current}#rank-{rank}">{local_rank}</a></p>
                 </div>
                 <a class="column cover-art cover-{rank}" href="{url}" target="_blank"></a>
                 <div class="column label">
@@ -74,8 +74,8 @@
                     <p class="title"><a href="{url}" target="_blank">{title}</a><a href="{dir_depth}{current}#title-{article}"><img class="permalink" src="{dir_depth}img/permalink.png"></a></p>
                     <p class="summary">{summary}</p>
                     <div class="meta-area">
-                        <p class="views">{views_short} $views$ <span class="meta">({@gt key=streak_len value=1}<a href="{dir_depth}{prev}#title-{article}" class="yesterday">{/gt}{view_trend|s}{view_delta} $from_yesterday${@gt key=streak_len value=1}</a>{/gt})</span><span class="sparkline">{#history}{.}{@sep},{/sep}{/history}, {views}</span></p>
-                        <p class="streak">{@gt key=streak_len value=1}{streak_len} $streak${/gt}</p>
+                        <p class="views">{local_views_short} $views$ <span class="meta">({@gt key=streak_len value=1}<a href="{dir_depth}{prev}#title-{article}" class="yesterday">{/gt}{view_trend|s}{local_view_delta} $from_yesterday${@gt key=streak_len value=1}</a>{/gt})</span><span class="sparkline">{#history}{.}{@sep},{/sep}{/history}, {views}</span></p>
+                        <p class="streak">{@gt key=streak_len value=1}{local_streak_len} $streak${/gt}</p>
                         <a href="http://twitter.com/share?text={tweet}&amp;url={permalink|uc}" target="_blank"><img class="twitter-icon" src="{dir_depth}img/twitter.png"></a>
                     </div>
                 </div>

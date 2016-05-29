@@ -105,8 +105,8 @@ all_traffic_data: تمام اطلاعات بازدید
 
 rss_intro: عددهای جدید ویکی‌پدیای فارسی در !
 rss_description: >-
-    <a href="{permalink|s}">{title}</a> با رتبهٔ #{rank} و بازدید {views_short} 
+    <a href="{permalink|s}">{title}</a> با رتبهٔ #{rank} و بازدید {local_views_short} 
     views{?streak_min} و {streak_len} پشت سر هم در جدول کوچک 
-    ({view_trend|s}{view_delta} دیده‌شده‌ها از دیروز){/streak_min}.
+    ({view_trend|s}{local_view_delta} دیده‌شده‌ها از دیروز){/streak_min}.
 
 rss_read_more: مطالعه بیشتر ...

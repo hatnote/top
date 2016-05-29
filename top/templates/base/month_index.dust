@@ -23,7 +23,7 @@
         <div class="container">
             <h1>$language_project$ <span class="ultra">$title$</span></h1>
             <p>$tagline$</p>
-            <div class="subtitle light">{?prev_month}<a class="issue_nav left" href="{dir_depth}{prev_month}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev_month}<p class="center">{month_name} {year} </p>{?next_month}<a class="issue_nav right" href="{dir_depth}{next_month}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next_month}
+            <div class="subtitle light">{?prev_month}<a class="issue_nav left" href="{dir_depth}{prev_month}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev_month}<p class="center">{month_name} {local_year} </p>{?next_month}<a class="issue_nav right" href="{dir_depth}{next_month}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next_month}
             <br style="clear: left;" />
             </div>
         </div>
@@ -45,7 +45,7 @@
             <tr class="week">
             {#days}
             {@gt key=day value=0}
-                <td class="day {^chart}none{/chart}">{?chart}<a href="{day}.html">{/chart}{day}{?chart}</a>{/chart}</td>
+                <td class="day {^chart}none{/chart}">{?chart}<a href="{day}.html">{/chart}{local_day}{?chart}</a>{/chart}</td>
             {:else}
                 <td class="day empty"></td>
             {/gt}

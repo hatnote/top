@@ -1,4 +1,4 @@
-<html dir="auto">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>{^is_index}صد مقالهٔ پربینندهٔ ویکی‌پدیای فارسی{:else}صد مقالهٔ پربینندهٔ ویکی‌پدیای فارسی در {formatted_date}{/is_index}</title>
