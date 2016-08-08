@@ -9,34 +9,34 @@
 # Page title
 #------------------------------------------------------------------------------
 
-title: Top 100
+title: ਸਿਖਰਲੇ ੧੦੦
 full_title: >-
-  English Wikipedia Top 100 on {formatted_date}
+  ਪੰਜਾਬੀ ਵਿਕੀਪੀਡੀਆ ਦੇ ਸਿਖਰਲੇ ੧੦੦ {formatted_date} ਨੂੰ
 
 index_title: >-
-  English Wikipedia Top 100
+  ਪੰਜਾਬੀ ਵਿਕੀਪੀਡੀਆ ਸਿਖਰਲੇ ੧੦੦
 
 rss_title: >-
-  English Wikipedia's 100 most-visited articles
+  ਪੰਜਾਬੀ ਵਿਕੀਪੀਡੀਆ ਦੇ ੧੦੦ ਸਭ ਤੋਂ ਜ਼ਿਆਦਾ ਦੌਰਾ ਕੀਤੇ ਜਾਣ ਵਾਲੇ ਲੇਖ
 
-wikipedia: Wikipedia
-language_project: English Wikipedia
+wikipedia: ਵਿਕੀਪੀਡੀਆ
+language_project: ਪੰਜਾਬੀ ਵਿਕੀਪੀਡੀਆ
 tagline: >-
-    The most-visited English Wikipedia articles, updated daily. <a
-    href="#about" class="learn">Learn more</a>...
+    ਪੰਜਾਬੀ ਵਿਕੀਪੀਡੀਆ ਦੇ ਸਭ ਤੋਂ ਜ਼ਿਆਦਾ ਵੇਖੇ ਜਾਣ ਵਾਲੇ ਲੇਖ, ਰੋਜ਼ਾਨਾ ਨਵਪੂਰਤ <a
+    href="#about" class="learn">ਹੋਰ ਜਾਣੋ</a>...
 
 alt_tagline: >-
-    The most-visited English Wikipedia articles, updated daily.
+    ਪੰਜਾਬੀ ਵਿਕੀਪੀਡੀਆ ਦੇ ਸਭ ਤੋਂ ਜ਼ਿਆਦਾ ਵੇਖੇ ਕੀਤੇ ਜਾਣ ਵਾਲੇ ਲੇਖ, ਰੋਜ਼ਾਨਾ ਨਵਪੂਰਤ।
 
 #------
 # Links
 #------------------------------------------------------------------------------
 
-about_link: About
-more_langs_link: More languages
-feed_link: Feed
-blog_link: Blog
-top: Back to top 
+about_link: ਬਾਰੇ
+more_langs_link: ਹੋਰ ਭਾਸ਼ਾਵਾਂ
+feed_link: ਫੀਡ
+blog_link: ਬਲਾਗ
+top: ਵਾਪਸ ਉੱਤੇ ਜਾਓ 
 
 #---------
 # Articles
@@ -45,41 +45,35 @@ top: Back to top
 #   934.8K views (↑300.5K from yesterday)
 #------------------------------------------------------------------------------
 
-views: views
-from_yesterday: from yesterday
-streak: day streak
+views: ਵਾਰੀ ਵੇਖਿਆ ਗਿਆ
+from_yesterday: ਕੱਲ੍ਹ ਤੋਂ
+streak: ਦਿਨ ਸਟ੍ਰੀਕ
 
 #------------
 # About section
 #------------------------------------------------------------------------------
 
-about_header: About
+about_header: ਬਾਰੇ
 about_section: >-
-     <p>Read the <a href="http://top.hatnote.com/en/wikipedia">archive</a>.</p>
+     <p><a href="http://top.hatnote.com/en/wikipedia">ਅਰਕਾਈਵ</a> ਪੜ੍ਹੋ।</p>
 
-     <p>A daily list of the most visited Wikipedia articles, generated
-     by <a href="https://twitter.com/sklaporte">Stephen LaPorte</a>
-     and <a href="https://twitter.com/mhashemi">Mahmoud
-     Hashemi</a>. It's also available in <a
-     href="http://top.hatnote.com/about.html">more languages</a>. If
-     you find this list interesting, you will enjoy <a
-     href="http://weekly.hatnote.com">The Weeklypedia</a>, a weekly
-     digest of the most edited Wikipedia articles. Learn more on the <a
-     href="#">Hatnote Blog</a>.</p>
+     <p>ਦਿਨ ਦੇ ਸਭ ਤੋਂ ਜ਼ਿਆਦਾ ਵੇਖੇ ਜਾਣ ਵਾਲੇ ਵਿਕੀਪੀਡੀਆ ਲੇਖ <a href="https://twitter.com/sklaporte">Stephen LaPorte</a>
+     ਅਤੇ <a href="https://twitter.com/mhashemi">Mahmoud
+     Hashemi</a> ਵੱਲੋਂ ਤਿਆਰ ਕੀਤੇ ਗਏ। <a
+     href="http://top.hatnote.com/about.html">ਹੋਰ ਭਾਸ਼ਾਵਾਂ</a> ਵਿੱਚ ਵੀ ਉਪਲੱਭਦ। ਜੇ ਤੁਹਾਨੂੰ ਇਹ ਸੂਚੀ ਦਿਲਚਸਪ ਲੱਗੀ ਤਾਂ ਤੁਸੀਂ <a
+     href="http://weekly.hatnote.com">ਦ ਵੀਕਲੀਪੀਡੀਆ</a>, ਵਿਕੀਪੀਡੀਆ ਦੇ ਸਭ ਤੋਂ ਜ਼ਿਆਦਾ ਸੋਧੇ ਜਾਣ ਵਾਲੇ ਲੇਖਾਂ ਦਾ ਹਫਤਾਵਾਰੀ ਸੰਖੇਪ, ਵੀ ਪਸੰਦ ਕਰੋਗੇ। ਹੋਰ ਜਾਣੋ <a
+     href="#">Hatnote Blog</a> ਤੇ।</p>
 
-     <p>This page was made possible by <a
+     <p>ਇਹ ਸਫ਼ਾ ਬਣਾਇਆ ਗਿਆ <a
      href="https://wikimedia.org/api/rest_v1/?doc#!/Pageviews_data/get_metrics_\
-     pageviews_top_project_access_year_month_day">Wikipedia's new page
-     view API</a>, with some nice images and summaries from the <a
-     href="https://www.mediawiki.org/wiki/API:Query">MediaWiki
-     API</a>. You can find more code and documentation <a
-     href="https://github.com/hatnote/top">available on
-     github</a>.</p>
+     pageviews_top_project_access_year_month_day"> ਵਿਕੀਪੀਡੀਆ ਦੀ ਨਵੀਂ ਪੇਜ ਵੀਊ ਏ.ਪੀ.ਆਈ.</a> ਦੇ ਨਾਲ ਅਤੇ ਕੁਝ ਵਧੀਆ ਤਸਵੀਰਾਂ ਅਤੇ ਸਾਰ <a
+     href="https://www.mediawiki.org/wiki/API:Query">ਮੀਡੀਆਵਿਕੀ 
+     ਏ.ਪੀ.ਆਈ. ਵੱਲੋਂ।</a>. ਤੁਸੀਂ ਹੋਰ ਸਰੋਤ ਅਤੇ ਦਸਤਾਵੇ <a
+     href="https://github.com/hatnote/top">ਗਿੱਟਹੱਬ</a> ਤੇ ਵੇਖ ਸਕਦੇ ਹੋ।</p>
 
-     <p>Want to see a list of the most visited articles in another
-     language of Wikipedia? So do we! Please <a
-     href="https://github.com/hatnote/top/issues">send a request</a>
-     and let us know if you can help translate the templates.</p>
+     <p>ਕੀ ਤੁਸੀਂ ਇਹ ਸੂਚੀ ਹੋਰ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਵੇਖਣੀ ਚਾਹੁੰਦੇ ਹੋ? ਅਸੀਂ ਵੀ ਇਹ ਹੀ ਚਾਹੁੰਦੇ ਹਾਂ! ਕਿਰਪਾ ਕਰਕੇ <a
+     href="https://github.com/hatnote/top/issues">ਤੇ ਬੇਨਤੀ ਭੇਜੋ</a> 
+     ਅਤੇ ਸਾਨੂੰ ਦੱਸੋ ਜੇ ਤੁਸੀਂ ਫ਼ਰਮੇ ਦਾ ਅਨੁਵਾਦ ਕਰ ਸਕਦੇ ਹੋ।</p>
 
      <p><a href="https://twitter.com/hatnotable">@hatnotable</a></p>
 
@@ -92,26 +86,26 @@ about_section: >-
 #------------------------------------------------------------------------------
 
 long_tweet: >- 
-    On a {streak}-day streak, {title} was the #{rank} most
-    read article on #{project} w/ {views} views
+    {streak}-ਦਿਨ ਸਟ੍ਰੀਕ ਨੂੰ, {title} #{rank} ਦਰਜੇ ਦਾ
+    ਸਭ ਤੋਂ ਜ਼ਿਆਦਾ ਵੇਖਿਆ ਲੇਖ ਸੀ #{project} ਉੱਤੇ {views} ਵੀਊਜ਼ ਨਾਲ
 
-medium_tweet: "{title} was viewed {views} times on #{project}"
-short_tweet: "{title} was #{rank} on #{project}"
+medium_tweet: "{title} ਵੇਖਿਆ ਗਿਆ {views} ਵਾਰੀ #{project} ਉੱਤੇ"
+short_tweet: "{title} #{rank} ਤੇ ਸੀ #{project} ਉੱਤੇ"
 
 #-------------
 # Archive page
 #------------------------------------------------------------------------------
 
-all_traffic_data: All traffic data
+all_traffic_data: ਸਾਰਾ ਆਵਾਜਾਈ ਡਾਟਾ
 
 #----
 # RSS
 #------------------------------------------------------------------------------
 
-rss_intro: The new English Wikipedia numbers are in!
+rss_intro: ਨਵੇਂ ਪੰਜਾਬੀ ਵਿਕੀਪੀਡੀਆ ਆਂਕੜੇ ਆ ਚੁੱਕੇ ਹਨ! 
 rss_description: >-
-    <a href="{permalink|s}">{title}</a> came in at #{rank}, with {views_short} 
-    views{?streak_min}, continuing its {streak_len}-day streak on the chart 
-    ({view_trend|s}{view_delta} views since yesterday){/streak_min}.
+    <a href="{permalink|s}">{title}</a> #{rank} ਦਰਜੇ ਤੇ ਆਇਆ, {views_short} 
+    ਵੀਊਜ਼ ਦੇ ਨਾਲ{?streak_min}, ਆਪਣੀ {streak_len}-ਦਿਨ ਸਟ੍ਰੀਕ ਜਾਰੀ ਰੱਖਦਾ ਹੋਇਆ ਚਾਰਟ ਉੱਤੇ 
+    ({view_trend|s}{view_delta} ਕੱਲ੍ਹ ਤੋਂ ਲਾਇ ਕੇ ਵੀਊਜ਼){/streak_min}.
 
-rss_read_more: Read more...
+rss_read_more: ਹੋਰ ਪੜ੍ਹੋ...
