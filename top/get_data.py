@@ -271,7 +271,7 @@ def tweet_composer(article, lang, project, tweets):
         streak = article['streak_len']
     if int(streak) > 1:
         msg = tweets['long']
-        if not isinstance(msg, unicode): 
+        if not isinstance(msg, unicode):
             msg = msg.decode('utf-8')
         msg = msg.format(streak=article['streak_len'],
                          title=title,
@@ -281,7 +281,7 @@ def tweet_composer(article, lang, project, tweets):
         if len(msg) < max_tweet_len:
             return msg
     msg = tweets['medium']
-    if not isinstance(msg, unicode): 
+    if not isinstance(msg, unicode):
         msg = msg.decode('utf-8')
     try:
         msg = msg.format(title=title,
@@ -293,18 +293,18 @@ def tweet_composer(article, lang, project, tweets):
     if len(msg) < max_tweet_len:
         return msg
     msg = tweets['short']
-    if not isinstance(msg, unicode): 
+    if not isinstance(msg, unicode):
         msg = msg.decode('utf-8')
-    msg = msg.format(title=title, 
-                     rank=article['rank'], 
+    msg = msg.format(title=title,
+                     rank=article['rank'],
                      project=project)
     if len(msg) < max_tweet_len:
         return msg
     msg = tweets['short']
-    if not isinstance(msg, unicode): 
+    if not isinstance(msg, unicode):
         msg = msg.decode('utf-8')
-    msg = msg.format(title=title[:50] + '...', 
-                     rank=article['rank'], 
+    msg = msg.format(title=title[:50] + '...',
+                     rank=article['rank'],
                      project=project)
     return msg
 
@@ -401,8 +401,8 @@ def save_traffic_stats(lang, project, query_date, limit=DEFAULT_LIMIT):
     articles = articles[:limit]
     articles = add_extras(articles, lang=lang, project=project)
     ret = {'articles': articles,
-           'formatted_date': format_date(query_date, 
-                                         format='d MMMM yyyy', 
+           'formatted_date': format_date(query_date,
+                                         format='d MMMM yyyy',
                                          locale=lang),
            'date': {'day': query_date.day,
                     'month': query_date.month,
@@ -525,6 +525,7 @@ def main():
                     err_write(' - no results after %r attempts and %r minutes,'
                               ' exiting.\n\n' % (count,
                                                  poll_td.total_seconds() / 60))
+                    break
     else:
         save_traffic_stats(args.lang, args.project, input_date)
     if args.update:
