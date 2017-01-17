@@ -1,0 +1,109 @@
+#------------------
+# Wikipedia Top 100
+#    If you want to translate the charts on top.hatnote.com, start with a copy
+#    of this file and leave us a note at:
+#    https://github.com/hatnote/top/issues
+#------------------------------------------------------------------------------
+
+#-----------
+# Page title
+#------------------------------------------------------------------------------
+
+title: Topp 100
+full_title: >-
+  Wikipedia på bokmåls topp 100 {formatted_date}
+
+index_title: >-
+  Wikipedia på bokmåls topp 100
+
+rss_title: >-
+  Wikipedia på bokmåls 100 mest besøkte artikler
+
+wikipedia: Wikipedia
+language_project: Wikipedia på norsk bokmål
+tagline: >-
+    De mest besøkte artiklene på Wikipedia på bokmål, daglig oppdatert. <a
+    href="#about" class="learn">Les mer</a>...
+
+alt_tagline: >-
+    De mest besøkte artiklene på Wikipedia på bokmål, daglig oppdatert.
+
+#------
+# Links
+#------------------------------------------------------------------------------
+
+about_link: Om
+more_langs_link: Flere språk
+feed_link: Feed
+blog_link: Blogg
+top: Til toppen av siden
+
+#---------
+# Articles
+#
+#   Each article has statistics at the bottom like this:
+#   934.8K views (↑300.5K from yesterday)
+#------------------------------------------------------------------------------
+
+views: visninger
+from_yesterday: fra i går
+streak: dager på rad
+
+#------------
+# About section
+#------------------------------------------------------------------------------
+
+about_header: Om
+about_section: >-
+     <p>Les mer på <a href="#">Hatnote-bloggen</a>.</p>
+     <p>En daglig oppdatert liste over de mest besøkte artiklene på Wikipdia skapt av <a
+     href="https://twitter.com/sklaporte">Stephen LaPorte</a> og <a
+     href="https://twitter.com/mhashemi">Mahmoud Hashemi</a>. Den er også tilgjengelig på <a
+     href="http://top.hatnote.com/about.html">flere språk</a>. Hvis du synes denne lista er interessant vil du kanskje også like <a
+     href="http://weekly.hatnote.com">Weeklypedia</a>, en ukentlig oppdatert sammenstilling av de mest redigerte Wikipedia-artiklene.</p>
+
+     <p>Denne siden er gjort mulig gjennom <a
+     href="https://wikimedia.org/api/rest_v1/?doc#!/Pageviews_data/get_metrics_\
+     pageviews_top_project_access_year_month_day">Wikipedias nye sidevisnings-API</a>, med fine bilder og sammenfatninger fra <a
+     href="https://www.mediawiki.org/wiki/API:Query">MediaWiki-APIet</a>. Du kan også lese mer om koden og dokumentasjonen <a
+     href="https://github.com/hatnote/top">på
+     github</a>.</p>
+
+     <p>Vil du ha en liste over de mest besøkte artiklene på en annen språkversjon av Wikipedia? Det vil gjerne vi også! <a
+     href="https://github.com/hatnote/top/\ issues">send en forespørsel</a>
+     og fortell oss om du kan bidra til oversetting.</p>
+
+     <p><a href="https://twitter.com/hatnotable">@hatnotable</a></p>
+
+#-------
+# Tweets
+#
+#   We can provide three possible tweets. They shouldn't be longer than 117
+#   characters (including the article title, so there is enough space to
+#   include a link.
+#------------------------------------------------------------------------------
+
+long_tweet: >-
+    {streak} dager på rad, var {title} den #{rank} mest
+    leste artikkelen på #{project} med {views} visninger
+
+medium_tweet: "{title} ble vist {views} ganger på #{project}"
+short_tweet: "{title} var #{rank} på #{project}"
+
+#-------------
+# Archive page
+#------------------------------------------------------------------------------
+
+all_traffic_data: Alle traffikkdata
+
+#----
+# RSS
+#------------------------------------------------------------------------------
+
+rss_intro: Nå finnes de nye tallene for Wikipedia på bokmål!
+rss_description: >-
+    <a href="{permalink|s}">{title}</a> kom på #{rank}, med {views_short}
+    visninger{?streak_min}, for {streak_len} dag på rad på listen
+    ({view_trend|s}{view_delta} visninger siden i går){/streak_min}.
+
+rss_read_more: Les mer...
