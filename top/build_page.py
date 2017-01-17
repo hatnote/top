@@ -78,10 +78,10 @@ def save_rendered(outfile_name, template_name, context):
 
 def check_most_recent(lang=DEFAULT_LANG, project=DEFAULT_PROJECT):
     sdir = pjoin(BASE_PATH, lang, project)
-    recent_year = max([f for f in listdir(sdir) if isdir(pjoin(sdir, f))])
-    sdir = pjoin(sdir, recent_year)
-    recent_month = max([f for f in listdir(sdir) if isdir(pjoin(sdir, f))])
-    sdir = pjoin(sdir, recent_month)
+    recent_year = max([int(f) for f in listdir(sdir) if isdir(pjoin(sdir, f))])
+    sdir = pjoin(sdir, str(recent_year))
+    recent_month = max([int(f) for f in listdir(sdir) if isdir(pjoin(sdir, f))])
+    sdir = pjoin(sdir, str(recent_month))
     try:
         recent_day = max([int(f.replace('.json', ''))
                           for f
