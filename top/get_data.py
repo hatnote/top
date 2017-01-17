@@ -354,7 +354,7 @@ def make_article_list(query_date, lang, project):
             view_delta = abs(article['views'] - article['pviews'])
             article['view_delta'] = shorten_number(view_delta)
         else:
-            article['view_delta'] = None
+            article['view_delta'] = shorten_number(article['views'])
         tweet = tweet_composer(article, lang, project, tweets=tweet_templates)
         article['tweet'] = quote_plus(tweet.encode('utf-8'), safe=':/')
         ret.append(article)

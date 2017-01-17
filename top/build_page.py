@@ -166,7 +166,7 @@ def save_chart(query_date, lang, project):
         views = data['articles'][i]['views_short']
         data['articles'][i]['local_views_short'] = int_to_local_str(views, locale=lang)
         view_delta = data['articles'][i]['view_delta']
-        data['articles'][i]['local_view_delta'] = int_to_local_str(views, locale=lang)
+        data['articles'][i]['local_view_delta'] = int_to_local_str(view_delta, locale=lang)
         streak_len = data['articles'][i]['streak_len']
         data['articles'][i]['local_streak_len'] = int_to_local_str(streak_len,
                                                                 locale=lang)
