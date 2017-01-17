@@ -1,0 +1,111 @@
+#------------------
+# Wikipedia Top 100
+#    If you want to translate the charts on top.hatnote.com, start with a copy
+#    of this file and leave us a note at:
+#    https://github.com/hatnote/top/issues
+#------------------------------------------------------------------------------
+
+#-----------
+# Page title
+#------------------------------------------------------------------------------
+
+title: ਸਿਖਰਲੇ ੧੦੦
+full_title: >-
+  ਪੰਜਾਬੀ ਵਿਕੀਪੀਡੀਆ ਦੇ ਸਿਖਰਲੇ ੧੦੦ {formatted_date} ਨੂੰ
+
+index_title: >-
+  ਪੰਜਾਬੀ ਵਿਕੀਪੀਡੀਆ ਸਿਖਰਲੇ ੧੦੦
+
+rss_title: >-
+  ਪੰਜਾਬੀ ਵਿਕੀਪੀਡੀਆ ਦੇ ੧੦੦ ਸਭ ਤੋਂ ਜ਼ਿਆਦਾ ਦੌਰਾ ਕੀਤੇ ਜਾਣ ਵਾਲੇ ਲੇਖ
+
+wikipedia: ਵਿਕੀਪੀਡੀਆ
+language_project: ਪੰਜਾਬੀ ਵਿਕੀਪੀਡੀਆ
+tagline: >-
+    ਪੰਜਾਬੀ ਵਿਕੀਪੀਡੀਆ ਦੇ ਸਭ ਤੋਂ ਜ਼ਿਆਦਾ ਵੇਖੇ ਜਾਣ ਵਾਲੇ ਲੇਖ, ਰੋਜ਼ਾਨਾ ਨਵਪੂਰਤ <a
+    href="#about" class="learn">ਹੋਰ ਜਾਣੋ</a>...
+
+alt_tagline: >-
+    ਪੰਜਾਬੀ ਵਿਕੀਪੀਡੀਆ ਦੇ ਸਭ ਤੋਂ ਜ਼ਿਆਦਾ ਵੇਖੇ ਕੀਤੇ ਜਾਣ ਵਾਲੇ ਲੇਖ, ਰੋਜ਼ਾਨਾ ਨਵਪੂਰਤ।
+
+#------
+# Links
+#------------------------------------------------------------------------------
+
+about_link: ਬਾਰੇ
+more_langs_link: ਹੋਰ ਭਾਸ਼ਾਵਾਂ
+feed_link: ਫੀਡ
+blog_link: ਬਲਾਗ
+top: ਵਾਪਸ ਉੱਤੇ ਜਾਓ 
+
+#---------
+# Articles
+#
+#   Each article has statistics at the bottom like this:
+#   934.8K views (↑300.5K from yesterday)
+#------------------------------------------------------------------------------
+
+views: ਵਾਰੀ ਵੇਖਿਆ ਗਿਆ
+from_yesterday: ਕੱਲ੍ਹ ਤੋਂ
+streak: ਦਿਨ ਸਟ੍ਰੀਕ
+
+#------------
+# About section
+#------------------------------------------------------------------------------
+
+about_header: ਬਾਰੇ
+about_section: >-
+     <p><a href="http://top.hatnote.com/en/wikipedia">ਅਰਕਾਈਵ</a> ਪੜ੍ਹੋ।</p>
+
+     <p>ਦਿਨ ਦੇ ਸਭ ਤੋਂ ਜ਼ਿਆਦਾ ਵੇਖੇ ਜਾਣ ਵਾਲੇ ਵਿਕੀਪੀਡੀਆ ਲੇਖ <a href="https://twitter.com/sklaporte">Stephen LaPorte</a>
+     ਅਤੇ <a href="https://twitter.com/mhashemi">Mahmoud
+     Hashemi</a> ਵੱਲੋਂ ਤਿਆਰ ਕੀਤੇ ਗਏ। <a
+     href="http://top.hatnote.com/about.html">ਹੋਰ ਭਾਸ਼ਾਵਾਂ</a> ਵਿੱਚ ਵੀ ਉਪਲੱਭਦ। ਜੇ ਤੁਹਾਨੂੰ ਇਹ ਸੂਚੀ ਦਿਲਚਸਪ ਲੱਗੀ ਤਾਂ ਤੁਸੀਂ <a
+     href="http://weekly.hatnote.com">ਦ ਵੀਕਲੀਪੀਡੀਆ</a>, ਵਿਕੀਪੀਡੀਆ ਦੇ ਸਭ ਤੋਂ ਜ਼ਿਆਦਾ ਸੋਧੇ ਜਾਣ ਵਾਲੇ ਲੇਖਾਂ ਦਾ ਹਫਤਾਵਾਰੀ ਸੰਖੇਪ, ਵੀ ਪਸੰਦ ਕਰੋਗੇ। ਹੋਰ ਜਾਣੋ <a
+     href="#">Hatnote Blog</a> ਤੇ।</p>
+
+     <p>ਇਹ ਸਫ਼ਾ ਬਣਾਇਆ ਗਿਆ <a
+     href="https://wikimedia.org/api/rest_v1/?doc#!/Pageviews_data/get_metrics_\
+     pageviews_top_project_access_year_month_day"> ਵਿਕੀਪੀਡੀਆ ਦੀ ਨਵੀਂ ਪੇਜ ਵੀਊ ਏ.ਪੀ.ਆਈ.</a> ਦੇ ਨਾਲ ਅਤੇ ਕੁਝ ਵਧੀਆ ਤਸਵੀਰਾਂ ਅਤੇ ਸਾਰ <a
+     href="https://www.mediawiki.org/wiki/API:Query">ਮੀਡੀਆਵਿਕੀ 
+     ਏ.ਪੀ.ਆਈ. ਵੱਲੋਂ।</a>. ਤੁਸੀਂ ਹੋਰ ਸਰੋਤ ਅਤੇ ਦਸਤਾਵੇ <a
+     href="https://github.com/hatnote/top">ਗਿੱਟਹੱਬ</a> ਤੇ ਵੇਖ ਸਕਦੇ ਹੋ।</p>
+
+     <p>ਕੀ ਤੁਸੀਂ ਇਹ ਸੂਚੀ ਹੋਰ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਵੇਖਣੀ ਚਾਹੁੰਦੇ ਹੋ? ਅਸੀਂ ਵੀ ਇਹ ਹੀ ਚਾਹੁੰਦੇ ਹਾਂ! ਕਿਰਪਾ ਕਰਕੇ <a
+     href="https://github.com/hatnote/top/issues">ਤੇ ਬੇਨਤੀ ਭੇਜੋ</a> 
+     ਅਤੇ ਸਾਨੂੰ ਦੱਸੋ ਜੇ ਤੁਸੀਂ ਫ਼ਰਮੇ ਦਾ ਅਨੁਵਾਦ ਕਰ ਸਕਦੇ ਹੋ।</p>
+
+     <p><a href="https://twitter.com/hatnotable">@hatnotable</a></p>
+
+#------- 
+# Tweets 
+#
+#   We can provide three possible tweets. They shouldn't be longer than 117 
+#   characters (including the article title, so there is enough space to 
+#   include a link.
+#------------------------------------------------------------------------------
+
+long_tweet: >- 
+    {streak}-ਦਿਨ ਸਟ੍ਰੀਕ ਨੂੰ, {title} #{rank} ਦਰਜੇ ਦਾ
+    ਸਭ ਤੋਂ ਜ਼ਿਆਦਾ ਵੇਖਿਆ ਲੇਖ ਸੀ #{project} ਉੱਤੇ {views} ਵੀਊਜ਼ ਨਾਲ
+
+medium_tweet: "{title} ਵੇਖਿਆ ਗਿਆ {views} ਵਾਰੀ #{project} ਉੱਤੇ"
+short_tweet: "{title} #{rank} ਤੇ ਸੀ #{project} ਉੱਤੇ"
+
+#-------------
+# Archive page
+#------------------------------------------------------------------------------
+
+all_traffic_data: ਸਾਰਾ ਆਵਾਜਾਈ ਡਾਟਾ
+
+#----
+# RSS
+#------------------------------------------------------------------------------
+
+rss_intro: ਨਵੇਂ ਪੰਜਾਬੀ ਵਿਕੀਪੀਡੀਆ ਆਂਕੜੇ ਆ ਚੁੱਕੇ ਹਨ! 
+rss_description: >-
+    <a href="{permalink|s}">{title}</a> #{rank} ਦਰਜੇ ਤੇ ਆਇਆ, {views_short} 
+    ਵੀਊਜ਼ ਦੇ ਨਾਲ{?streak_min}, ਆਪਣੀ {streak_len}-ਦਿਨ ਸਟ੍ਰੀਕ ਜਾਰੀ ਰੱਖਦਾ ਹੋਇਆ ਚਾਰਟ ਉੱਤੇ 
+    ({view_trend|s}{view_delta} ਕੱਲ੍ਹ ਤੋਂ ਲਾਇ ਕੇ ਵੀਊਜ਼){/streak_min}.
+
+rss_read_more: ਹੋਰ ਪੜ੍ਹੋ...
