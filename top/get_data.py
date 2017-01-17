@@ -71,7 +71,7 @@ def is_article(title, wiki_info):
     search page (Special:Search in English, etc) and similar pages appearing
     inconveniently in the traffic report.
     '''
-    skip = ['-'] + [wiki_info['mainpage']]
+    skip = ['-', '404.php'] + [wiki_info['mainpage']]
     prefixes = PREFIXES + wiki_info['namespaces']
     if title in skip:
         return False
