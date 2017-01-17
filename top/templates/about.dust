@@ -118,7 +118,7 @@
             <ul>
                 <li><a href="/">Home</a></li>
                 <li>More languages</li>
-                <li><a href="http://blog.hatnote.com/post/135182048397/announcing-the-hatnote-top-100">Blog</a></li>
+                <li><a href="http://blog.hatnote.com/">Blog</a></li>
             </ul>
         </div>
     </div>
@@ -158,6 +158,7 @@
                 <li><a href="{url}" class="feed">{name}</a></li>
                 {/feeds}
             </ul>
+	    <p>Want to see a list of the most visited articles in another language of Wikipedia? So do we! Please <a href="https://github.com/hatnote/top/issues">send a request</a> and let us know if you can help translate the templates.</p>
         </div>
     </div>
 

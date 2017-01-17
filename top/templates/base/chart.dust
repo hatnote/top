@@ -44,7 +44,7 @@
                 <li><a href="#about">$about_link$</a></li>
                 <li><a href="{dir_depth}about.html" id="other-langs">$more_langs_link$</a></li>
                 <li><a href="{dir_depth}feeds/{lang}{project_lower}.rss">$feed_link$</a></li>
-                <li><a href="#">$blog_link$</a></li>
+                <li><a href="http://blog.hatnote.com/">$blog_link$</a></li>
             </ul>
         </div>
     </div>
