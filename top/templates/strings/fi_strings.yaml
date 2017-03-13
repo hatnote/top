@@ -17,26 +17,26 @@ index_title: >-
   English Wikipedia Top 100
 
 rss_title: >-
-  English Wikipedia's 100 most-visited articles
+  Suomenkielisen Wikipedian 100 luetuinta artikkelia
 
 wikipedia: Wikipedia
-language_project: English Wikipedia
+language_project: Suomenkielinen Wikipedia
 tagline: >-
-    The most-visited English Wikipedia articles, updated daily. <a
-    href="#about" class="learn">Learn more</a>...
+    Suomenkielisen Wikipedian 100 luetuinta artikkelia, päivittäin. <a
+    href="#about" class="learn">Lue lisää</a>...
 
 alt_tagline: >-
-    The most-visited English Wikipedia articles, updated daily.
+    Suomenkielisen Wikipedian luetuimmat artikkelit.
 
 #------
 # Links
 #------------------------------------------------------------------------------
 
-about_link: About
-more_langs_link: More languages
-feed_link: Feed
-blog_link: Blog
-top: Back to top 
+about_link: Tietoa
+more_langs_link: Muilla kielillä
+feed_link: Syöte
+blog_link: Blogi
+top: Alkuun 
 
 #---------
 # Articles
@@ -45,41 +45,39 @@ top: Back to top
 #   934.8K views (↑300.5K from yesterday)
 #------------------------------------------------------------------------------
 
-views: views
-from_yesterday: from yesterday
-streak: day streak
+views: katselukertaa
+from_yesterday: eilisestä
+streak: päivän jakso
 
 #------------
 # About section
 #------------------------------------------------------------------------------
 
-about_header: About
+about_header: Tietoa
 about_section: >-
-     <p>Read the <a href="http://top.hatnote.com/en/wikipedia">archive</a>.</p>
+     <p>Lue <a href="http://top.hatnote.com/fi/wikipedia">arkistosta</a>.</p>
 
-     <p>A daily list of the most visited Wikipedia articles, generated
-     by <a href="https://twitter.com/sklaporte">Stephen LaPorte</a>
-     and <a href="https://twitter.com/mhashemi">Mahmoud
-     Hashemi</a>. It's also available in <a
-     href="http://top.hatnote.com/about.html">more languages</a>. If
-     you find this list interesting, you will enjoy <a
-     href="http://weekly.hatnote.com">The Weeklypedia</a>, a weekly
-     digest of the most edited Wikipedia articles. Learn more on the <a
-     href="#">Hatnote Blog</a>.</p>
+     <p>Päivittäin uudistuva luettelo luetuimmista Wikipedia-artikkeleista. Tekijät 
+     <a href="https://twitter.com/sklaporte">Stephen LaPorte</a>
+     ja <a href="https://twitter.com/mhashemi">Mahmoud
+     Hashemi</a>. Se on saatavana myös <a
+     href="http://top.hatnote.com/about.html">muilla kielillä</a>. Jos tämä 
+     kiinnostaa, tutustu myös <a
+     href="http://weekly.hatnote.com">Weeklypediaan</a>, viikottaiseen
+     kokoelmaan eniten muokattuja Wikipedia-artikkeleita. Lisätietoa <a
+     href="#">Hatnote-blogissa</a>.</p>
 
-     <p>This page was made possible by <a
+     <p>Tämän sivun mahdollistaa <a
      href="https://wikimedia.org/api/rest_v1/?doc#!/Pageviews_data/get_metrics_\
-     pageviews_top_project_access_year_month_day">Wikipedia's new page
-     view API</a>, with some nice images and summaries from the <a
-     href="https://www.mediawiki.org/wiki/API:Query">MediaWiki
-     API</a>. You can find more code and documentation <a
-     href="https://github.com/hatnote/top">available on
-     github</a>.</p>
+     pageviews_top_project_access_year_month_day">Wikipedian uusi Page View API</a>, 
+     joka näyttää <a
+     href="https://www.mediawiki.org/wiki/API:Query">MediaWiki APIn</a> kautta saatavaa 
+     tietoa kuvina ja yhteenvetoina. 
 
-     <p>Want to see a list of the most visited articles in another
-     language of Wikipedia? So do we! Please <a
-     href="https://github.com/hatnote/top/issues">send a request</a>
-     and let us know if you can help translate the templates.</p>
+     <p>Haluatko nähkä useimmin luettujen artikkeleiden luettelon Wikipedian 
+     muilla kielillä? Niin mekin! <a
+     href="https://github.com/hatnote/top/issues">Lähetä pyyntö</a> ja kerro, 
+     jos voit auttaa meitä kääntämään mallineita.</p>
 
      <p><a href="https://twitter.com/hatnotable">@hatnotable</a></p>
 
@@ -92,26 +90,26 @@ about_section: >-
 #------------------------------------------------------------------------------
 
 long_tweet: >- 
-    On a {streak}-day streak, {title} was the #{rank} most
-    read article on #{project} w/ {views} views
+    {streak} päivän jakson aikana, {title} oli {rank}. luetuin artikkeli
+    #{project}, {views} lukukertaa
 
-medium_tweet: "{title} was viewed {views} times on #{project}"
-short_tweet: "{title} was #{rank} on #{project}"
+medium_tweet: "Artikkelia {title} luettiin {views} kertaa #{project}"
+short_tweet: "{title} oli {rank}. luetuin #{project}"
 
 #-------------
 # Archive page
 #------------------------------------------------------------------------------
 
-all_traffic_data: All traffic data
+all_traffic_data: Kaikki data
 
 #----
 # RSS
 #------------------------------------------------------------------------------
 
-rss_intro: The new English Wikipedia numbers are in!
+rss_intro: Uudet suomenkielisen Wikipedian tiedot saatavana!!
 rss_description: >-
-    <a href="{permalink|s}">{title}</a> came in at #{rank}, with {views_short} 
-    views{?streak_min}, continuing its {streak_len}-day streak on the chart 
-    ({view_trend|s}{view_delta} views since yesterday){/streak_min}.
+    <a href="{permalink|s}">{title}</a> sijoittui {rank}. sijalle, keräten {views_short} 
+    lukukertaa{?streak_min}, ja jatkoi siten {streak_len} päivän jaksoa listalla 
+    ({view_trend|s}{view_delta} lukukertaa eilisestä){/streak_min}.
 
-rss_read_more: Read more...
+rss_read_more: Lue lisää...
