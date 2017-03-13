@@ -52,6 +52,7 @@ LOCAL_LANG_MAP = {'en': u'English',
                   'ta': u'தமிழ்',
                   'lv': u'latviešu valoda',
                   'el': u'ελληνικά',
+                  'fi': u'Suomenkielinen',
                   'fa': u'فارسی',
                   'cs': u'Česká',
                   'te': u'తెలుగు'
