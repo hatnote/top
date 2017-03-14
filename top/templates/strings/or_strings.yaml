@@ -26,7 +26,7 @@ tagline: >-
     href="#about" class="learn">Learn more</a>...
 
 alt_tagline: >-
-    ସବୁଦିନ ଅପଡେଟ ହେଉଥିବା ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆରମ ସର୍ବାଧିକ ପଠିତ ପ୍ରସଙ୍ଗସମୂହ ।
+    ସବୁଦିନ ଅପଡେଟ ହେଉଥିବା ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆର ସର୍ବାଧିକ ପଠିତ ପ୍ରସଙ୍ଗସମୂହ ।
 
 #------
 # Links
@@ -53,33 +53,28 @@ streak: ଦିନ ଷ୍ଟ୍ରିକ
 # About section
 #------------------------------------------------------------------------------
 
-about_header: About
+about_header: ବାବଦରେ
 about_section: >-
-     <p>Read the <a href="http://top.hatnote.com/en/wikipedia">archive</a>.</p>
+     <p><a href="http://top.hatnote.com/en/wikipedia">ଅଭିଲେଖଟି</a> ପଢ଼ନ୍ତୁ ।</p>
 
-     <p>A daily list of the most visited Wikipedia articles, generated
-     by <a href="https://twitter.com/sklaporte">Stephen LaPorte</a>
-     and <a href="https://twitter.com/mhashemi">Mahmoud
-     Hashemi</a>. It's also available in <a
-     href="http://top.hatnote.com/about.html">more languages</a>. If
-     you find this list interesting, you will enjoy <a
-     href="http://weekly.hatnote.com">The Weeklypedia</a>, a weekly
-     digest of the most edited Wikipedia articles. Learn more on the <a
-     href="#">Hatnote Blog</a>.</p>
+     <p>ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆର ସର୍ବାଧିକ ପଠିତ ପ୍ରସଙ୍ଗସମୂହର ତାଲିକା <a href="https://twitter.com/sklaporte">ଷ୍ଟିଫେନ ଲାପୋର୍ଟେ</a>
+     ଓ <a href="https://twitter.com/mhashemi">ମହମୁଦ ହାସେମିଙ୍କ ଦ୍ୱାରା</a> ନିତିଦିନ ପ୍ରକାଶିତ । ଏହା <a
+     href="http://top.hatnote.com/about.html">ଅଧିକ ଭାଷାରେ </a> ମଧ୍ୟ ଉପଲବ୍ଧ । ଯଦି ଆପଣଙ୍କୁ ଏହି ତାଲିକାଟି ଭଲ ଲାଗେ
+     ସର୍ବାଧିକ ସମ୍ପାଦିତ ଉଇକିପିଡ଼ିଆ ପ୍ରସଙ୍ଗର ତାଲିକା <a href="http://weekly.hatnote.com">ଦି ଉଇକ୍ଲିପିଡ଼ିଆ</a> ମଧ୍ୟ ଆପଣଙ୍କୁ ମଜା ଲାଗିବ ।
+     <a href="#">Hatnote Blog</a>ରୁ ଅଧିକ ଜାଣନ୍ତୁ ।</p>
 
-     <p>This page was made possible by <a
+     <p>ଏହି ପୃଷ୍ଠାଟି <a
      href="https://wikimedia.org/api/rest_v1/?doc#!/Pageviews_data/get_metrics_\
-     pageviews_top_project_access_year_month_day">Wikipedia's new page
-     view API</a>, with some nice images and summaries from the <a
-     href="https://www.mediawiki.org/wiki/API:Query">MediaWiki
-     API</a>. You can find more code and documentation <a
-     href="https://github.com/hatnote/top">available on
-     github</a>.</p>
+     pageviews_top_project_access_year_month_day">ଉଇକିପିଡ଼ିଆର ନୂଆ ପୃଷ୍ଠା
+     ଦେଖଣା API</a> ଦ୍ୱାରା ଓ <a
+     href="https://www.mediawiki.org/wiki/API:Query">ମିଡ଼ିଆଉକି
+     API</a>ର କିଛି ସୁନ୍ଦର ଛବି ଓ ସାରାଂଶ ଦ୍ୱାରା ସମ୍ଭବ ହୋଇଥିଲା । ଆପଣ ଅଧିକ କୋଡ଼ ଓ ନଥିକରଣ <a
+     href="https://github.com/hatnote/top">Github</a>ରୁ ପା ଇପାରିବେ ।</p>
 
-     <p>Want to see a list of the most visited articles in another
-     language of Wikipedia? So do we! Please <a
-     href="https://github.com/hatnote/top/issues">send a request</a>
-     and let us know if you can help translate the templates.</p>
+     <p>ଆଉ ଏକ ଭାଷାର ଉଇକିପିଡ଼ିଆରେ ସର୍ବାଧିକ ପଠିତ ପ୍ରସଙ୍ଗସବୁ ଦେଖିବାକୁ ଚାହାନ୍ତି?
+     ଆମେ ବି ଚାହୁଁ! ଦୟାକରି<a
+     href="https://github.com/hatnote/top/issues">ଏକ ମେସେଜ ପଠାଇ</a>
+     ଏହି ଛାଞ୍ଚଗୁଡ଼ିକ ଆପଣ ଅନୁବାଦ କରିପାରିବେ କି ନାହିଁ ଜଣାନ୍ତୁ ।</p>
 
      <p><a href="https://twitter.com/hatnotable">@hatnotable</a></p>
 
