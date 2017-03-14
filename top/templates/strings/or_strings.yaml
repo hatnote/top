@@ -22,21 +22,21 @@ rss_title: >-
 wikipedia: ଉଇକିପିଡ଼ିଆ
 language_project: ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆ
 tagline: >-
-    The most-visited English Wikipedia articles, updated daily. <a
+    ସର୍ବାଧିକ ପଠିତ ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆ ପ୍ରସଙ୍ଗସମୂହ । ସବୁଦିନ ଅପଡେଟ ହେଉଥାଏ । <a
     href="#about" class="learn">Learn more</a>...
 
 alt_tagline: >-
-    The most-visited English Wikipedia articles, updated daily.
+    ସବୁଦିନ ଅପଡେଟ ହେଉଥିବା ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆରମ ସର୍ବାଧିକ ପଠିତ ପ୍ରସଙ୍ଗସମୂହ ।
 
 #------
 # Links
 #------------------------------------------------------------------------------
 
-about_link: About
-more_langs_link: More languages
-feed_link: Feed
-blog_link: Blog
-top: Back to top 
+about_link: ଉଇକିପିଡ଼ିଆ ବାବଦରେ
+more_langs_link: ଅଲଗା ଭାଷାରେ
+feed_link: ଫିଡ଼
+blog_link: ବ୍ଲଗ
+top: ସବା ଉପରକୁ
 
 #---------
 # Articles
@@ -45,9 +45,9 @@ top: Back to top
 #   934.8K views (↑300.5K from yesterday)
 #------------------------------------------------------------------------------
 
-views: views
-from_yesterday: from yesterday
-streak: day streak
+views: ପଠିତ
+from_yesterday: ଗତକାଲିଠାରୁ
+streak: ଦିନ ଷ୍ଟ୍ରିକ
 
 #------------
 # About section
