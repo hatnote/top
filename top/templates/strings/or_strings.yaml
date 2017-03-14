@@ -9,18 +9,18 @@
 # Page title
 #------------------------------------------------------------------------------
 
-title: Top 100
+title: ଲୋକପ୍ରିୟ ୧୦୦
 full_title: >-
-  English Wikipedia Top 100 on {formatted_date}
+  ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆର ଲୋକପ୍ରିୟ ୧୦୦ ପ୍ରସଙ୍ଗ {formatted_date}
 
 index_title: >-
-  English Wikipedia Top 100
+  ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆର ଲୋକପ୍ରିୟ ୧୦୦ ପ୍ରସଙ୍ଗ
 
 rss_title: >-
-  English Wikipedia's 100 most-visited articles
+  ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆ'ର ଲୋକପ୍ରିୟ ୧୦୦ ପ୍ରସଙ୍ଗ
 
-wikipedia: Wikipedia
-language_project: English Wikipedia
+wikipedia: ଉଇକିପିଡ଼ିଆ
+language_project: ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆ
 tagline: >-
     The most-visited English Wikipedia articles, updated daily. <a
     href="#about" class="learn">Learn more</a>...
