@@ -1,0 +1,112 @@
+#------------------
+# Wikipedia Top 100
+#    If you want to translate the charts on top.hatnote.com, start with a copy
+#    of this file and leave us a note at:
+#    https://github.com/hatnote/top/issues
+#------------------------------------------------------------------------------
+
+#-----------
+# Page title
+#------------------------------------------------------------------------------
+
+title: ଲୋକପ୍ରିୟ ୧୦୦
+full_title: >-
+  ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆର ଲୋକପ୍ରିୟ ୧୦୦ ପ୍ରସଙ୍ଗ {formatted_date}
+
+index_title: >-
+  ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆର ଲୋକପ୍ରିୟ ୧୦୦ ପ୍ରସଙ୍ଗ
+
+rss_title: >-
+  ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆ'ର ଲୋକପ୍ରିୟ ୧୦୦ ପ୍ରସଙ୍ଗ
+
+wikipedia: ଉଇକିପିଡ଼ିଆ
+language_project: ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆ
+tagline: >-
+    ସର୍ବାଧିକ ପଠିତ ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆ ପ୍ରସଙ୍ଗସମୂହ । ସବୁଦିନ ଅପଡେଟ ହେଉଥାଏ । <a
+    href="#about" class="learn">Learn more</a>...
+
+alt_tagline: >-
+    ସବୁଦିନ ଅପଡେଟ ହେଉଥିବା ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆର ସର୍ବାଧିକ ପଠିତ ପ୍ରସଙ୍ଗସମୂହ ।
+
+#------
+# Links
+#------------------------------------------------------------------------------
+
+about_link: ଉଇକିପିଡ଼ିଆ ବାବଦରେ
+more_langs_link: ଅଲଗା ଭାଷାରେ
+feed_link: ଫିଡ଼
+blog_link: ବ୍ଲଗ
+top: ସବା ଉପରକୁ
+
+#---------
+# Articles
+#
+#   Each article has statistics at the bottom like this:
+#   934.8K views (↑300.5K from yesterday)
+#------------------------------------------------------------------------------
+
+views: ପଠିତ
+from_yesterday: ଗତକାଲିଠାରୁ
+streak: ଦିନ ଷ୍ଟ୍ରିକ
+
+#------------
+# About section
+#------------------------------------------------------------------------------
+
+about_header: ବାବଦରେ
+about_section: >-
+     <p><a href="http://top.hatnote.com/en/wikipedia">ଅଭିଲେଖଟି</a> ପଢ଼ନ୍ତୁ ।</p>
+
+     <p>ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆର ସର୍ବାଧିକ ପଠିତ ପ୍ରସଙ୍ଗସମୂହର ତାଲିକା <a href="https://twitter.com/sklaporte">ଷ୍ଟିଫେନ ଲାପୋର୍ଟେ</a>
+     ଓ <a href="https://twitter.com/mhashemi">ମହମୁଦ ହାସେମିଙ୍କ ଦ୍ୱାରା</a> ନିତିଦିନ ପ୍ରକାଶିତ । ଏହା <a
+     href="http://top.hatnote.com/about.html">ଅଧିକ ଭାଷାରେ </a> ମଧ୍ୟ ଉପଲବ୍ଧ । ଯଦି ଆପଣଙ୍କୁ ଏହି ତାଲିକାଟି ଭଲ ଲାଗେ
+     ସର୍ବାଧିକ ସମ୍ପାଦିତ ଉଇକିପିଡ଼ିଆ ପ୍ରସଙ୍ଗର ତାଲିକା <a href="http://weekly.hatnote.com">ଦି ଉଇକ୍ଲିପିଡ଼ିଆ</a> ମଧ୍ୟ ଆପଣଙ୍କୁ ମଜା ଲାଗିବ ।
+     <a href="#">Hatnote Blog</a>ରୁ ଅଧିକ ଜାଣନ୍ତୁ ।</p>
+
+     <p>ଏହି ପୃଷ୍ଠାଟି <a
+     href="https://wikimedia.org/api/rest_v1/?doc#!/Pageviews_data/get_metrics_\
+     pageviews_top_project_access_year_month_day">ଉଇକିପିଡ଼ିଆର ନୂଆ ପୃଷ୍ଠା
+     ଦେଖଣା API</a> ଦ୍ୱାରା ଓ <a
+     href="https://www.mediawiki.org/wiki/API:Query">ମିଡ଼ିଆଉକି
+     API</a>ର କିଛି ସୁନ୍ଦର ଛବି ଓ ସାରାଂଶ ଦ୍ୱାରା ସମ୍ଭବ ହୋଇଥିଲା । ଆପଣ ଅଧିକ କୋଡ଼ ଓ ନଥିକରଣ <a
+     href="https://github.com/hatnote/top">Github</a>ରୁ ପା ଇପାରିବେ ।</p>
+
+     <p>ଆଉ ଏକ ଭାଷାର ଉଇକିପିଡ଼ିଆରେ ସର୍ବାଧିକ ପଠିତ ପ୍ରସଙ୍ଗସବୁ ଦେଖିବାକୁ ଚାହାନ୍ତି?
+     ଆମେ ବି ଚାହୁଁ! ଦୟାକରି<a
+     href="https://github.com/hatnote/top/issues">ଏକ ମେସେଜ ପଠାଇ</a>
+     ଏହି ଛାଞ୍ଚଗୁଡ଼ିକ ଆପଣ ଅନୁବାଦ କରିପାରିବେ କି ନାହିଁ ଜଣାନ୍ତୁ ।</p>
+
+     <p><a href="https://twitter.com/hatnotable">@hatnotable</a></p>
+
+#------- 
+# Tweets 
+#
+#   We can provide three possible tweets. They shouldn't be longer than 117 
+#   characters (including the article title, so there is enough space to 
+#   include a link.
+#------------------------------------------------------------------------------
+
+long_tweet: >- 
+    On a {streak}-day streak, {title} was the #{rank} most
+    read article on #{project} w/ {views} views
+
+medium_tweet: "{title} was viewed {views} times on #{project}"
+short_tweet: "{title} was #{rank} on #{project}"
+
+#-------------
+# Archive page
+#------------------------------------------------------------------------------
+
+all_traffic_data: All traffic data
+
+#----
+# RSS
+#------------------------------------------------------------------------------
+
+rss_intro: The new English Wikipedia numbers are in!
+rss_description: >-
+    <a href="{permalink|s}">{title}</a> came in at #{rank}, with {views_short} 
+    views{?streak_min}, continuing its {streak_len}-day streak on the chart 
+    ({view_trend|s}{view_delta} views since yesterday){/streak_min}.
+
+rss_read_more: Read more...
