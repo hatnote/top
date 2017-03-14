@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="{site.lang_code}" version="2.0">
+    <channel>
+      <title>ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆର ଲୋକପ୍ରିୟ ୧୦୦ ପ୍ରସଙ୍ଗ</title>
+      <link>{canonical_url}</link>
+      <description>ସବୁଦିନ ଅପଡେଟ ହେଉଥିବା ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆର ସର୍ବାଧିକ ପଠିତ ପ୍ରସଙ୍ଗସମୂହ ।</description>
+      <generator>Hatnote Top 0.1</generator>  <!-- TODO -->
+      <language>{lang_code}</language>
+      <copyright>{copyright}</copyright>
+      <lastBuildDate>{cur_utc}</lastBuildDate>
+      <ttl>60</ttl>
+      <sy:updatePeriod>hourly</sy:updatePeriod>
+      <sy:updateFrequency>1</sy:updateFrequency>
+      <!-- TODO
+          <image>
+            <title></title>
+            <url></url>
+            <link></link>
+          </image>
+      -->
+      {#entries}
+      <item>
+        <title>{formatted_date} - ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆ'ର ଲୋକପ୍ରିୟ ୧୦୦ ପ୍ରସଙ୍ଗ</title>
+        <pubDate>{.pub_timestamp}</pubDate>
+        <guid>{.permalink}</guid>
+        <link>{.permalink}</link>
+        <description>
+          {.summary}
+        </description>
+      </item>
+      {/entries}
+    </channel>
+</rss>

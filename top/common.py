@@ -55,6 +55,7 @@ LOCAL_LANG_MAP = {'en': u'English',
                   'fi': u'Suomenkielinen',
                   'fa': u'فارسی',
                   'cs': u'Česká',
+                  'or': u'ଓଡ଼ିଆ',
                   'te': u'తెలుగు'
 }
 DEFAULT_LANG = 'en'
