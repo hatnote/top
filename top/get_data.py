@@ -126,6 +126,7 @@ def get_images(titles, lang, project, log_rec):
     params = {'action': 'query',
               'prop': 'pageimages',
               'pithumbsize': 500,
+              'pilicense': 'any',
               'pilimit': 50,
               'format': 'json',
               'titles': '|'.join(titles).encode('utf-8')}
