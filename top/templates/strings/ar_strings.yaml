@@ -1,0 +1,99 @@
+#------------------
+# Wikipedia Top 100
+#    If you want to translate the charts on top.hatnote.com, start with a copy
+#    of this file and leave us a note at:
+#    https://github.com/hatnote/top/issues
+#------------------------------------------------------------------------------
+
+#-----------
+# Page title
+#------------------------------------------------------------------------------
+
+title: المئة الأبرز
+full_title: >-
+  المقالات المئة الأكثر مطالعة في ويكيبيديا العربية في {formatted_date}
+
+index_title: >-
+    المقالات المئة الأكثر مطالعة في ويكيبيديا العربية
+
+rss_title: >-
+    المقالات المئة الأكثر مطالعة في ويكيبيديا العربية
+
+wikipedia: ويكيبيديا
+language_project: ويكيبيديا العربية
+tagline: >-
+    قائمة مقالات ويكيبيديا العربية الأكثر مطالعة تُحدَّث يوميا. <a href="#about" class="learn">التفاصيل</a>…
+
+alt_tagline: >-
+    قائمة مقالات ويكيبيديا العربية الأكثر مطالعة تُحدَّث يوميا.
+
+#------
+# Links
+#------------------------------------------------------------------------------
+
+about_link: عن الخدمة
+more_langs_link: بلغات أخرى
+feed_link: التلقيمة
+blog_link: المدونة
+top: الرُّجوع للصفحة الأولى
+
+#---------
+# Articles
+#
+#   Each article has statistics at the bottom like this:
+#   934.8K views (↑300.5K from yesterday)
+#------------------------------------------------------------------------------
+
+views: مطالعات
+from_yesterday: منذ أمس
+streak: أيام متواصلة
+
+#------------
+# About section
+#------------------------------------------------------------------------------
+
+about_header: عن الخدمة
+about_section: >-
+    <p>طالع <a href="http://top.hatnote.com/ar/wikipedia">الأرشيف</a>.</p>
+
+    <p>قائمة تُحدّث يوميا تضمّ صفحات ويكيبيديا الأكثر مطالعة، ينتجها <a href="https://twitter.com/sklaporte">ستيفن لابورت</a> و <a href="https://twitter.com/mhashemi">محمود هاشمي</a>. القائمة موجودة لويكيبيديات <a href="http://top.hatnote.com/about.html">لغات أخرى</a>. إذا أعجبتك هذه الخدمة فقد تعجبك <a href="http://weekly.hatnote.com">ويكليبيديا</a> و هو ملخّص أسبوعي لمقالات ويكيبيديا الأكثر تحريرًا. طالع المزيد في <a href="#">مدوّنة Hatnote</a>.</p>
+
+    <p>هذه الصفحة توظّف <a href="https://wikimedia.org/api/rest_v1/?doc#!/Pageviews_data/get_metrics_\
+     pageviews_top_project_access_year_month_day">واجهة ويكيبيديا البرمجية الجديدة لمطالَعات الصفحات</a> مع صور و مُلخَّصات مجلوبة باستخدام <a href="https://www.mediawiki.org/wiki/API:Query">واجهة تطبيقات ميدياويكي</a>. يوجد مزيد من الكود و الوثائق في <a href="https://github.com/hatnote/top">مستودع المشروع في GitHub</a></p>
+
+    <p>إذا أردت مطالعة قائمة الصفحات الأكثر مطالعة في ويكيبيديا لغة أخرى <a href="https://github.com/hatnote/top/issues">فضع طلبًا</a> و أعلمنا إن كنت قادرًا على المساعدة على ترجمة القوالب.</p>
+
+    <p><a href="https://twitter.com/hatnotable">@hatnotable</a></p>
+
+#------- 
+# Tweets 
+#
+#   We can provide three possible tweets. They shouldn't be longer than 117 
+#   characters (including the article title, so there is enough space to 
+#   include a link.
+#------------------------------------------------------------------------------
+#    مقالة {title} ترتيبها {rank} بين الأكثر مطالعة في #{project} منذ {streak} أيام و قرئت {views} مرة
+
+long_tweet: >- 
+    مقالة {title} بين الأكثر مطالعة في #{project} منذ {streak} أيام: ترتيبها {rank} و قرئت {views} مرة
+
+medium_tweet: "مقالة {title} طولِعت {views} مرة في #{project}"
+short_tweet: "{title} هي #{rank} في #{project}"
+
+#-------------
+# Archive page
+#------------------------------------------------------------------------------
+
+all_traffic_data: كلُّ بيانات التَّدفُّقات
+
+#----
+# RSS
+#------------------------------------------------------------------------------
+
+rss_intro: ها هي ذي أحدث إحصائيات ويكيبيديا العربية
+
+rss_description: >-
+    <a href="{permalink|s}">{title}</a> في المركز #{rank} بمطالعات عددها {views_short}{?streak_min} و هي في القائمة منذ {streak_len} أيام ({view_trend|s}{view_delta} مطالعة منذ أمس){/streak_min}.
+
+rss_read_more: طالع المزيد…
+

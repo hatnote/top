@@ -1,0 +1,10 @@
+
+<p>ها هي ذي أحدث إحصائيات ويكيبيديا العربية</p>
+
+{#examples}
+<p>{@first}<img width="20%" title="{title} image" src="{image_url}">{/first}
+<a href="{permalink|s}">{title}</a> في المركز #{rank} بمطالعات عددها {views_short}{?streak_min} و هي في القائمة منذ {streak_len} أيام ({view_trend|s}{view_delta} مطالعة منذ أمس){/streak_min}.
+</p>
+{/examples}
+
+<p><a href="{permalink|s}">طالع المزيد…</a></p>
