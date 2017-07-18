@@ -14,15 +14,15 @@ full_title: >-
   المقالات المئة الأكثر مطالعة في ويكيبيديا العربية في {formatted_date}
 
 index_title: >-
-  المقالات المئة الأكثر مطالعة في ويكيبيديا العربية
+    المقالات المئة الأكثر مطالعة في ويكيبيديا العربية
 
 rss_title: >-
-  المقالات المئة الأكثر مطالعة في ويكيبيديا العربية
+    المقالات المئة الأكثر مطالعة في ويكيبيديا العربية
 
 wikipedia: ويكيبيديا
 language_project: ويكيبيديا العربية
 tagline: >-
-  قائمة مقالات ويكيبيديا العربية الأكثر مطالعة تُحدَّث يوميا. <a href="#about" class="learn">التفاصيل</a>…
+    قائمة مقالات ويكيبيديا العربية الأكثر مطالعة تُحدَّث يوميا. <a href="#about" class="learn">التفاصيل</a>…
 
 alt_tagline: >-
     قائمة مقالات ويكيبيديا العربية الأكثر مطالعة تُحدَّث يوميا.
@@ -54,16 +54,16 @@ streak: أيام متواصلة
 
 about_header: عن الخدمة
 about_section: >-
-     <p>طالع <a href="http://top.hatnote.com/ar/wikipedia">الأرشيف</a>.</p>
+    <p>طالع <a href="http://top.hatnote.com/ar/wikipedia">الأرشيف</a>.</p>
 
     <p>قائمة تُحدّث يوميا تضمّ صفحات ويكيبيديا الأكثر مطالعة، ينتجها <a href="https://twitter.com/sklaporte">ستيفن لابورت</a> و <a href="https://twitter.com/mhashemi">محمود هاشمي</a>. القائمة موجودة لويكيبيديات <a href="http://top.hatnote.com/about.html">لغات أخرى</a>. إذا أعجبتك هذه الخدمة فقد تعجبك <a href="http://weekly.hatnote.com">ويكليبيديا</a> و هو ملخّص أسبوعي لمقالات ويكيبيديا الأكثر تحريرًا. طالع المزيد في <a href="#">مدوّنة Hatnote</a>.</p>
 
     <p>هذه الصفحة توظّف <a href="https://wikimedia.org/api/rest_v1/?doc#!/Pageviews_data/get_metrics_\
      pageviews_top_project_access_year_month_day">واجهة ويكيبيديا البرمجية الجديدة لمطالَعات الصفحات</a> مع صور و مُلخَّصات مجلوبة باستخدام <a href="https://www.mediawiki.org/wiki/API:Query">واجهة تطبيقات ميدياويكي</a>. يوجد مزيد من الكود و الوثائق في <a href="https://github.com/hatnote/top">مستودع المشروع في GitHub</a></p>
 
-     <p>إذا أردت مطالعة قائمة الصفحات الأكثر مطالعة في ويكيبيديا لغة أخرى <a href="https://github.com/hatnote/top/issues">فضع طلبًا</a> و أعلمنا إن كنت قادرًا على المساعدة على ترجمة القوالب.</p>
+    <p>إذا أردت مطالعة قائمة الصفحات الأكثر مطالعة في ويكيبيديا لغة أخرى <a href="https://github.com/hatnote/top/issues">فضع طلبًا</a> و أعلمنا إن كنت قادرًا على المساعدة على ترجمة القوالب.</p>
 
-     <p><a href="https://twitter.com/hatnotable">@hatnotable</a></p>
+    <p><a href="https://twitter.com/hatnotable">@hatnotable</a></p>
 
 #------- 
 # Tweets 
@@ -72,9 +72,9 @@ about_section: >-
 #   characters (including the article title, so there is enough space to 
 #   include a link.
 #------------------------------------------------------------------------------
+#    مقالة {title} ترتيبها {rank} بين الأكثر مطالعة في #{project} منذ {streak} أيام و قرئت {views} مرة
 
 long_tweet: >- 
-#    مقالة {title} ترتيبها {rank} بين الأكثر مطالعة في #{project} منذ {streak} أيام و قرئت {views} مرة
     مقالة {title} بين الأكثر مطالعة في #{project} منذ {streak} أيام: ترتيبها {rank} و قرئت {views} مرة
 
 medium_tweet: "مقالة {title} طولِعت {views} مرة في #{project}"
