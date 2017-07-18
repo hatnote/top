@@ -6,7 +6,7 @@
     <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
     <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body dir="auto">
     <div class="top-area">
         <div class="top container">
             <ul>

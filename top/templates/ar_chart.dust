@@ -15,6 +15,12 @@
         background-size: cover;
         background-position: 50%;
     }
+    .rank {
+        border-radius: 0 7px 7px 0;
+        -moz-border-radius: 0 7px 7px 0;
+        -webkit-border-radius: 0 7px 7px 0;
+    }
+
     {/articles}
     </style>
     <script>
@@ -37,7 +43,7 @@
         Total Traffic: {total_traffic_short}
     -->
 </head>
-<body>
+<body dir="auto">
     <div class="top-area">
         <div class="top container">
             <ul>
