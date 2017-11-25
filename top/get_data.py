@@ -70,8 +70,11 @@ def is_article(title, wiki_info):
     Is it an article, or some other sort of page? We'll want to filter out the
     search page (Special:Search in English, etc) and similar pages appearing
     inconveniently in the traffic report.
+
+    Skip xhamster. There are a few clues this Wikipedia traffic is artificial.
+    See https://en.wikipedia.org/w/index.php?title=XHamster&diff=701682670&oldid=700826198
     '''
-    skip = ['-', '404.php'] + [wiki_info['mainpage']]
+    skip = ['-', '404.php', 'XHamster'] + [wiki_info['mainpage']]
     prefixes = PREFIXES + wiki_info['namespaces']
     if title in skip:
         return False
