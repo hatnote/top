@@ -11,32 +11,32 @@
 
 title: Top 100
 full_title: >-
-  اردو Wikipedia Top 100 on {formatted_date}
+  اردو ویکیپیڈیا کے اولین 100 صفحات {formatted_date}
 
 index_title: >-
-  اردو Wikipedia Top 100
+  اردو ویکیپیڈیا کے اولین 100 صفحات
 
 rss_title: >-
-  اردو Wikipedia's 100 most-visited articles
+  اردو ویکیپیڈیا کے اولین 100 صفحات
 
-wikipedia: Wikipedia
-language_project: اردو Wikipedia
+wikipedia: ویکیپیڈیا
+language_project: اردو ویکیپیڈیا
 tagline: >-
     اردو ویکیپیڈیا کے سب سے زیادہ ملاحظہ کردہ مضامین کی فہرست۔ <a
     href="#about" class="learn">مزید معلومات کے لیے</a> ۔ ۔ ۔
 
 alt_tagline: >-
-    The most-visited اردو Wikipedia articles, updated daily.
+    روزانہ کی بنیاد پر، سب سے زیادہ ملاحظہ کردہ اردو ویکیپیڈیا مضامین.
 
 #------
 # Links
 #------------------------------------------------------------------------------
 
-about_link: About
-more_langs_link: More languages
-feed_link: Feed
-blog_link: Blog
-top: Back to top 
+about_link: ہمارے بارے میں
+more_langs_link: مزید زبانیں
+feed_link: فیڈ
+blog_link: بلاگ
+top: واپس اوپر جائیں 
 
 #---------
 # Articles
@@ -45,41 +45,41 @@ top: Back to top
 #   934.8K views (↑300.5K from yesterday)
 #------------------------------------------------------------------------------
 
-views: views
-from_yesterday: from yesterday
-streak: day streak
+views: ملاحظات
+from_yesterday: گزشتہ کل
+streak: فرق
 
 #------------
 # About section
 #------------------------------------------------------------------------------
 
-about_header: About
+about_header: ہمارے بارے میں
 about_section: >-
-     <p>Read the <a href="http://top.hatnote.com/en/wikipedia">archive</a>.</p>
+     <p>آرکیو <a href="http://top.hatnote.com/en/wikipedia">دیکھیے</a>۔</p>
 
-     <p>A daily list of the most visited Wikipedia articles, generated
-     by <a href="https://twitter.com/sklaporte">Stephen LaPorte</a>
-     and <a href="https://twitter.com/mhashemi">Mahmoud
-     Hashemi</a>. It's also available in <a
-     href="http://top.hatnote.com/about.html">more languages</a>. If
-     you find this list interesting, you will enjoy <a
-     href="http://weekly.hatnote.com">The Weeklypedia</a>, a weekly
-     digest of the most edited Wikipedia articles. Learn more on the <a
-     href="#">Hatnote Blog</a>.</p>
-
-     <p>This page was made possible by <a
+     <p>ویکیپیڈیا کے سب سے زیادہ دیکھے جانے والے صفحات کی روزانہ کی بنیاد پر یہ فہرست،
+     <a href="https://twitter.com/sklaporte">اسٹیون لاپورٹی</a>
+     اور <a href="https://twitter.com/mhashemi">محمد
+     ہاشمی</a> کی کاوش ہے۔ یہ کئی <a
+     href="http://top.hatnote.com/about.html">دیگر زبانوں</a> میں بھی دستیاب ہے۔ اگر
+     آپ کو یہ فہرست دلچسپ لگی ہے، تو آپ اس ہفتہ وار
+     سب سے زیادہ ترامیم شدہ صفحات کی شماریات <a
+     href="http://weekly.hatnote.com">ویکلی پیڈیا</a> سے یقینا لطف اندوز ہوں گے۔ مزید تفصیل کے لیے پڑھیے <a
+     href="#">ہیٹ نوٹ بلاگ</a>۔</p>
+ 
+     <p>یہ صفحہ <a
      href="https://wikimedia.org/api/rest_v1/?doc#!/Pageviews_data/get_metrics_\
-     pageviews_top_project_access_year_month_day">Wikipedia's new page
-     view API</a>, with some nice images and summaries from the <a
-     href="https://www.mediawiki.org/wiki/API:Query">MediaWiki
-     API</a>. You can find more code and documentation <a
-     href="https://github.com/hatnote/top">available on
-     github</a>.</p>
+     pageviews_top_project_access_year_month_day">ویکیپیڈیا کے نئے صفات
+     دیکھے جانے کی ایپی</a> کی مدد سے ممکن حد تک ترتیب دیا گیا ہے، جس میں کچھ اچھی تصاویر اور خلاصے <a
+     href="https://www.mediawiki.org/wiki/API:Query">میڈیا ویکی
+     ایپی</a> سے شامل ہیں۔ آپ مزید کوڈ اور ڈاکومینٹیشن تلاش کرنا چائیں تو <a
+     href="https://github.com/hatnote/top">یہاں
+     github</a>پر دستیاب ہیں۔</p>
 
-     <p>Want to see a list of the most visited articles in another
-     language of Wikipedia? So do we! Please <a
-     href="https://github.com/hatnote/top/issues">send a request</a>
-     and let us know if you can help translate the templates.</p>
+     <p>ویکیپیڈیا کی دیگر زبانوں کے سب سے زیادہ ملاحظہ کردہ صفحات کی فہرست دیکھنا چاہتے ہیں
+     ؟ تو آپ! براہ کرم <a
+     href="https://github.com/hatnote/top/issues">ہمیں درخواست بھیجیں</a>
+     اور ہمیں بتائیں اگر آپ متعلقہ سانچوں کا ترجمہ کرنے میں مدد کر سکتے ہیں۔</p>
 
      <p><a href="https://twitter.com/hatnotable">@hatnotable</a></p>
 
@@ -92,26 +92,27 @@ about_section: >-
 #------------------------------------------------------------------------------
 
 long_tweet: >- 
-    On a {streak}-day streak, {title} was the #{rank} most
-    read article on #{project} w/ {views} views
+    {streak} سے غیر یکسانی کے ساتھ {views} مرتبہ پڑھا جانے والا مضمون {title} اردو #{project} پر سب سے زیادہ پڑھے 
+     جانے والے مضامین میں #{rank} پر ہے۔
+    
 
-medium_tweet: "{title} was viewed {views} times on #{project}"
-short_tweet: "{title} was #{rank} on #{project}"
+medium_tweet: "{title} اردو ویکیپیڈیا پر {views} مرتبہ گزشتہ کل پڑھا گیا۔"
+short_tweet: "{title} اردو #{project} پر #{rank} نمبر پر ہے"
 
 #-------------
 # Archive page
 #------------------------------------------------------------------------------
 
-all_traffic_data: All traffic data
+all_traffic_data: مکمل ٹریفک ڈیٹا
 
 #----
 # RSS
 #------------------------------------------------------------------------------
 
-rss_intro: The new اردو Wikipedia numbers are in!
+rss_intro: نئے اردو ویکیپیڈیا کی تعداد ہے!
 rss_description: >-
     <a href="{permalink|s}">{title}</a> came in at #{rank}, with {views_short} 
     views{?streak_min}, continuing its {streak_len}-day streak on the chart 
     ({view_trend|s}{view_delta} views since yesterday){/streak_min}.
 
-rss_read_more: Read more...
+rss_read_more: مزید جانئیے...
