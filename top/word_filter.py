@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import unwelcome_files as unwelcome
+
 WORD_FILTERS = ['penis',
                 'sex',
                 'masturbat',
@@ -29,7 +31,11 @@ WORD_FILTERS = ['penis',
 
 
 def word_filter(text):
-    words = text.replace('_', ' ').replace('-', ' ').split()
+    text = text.replace('_', ' ').replace('File:', '')
+    if text in unwelcome.file_names:
+        return True
+
+    words = text.replace('-', ' ').split()
     for word in words:
         for word_filter in WORD_FILTERS:
             if word_filter.lower() in word.lower():
