@@ -26,8 +26,7 @@ STRINGS_PATH_TMPL = pjoin(TEMPLATE_PATH, 'strings', '{lang}_strings.yaml')
 TOP_API_URL = 'http://wikimedia.org/api/rest_v1/metrics/pageviews/'\
               'top/{lang}.{project}/all-access/{year}/{month}/{day}'
 MW_API_URL = 'http://{lang}.{project}.org/w/api.php?'
-TOTAL_TRAFFIC_URL = 'https://metrics.wmflabs.org/static/public/'\
-                    'datafiles/Pageviews/{lang}{project}.csv'
+TOTAL_TRAFFIC_URL = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/{lang}.{project}.org/all-access/all-agents/daily/{datestr}00/{datestr}00'
 
 
 # Other variables

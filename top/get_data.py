@@ -84,18 +84,20 @@ def is_article(title, wiki_info):
     return True
 
 
-# TODO: switch to new JSON API
-def get_project_traffic(date, lang, project):
-    if project == 'wikipedia':
-        project = 'wiki'
-    url = TOTAL_TRAFFIC_URL.format(lang=lang, project=project)
-    resp = urllib2.urlopen(url)
-    data = csvDictReader(resp)
-    date_str = date.strftime('%Y-%m-%d')
 
-    date_total_list = [(d['Date'], d['Total']) for d in data]
-    total_traffic = dict(date_total_list).get(date_str, 0)
-    return total_traffic
+def get_project_traffic(date, lang, project):
+    datestr = date.strftime('%Y%m%d')
+    url = TOTAL_TRAFFIC_URL.format(lang=lang, project=project, datestr=datestr)
+    resp = urllib2.urlopen(url)
+    data = json.loads(resp.read())
+    try:
+        date_data = data['items'][0]
+    except IndexError:
+        # backwards compat to the old metrics api which would raise urlerror
+        raise urllib2.URLError('no traffic data available from %r' % url)
+
+    return date_data['views']
+
 
 
 def get_query(params, lang, project, extractor, default_val):
