@@ -23,9 +23,9 @@ FEED_PATH_TMPL = pjoin(BASE_PATH, FEED_FILE_TMPL)
 STRINGS_PATH_TMPL = pjoin(TEMPLATE_PATH, 'strings', '{lang}_strings.yaml')
 
 # Valuable and important URLs
-TOP_API_URL = 'http://wikimedia.org/api/rest_v1/metrics/pageviews/'\
+TOP_API_URL = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/'\
               'top/{lang}.{project}/all-access/{year}/{month}/{day}'
-MW_API_URL = 'http://{lang}.{project}.org/w/api.php?'
+MW_API_URL = 'https://{lang}.{project}.org/w/api.php?'
 TOTAL_TRAFFIC_URL = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/aggregate/{lang}.{project}.org/all-access/all-agents/daily/{datestr}00/{datestr}00'
 
 
