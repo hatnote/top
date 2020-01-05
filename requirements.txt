@@ -2,9 +2,10 @@ Babel==2.2.0
 PyYAML==3.11
 Werkzeug==0.9.4
 argparse==1.4.0
-ashes==15.0.1
-boltons==15.1.1
+ashes
+boltons
 clastic==0.4.3
-wsgiref==0.1.2
 lithoxyl==0.2.0
 python-dateutil==2.4.2
+six==1.10.0
+wsgiref==0.1.2
