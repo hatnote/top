@@ -1,5 +1,5 @@
 Babel==2.2.0
-PyYAML==3.11
+PyYAML==5.1
 Werkzeug==0.9.4
 argparse==1.4.0
 ashes
