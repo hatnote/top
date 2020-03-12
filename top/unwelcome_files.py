@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 
 # From https://en.wikipedia.org/wiki/MediaWiki:Bad_image_list
 
@@ -457,6 +458,7 @@ file_names = ['00.A fully erect3.png',
               'Meatotomy 3.jpg',
               'Meatotomy 4.jpg',
               'Meatotomy 5.jpg',
+              'Metal Hegar Sound Being Inserted Into A Male Urethra.jpg',
               'Micropenis.jpg',
               'Middle finger2.jpg',
               'Middle finger gesture.jpg',

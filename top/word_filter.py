@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
 import unwelcome_files as unwelcome
 
 WORD_FILTERS = ['penis',
                 'sex',
+                'urethra',
                 'masturbat',
                 'missionary',
                 'Luxurieux',
@@ -14,6 +17,7 @@ WORD_FILTERS = ['penis',
                 'Condom',
                 'Klimt',
                 'XHamster',
+                'pornhub',
                 'hustler',
                 'Sharka',
                 'ejaculat',
@@ -31,14 +35,17 @@ WORD_FILTERS = ['penis',
 
 
 def word_filter(text):
+    if not isinstance(text, unicode):
+        text = text.decode('utf8')
     text = text.replace('_', ' ').replace('File:', '')
-    if text in unwelcome.file_names:
-        return True
+    for file_name in unwelcome.file_names:
+        if file_name in text:
+            return True
 
     words = text.replace('-', ' ').split()
     for word in words:
-        for word_filter in WORD_FILTERS:
-            if word_filter.lower() in word.lower():
+        for filtered_word in WORD_FILTERS:
+            if filtered_word.lower() in word.lower():
                 #print ' -> filtering:', word, 'from', text
                 return True
     return False
