@@ -44,7 +44,7 @@
                 <li><a href="#about">Om</a></li>
                 <li><a href="{dir_depth}about.html" id="other-langs">Fler språk</a></li>
                 <li><a href="{dir_depth}feeds/{lang}{project_lower}.rss">Feed</a></li>
-                <li><a href="#">Blogg</a></li>
+                <li><a href="http://blog.hatnote.com/">Blogg</a></li>
             </ul>
         </div>
     </div>
@@ -64,7 +64,7 @@
             {#articles}
             <li class="row">
                 <div class="column rank">
-                    <p><a href="{dir_depth}{current}#rank-{rank}">{rank}</a></p>
+                    <p><a href="{dir_depth}{current}#rank-{rank}">{local_rank}</a></p>
                 </div>
                 <a class="column cover-art cover-{rank}" href="{url}" target="_blank"></a>
                 <div class="column label">
@@ -74,8 +74,8 @@
                     <p class="title"><a href="{url}" target="_blank">{title}</a><a href="{dir_depth}{current}#title-{article}"><img class="permalink" src="{dir_depth}img/permalink.png"></a></p>
                     <p class="summary">{summary}</p>
                     <div class="meta-area">
-                        <p class="views">{views_short} visningar <span class="meta">({@gt key=streak_len value=1}<a href="{dir_depth}{prev}#title-{article}" class="yesterday">{/gt}{view_trend|s}{view_delta} från igår{@gt key=streak_len value=1}</a>{/gt})</span><span class="sparkline">{#history}{.}{@sep},{/sep}{/history}, {views}</span></p>
-                        <p class="streak">{@gt key=streak_len value=1}{streak_len} dagar i rad{/gt}</p>
+                        <p class="views">{local_views_short} visningar <span class="meta">({@gt key=streak_len value=1}<a href="{dir_depth}{prev}#title-{article}" class="yesterday">{/gt}{view_trend|s}{local_view_delta} från igår{@gt key=streak_len value=1}</a>{/gt})</span><span class="sparkline">{#history}{.}{@sep},{/sep}{/history}, {views}</span></p>
+                        <p class="streak">{@gt key=streak_len value=1}{local_streak_len} dagar i rad{/gt}</p>
                         <a href="http://twitter.com/share?text={tweet}&amp;url={permalink|uc}" target="_blank"><img class="twitter-icon" src="{dir_depth}img/twitter.png"></a>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
         <div class="container footer">
             <h2>Om</h2>
 	    <a name="about"></a>
-            <p>Lläs mer på <a href="#">Hatnote bloggen</a>.</p>  <p>En daglig lista på de mest besökta artiklarna på Wikipedia skapad av <a href="https://twitter.com/sklaporte">Stephen LaPorte</a> och <a href="https://twitter.com/mhashemi">Mahmoud Hashemi</a>. Den är också tillgänglig på <a href="http://top.hatnote.com/about.html">fler språk</a>. Om du tycker att denna lista är intressant kommer du också att gilla <a href="http://weekly.hatnote.com">The Weeklypedia</a>, en veckovis sammanställning på de mest redigerade Wikipedia artiklarna.</p>
+            <p>Läs mer på <a href="#">Hatnote bloggen</a>.</p> <p>En daglig lista med de mest besökta artiklarna på Wikipedia skapad av <a href="https://twitter.com/sklaporte">Stephen LaPorte</a> och <a href="https://twitter.com/mhashemi">Mahmoud Hashemi</a>. Den är också tillgänglig på <a href="http://top.hatnote.com/about.html">fler språk</a>. Om du tycker att denna lista är intressant kommer du också att gilla <a href="http://weekly.hatnote.com">The Weeklypedia</a>, en veckovis sammanställning av de mest redigerade Wikipedia artiklarna.</p>
 <p>Denna sida har gjorts möjlig genom <a href="https://wikimedia.org/api/rest_v1/?doc#!/Pageviews_data/get_metrics_\ pageviews_top_project_access_year_month_day">Wikipedias nya sidvisnings-API</a>, med fina bilder och sammanfattningar från <a href="https://www.mediawiki.org/wiki/API:Query">MediaWiki-API:et</a>. Du kan läsa mer om kod och dokumentation <a href="https://github.com/hatnote/top">på github</a>.</p>
 <p>Vill du ha en lista på de mest besökta artiklarna på en annan språkversion av Wikipedia? Det vill vi med! <a href="https://github.com/hatnote/top/\ issues">Skicka en begäran</a> och berätta för oss om du kan hjälpa till att översätta mallarna.</p>
 <p><a href="https://twitter.com/hatnotable">@hatnotable</a></p>
