@@ -8,6 +8,7 @@
     <script src="{dir_depth}js/jquery.hotkeys.js"></script>
     <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
     <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css">
+    <link href="{dir_depth}feeds/{lang}{project_lower}.rss" title="$language_project$ $title$" type="application/rss+xml" rel="alternate" />
     <style>
     {#articles}
     .cover-{rank} {
@@ -31,7 +32,7 @@
         });
     });
     </script>
-    <!-- 
+    <!--
         Generated: {meta.generated}
         Fetched: {meta.fetched}
         Total Traffic: {total_traffic_short}

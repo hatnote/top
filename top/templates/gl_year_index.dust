@@ -1,11 +1,11 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{?is_index}$index_title${:else}$full_title${/is_index}</title>
+    <title>{?is_index}Top 100 Wikipedia en galego{:else}Top 100 da Wikipedia en galego o {formatted_date}{/is_index}</title>
     <script src="{dir_depth}js/jquery.js"></script>
     <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
     <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css">
-    <link href="{dir_depth}feeds/{lang}{project_lower}.rss" title="$language_project$ $title$" type="application/rss+xml" rel="alternate" />
+    <link href="{dir_depth}feeds/{lang}{project_lower}.rss" title="Wikipedia en galego Top 100" type="application/rss+xml" rel="alternate" />
     <!-- 
         Generated: {meta.generated}
     -->
@@ -14,15 +14,15 @@
     <div class="top-area">
         <div class="top container">
             <ul>
-                <li><a href="{dir_depth}about.html" id="other-langs">$more_langs_link$</a></li>
-                <li><a href="http://blog.hatnote.com/post/135182048397/announcing-the-hatnote-top-100">$blog_link$</a></li>
+                <li><a href="{dir_depth}about.html" id="other-langs">Máis linguas</a></li>
+                <li><a href="http://blog.hatnote.com/post/135182048397/announcing-the-hatnote-top-100">Blog</a></li>
             </ul>
         </div>
     </div>
     <div class="header">
         <div class="container">
-            <h1>$language_project$ <span class="ultra">$title$</span></h1>
-            <p>$tagline$</p>
+            <h1>Wikipedia en galego <span class="ultra">Top 100</span></h1>
+            <p>Os artigos máis visitados da Wikipedia en galego, actualizados diariamente. <a href="#about" class="learn">Saber máis</a>...</p>
             <div class="subtitle light">{?prev}<a class="issue_nav left" href="{dir_depth}{prev}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev}<p class="center">{month_name} {local_year} </p>{?next}<a class="issue_nav right" href="{dir_depth}{next}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next}
             <br style="clear: left;" />
             </div>
@@ -60,10 +60,10 @@
 
     <div class="footer-area">
         <div class="container footer">
-            <h2>$about_header$</h2>
+            <h2>Acerca de</h2>
 	    <a name="about"></a>
-            $about_section$
-            <p><a href="#top" class="up">&uarr; $top$</a></p>
+            <p>Consulta o <a href="http://top.hatnote.com/gl/wikipedia">arquivo</a>.</p> <p>Unha lista diaria dos artigos de Wikipedia máis visitados, xerada por <a href="https://twitter.com/sklaporte">Stephen LaPorte</a> e <a href="https://twitter.com/mhashemi">Mahmoud Hashemi</a>. Tamén está dispoñible en <a href="http://top.hatnote.com/about.html">máis linguas</a>. Se esta lista che parece interesante, disfrutarás de <a href="http://weekly.hatnote.com">The Weeklypedia</a>, un resumo semanal dos artigos de Wikipedia máis editados. Máis información no <a href="#">Blog de Hatnote</a>.</p> <p>Esta páxina foi posible grazas á <a href="https://wikimedia.org/api/rest_v1/?doc#!/Pageviews_data/get_metrics_\ pageviews_top_project_access_year_month_day">nova API de visitas de artigos da Wikipedia</a>, con algunhas bonitas imaxes e resumos de <a href="https://www.mediawiki.org/wiki/API:Query">MediaWiki API</a>. Podes atopar máis código e documentación en <a href="https://github.com/hatnote/top">github</a>.</p> <p>Queres ver unha lista dos artigos máis visitados noutra lingua de Wikipedia? Nós tamén! Por favor <a href="https://github.com/hatnote/top/issues">envía unha petición</a> e fainos saber se podes axudar a traducir os modelos.</p> <p><a href="https://twitter.com/hatnotable">@hatnotable</a></p>
+            <p><a href="#top" class="up">&uarr; Volver arriba</a></p>
         </div>
     </div>
 
