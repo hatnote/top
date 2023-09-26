@@ -1,0 +1,114 @@
+#------------------
+# Wikipedia Top 100
+#    If you want to translate the charts on top.hatnote.com, start with a copy
+#    of this file and leave us a note at:
+#    https://github.com/hatnote/top/issues
+#------------------------------------------------------------------------------
+
+#-----------
+# Page title
+#------------------------------------------------------------------------------
+
+title: Top 100
+full_title: >-
+  A magyar Wikipédia top 100 oldala {formatted_date}-n
+
+index_title: >-
+  Magyar Wikipédia Top 100
+
+rss_title: >-
+  A magyar Wikipédia's 100 leglátogatottabb szócikke
+
+wikipedia: Wikipédia
+language_project: Magyar Wikipédia
+tagline: >-
+    A magyar Wikipédia leglátogatottabb szócikkei, naponta frissítve.<a
+    href="#about" class="learn">Tudj meg többet</a>...
+
+alt_tagline: >-
+    A magyar Wikipédia leglátogatottabb szócikkei, naponta frissítve.
+
+#------
+# Links
+#------------------------------------------------------------------------------
+
+about_link: Az oldalról
+more_langs_link: További nyelvek
+feed_link: Feed
+blog_link: Blog
+top: Vissza a lap tetejére
+
+#---------
+# Articles
+#
+#   Each article has statistics at the bottom like this:
+#   934.8K views (↑300.5K from yesterday)
+#------------------------------------------------------------------------------
+
+views: megtekintések
+from_yesterday: tegnaptól
+streak: napos széria
+
+#------------
+# About section
+#------------------------------------------------------------------------------
+
+about_header: Az oldalról
+about_section: >-
+     <p>Az <a href="http://top.hatnote.com/en/wikipedia">archívumot itt érheted el</a>.</p>
+
+  <p>Az oldal a magyar nyelvű Wikipédia legtöbbet megtekintett szócikkeinek
+     napi toplistája, a létrehozói: <a href="https://twitter.com/sklaporte">
+     Stephen LaPorte</a> és <a href="https://twitter.com/mhashemi">Mahmoud
+     Hashemi</a>. <a href="http://top.hatnote.com/about.html">Több más
+     nyelven</a> is elérhető. Ha érdekesnek találod, tetszeni fog a <a
+     href="http://weekly.hatnote.com">The Weeklypedia</a> is, egy heti
+     gyűjtés a legtöbbet szerkesztett Wikipédia szócikkekből. Érdemes még
+     körülnézned a <a href="#">Hatnote Blog</a>on.</p>
+
+     <p>Az oldal nem jöhetett volna létre a <a
+     href="https://wikimedia.org/api/rest_v1/?doc#!/Pageviews_data/get_metrics_\ pageviews_top_project_access_year_month_day">
+     Wikipédia új page view API-ja nélkül</a>, felhasználva képekhez és 
+     összegzésekhez a <a href="https://www.mediawiki.org/wiki/API:Query">
+     MediaWiki API</a>-t is. A kódot és a dokumentációt megtalálhatod a <a
+     href="https://github.com/hatnote/top">github</a>on.</p>
+
+     <p>Szeretnéd más nyelveken is látni a legtöbbet látogatott cikkek
+     listáját? Mi is! Hozz látre egy <a
+     href="https://github.com/hatnote/top/issues">hibajegyet</a> és 
+     írd meg, tudsz-e segíteni a sablonok lefordításában.</p>
+
+     <p><a href="https://twitter.com/hatnotable">@hatnotable</a></p>
+
+#------- 
+# Tweets 
+#
+#   We can provide three possible tweets. They shouldn't be longer than 117 
+#   characters (including the article title, so there is enough space to 
+#   include a link.
+#------------------------------------------------------------------------------
+
+long_tweet: >- 
+    Már {streak} napos sorozatban, a {title} volt a #{rank} legolvasotabb
+    cikk a #{project}en / {views} megtekintéssel
+
+medium_tweet: "{title} már {views}-szer nézték meg a #{project}en"
+short_tweet: "{title} #{rank} helyezést ért el a #{project}en"
+
+#-------------
+# Archive page
+#------------------------------------------------------------------------------
+
+all_traffic_data: Összes meglévő adat
+
+#----
+# RSS
+#------------------------------------------------------------------------------
+
+rss_intro: Az új magyar Wikipédia toplista megérkezett!
+rss_description: >-
+    <a href="{permalink|s}">{title}</a> a #{rank}. helyezett, {views_short} 
+    megtekintéssel {?streak_min}, folytatva {streak_len} napos sorozatát a
+    toplistában, ({view_trend|s}{view_delta} megtekintéssel tegnap óta){/streak_min}.
+
+rss_read_more: Olvass tovább...
