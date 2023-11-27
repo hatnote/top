@@ -8,6 +8,7 @@
     <script src="{dir_depth}js/jquery.hotkeys.js"></script>
     <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
     <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css">
+    <link href="{dir_depth}feeds/{lang}{project_lower}.rss" title="ਪੰਜਾਬੀ ਵਿਕੀਪੀਡੀਆ ਸਿਖਰਲੇ ੧੦੦" type="application/rss+xml" rel="alternate" />
     <style>
     {#articles}
     .cover-{rank} {
@@ -31,7 +32,7 @@
         });
     });
     </script>
-    <!-- 
+    <!--
         Generated: {meta.generated}
         Fetched: {meta.fetched}
         Total Traffic: {total_traffic_short}
@@ -44,7 +45,7 @@
                 <li><a href="#about">ਬਾਰੇ</a></li>
                 <li><a href="{dir_depth}about.html" id="other-langs">ਹੋਰ ਭਾਸ਼ਾਵਾਂ</a></li>
                 <li><a href="{dir_depth}feeds/{lang}{project_lower}.rss">ਫੀਡ</a></li>
-                <li><a href="#">ਬਲਾਗ</a></li>
+                <li><a href="http://blog.hatnote.com/">ਬਲਾਗ</a></li>
             </ul>
         </div>
     </div>
@@ -76,7 +77,8 @@
                     <div class="meta-area">
                         <p class="views">{local_views_short} ਵਾਰੀ ਵੇਖਿਆ ਗਿਆ <span class="meta">({@gt key=streak_len value=1}<a href="{dir_depth}{prev}#title-{article}" class="yesterday">{/gt}{view_trend|s}{local_view_delta} ਕੱਲ੍ਹ ਤੋਂ{@gt key=streak_len value=1}</a>{/gt})</span><span class="sparkline">{#history}{.}{@sep},{/sep}{/history}, {views}</span></p>
                         <p class="streak">{@gt key=streak_len value=1}{local_streak_len} ਦਿਨ ਸਟ੍ਰੀਕ{/gt}</p>
-                        <a href="http://twitter.com/share?text={tweet}&amp;url={permalink|uc}" target="_blank"><img class="twitter-icon" src="{dir_depth}img/twitter.png"></a>
+                        <a href="https://www.google.com/search?q={title|uc}" target="_blank"><span class="ext-icon">🔍</span></a>
+                        <a href="https://news.google.com/search?q={title|uc}&hl={lang}" target="_blank"><span class="ext-icon">🗞️</span></a>
                     </div>
                 </div>
             </li>

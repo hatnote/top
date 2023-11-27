@@ -5,6 +5,10 @@
     <script src="{dir_depth}js/jquery.js"></script>
     <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
     <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css">
+    <link href="{dir_depth}feeds/{lang}{project_lower}.rss" title="Suomenkielinen Wikipedia Top 100" type="application/rss+xml" rel="alternate" />
+    <!-- 
+        Generated: {meta.generated}
+    -->
 </head>
 <body>
     <div class="top-area">
@@ -61,7 +65,7 @@
             <p>Lue <a href="http://top.hatnote.com/fi/wikipedia">arkistosta</a>.</p>
 <p>Päivittäin uudistuva luettelo luetuimmista Wikipedia-artikkeleista. Tekijät  <a href="https://twitter.com/sklaporte">Stephen LaPorte</a> ja <a href="https://twitter.com/mhashemi">Mahmoud Hashemi</a>. Se on saatavana myös <a href="http://top.hatnote.com/about.html">muilla kielillä</a>. Jos tämä  kiinnostaa, tutustu myös <a href="http://weekly.hatnote.com">Weeklypediaan</a>, viikottaiseen kokoelmaan eniten muokattuja Wikipedia-artikkeleita. Lisätietoa <a href="#">Hatnote-blogissa</a>.</p>
 <p>Tämän sivun mahdollistaa <a href="https://wikimedia.org/api/rest_v1/?doc#!/Pageviews_data/get_metrics_\ pageviews_top_project_access_year_month_day">Wikipedian uusi Page View API</a>,  joka näyttää <a href="https://www.mediawiki.org/wiki/API:Query">MediaWiki APIn</a> kautta saatavaa  tietoa kuvina ja yhteenvetoina. 
-<p>Haluatko nähkä useimmin luettujen artikkeleiden luettelon Wikipedian  muilla kielillä? Niin mekin! <a href="https://github.com/hatnote/top/issues">Lähetä pyyntö</a> ja kerro,  jos voit auttaa meitä kääntämään mallineita.</p>
+<p>Haluatko nähdä useimmin luettujen artikkeleiden luettelon Wikipedian muilla kielillä? Niin mekin! <a href="https://github.com/hatnote/top/issues">Lähetä pyyntö</a> ja kerro,  jos voit auttaa meitä kääntämään mallineita.</p>
 <p><a href="https://twitter.com/hatnotable">@hatnotable</a></p>
             <p><a href="#top" class="up">&uarr; Alkuun</a></p>
         </div>

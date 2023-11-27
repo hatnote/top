@@ -7,7 +7,7 @@
     <script src="{dir_depth}js/jquery.jknav.js"></script>
     <script src="{dir_depth}js/jquery.hotkeys.js"></script>
     <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
-    <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css"
+    <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css">
     <link href="{dir_depth}feeds/{lang}{project_lower}.rss" title="اردو ویکیپیڈیا Top 100" type="application/rss+xml" rel="alternate" />
     <style>
     {#articles}
@@ -17,11 +17,6 @@
         background-position: 50%;
     }
     {/articles}
-    .rank {
-        border-radius: 0 7px 7px 0;
-        -moz-border-radius: 0 7px 7px 0;
-        -webkit-border-radius: 0 7px 7px 0;
-    }
     </style>
     <script>
 
@@ -37,13 +32,13 @@
         });
     });
     </script>
-    <!-- 
+    <!--
         Generated: {meta.generated}
         Fetched: {meta.fetched}
         Total Traffic: {total_traffic_short}
     -->
 </head>
-<body dir="auto">
+<body>
     <div class="top-area">
         <div class="top container">
             <ul>
@@ -82,7 +77,8 @@
                     <div class="meta-area">
                         <p class="views">{local_views_short} ملاحظات <span class="meta">({@gt key=streak_len value=1}<a href="{dir_depth}{prev}#title-{article}" class="yesterday">{/gt}{view_trend|s}{local_view_delta} گزشتہ کل{@gt key=streak_len value=1}</a>{/gt})</span><span class="sparkline">{#history}{.}{@sep},{/sep}{/history}, {views}</span></p>
                         <p class="streak">{@gt key=streak_len value=1}{local_streak_len} فرق{/gt}</p>
-                        <a href="http://twitter.com/share?text={tweet}&amp;url={permalink|uc}" target="_blank"><img class="twitter-icon" src="{dir_depth}img/twitter.png"></a>
+                        <a href="https://www.google.com/search?q={title|uc}" target="_blank"><span class="ext-icon">🔍</span></a>
+                        <a href="https://news.google.com/search?q={title|uc}&hl={lang}" target="_blank"><span class="ext-icon">🗞️</span></a>
                     </div>
                 </div>
             </li>

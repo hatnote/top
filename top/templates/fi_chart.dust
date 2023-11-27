@@ -8,6 +8,7 @@
     <script src="{dir_depth}js/jquery.hotkeys.js"></script>
     <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
     <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css">
+    <link href="{dir_depth}feeds/{lang}{project_lower}.rss" title="Suomenkielinen Wikipedia Top 100" type="application/rss+xml" rel="alternate" />
     <style>
     {#articles}
     .cover-{rank} {
@@ -31,7 +32,7 @@
         });
     });
     </script>
-    <!-- 
+    <!--
         Generated: {meta.generated}
         Fetched: {meta.fetched}
         Total Traffic: {total_traffic_short}
@@ -76,7 +77,8 @@
                     <div class="meta-area">
                         <p class="views">{local_views_short} katselukertaa <span class="meta">({@gt key=streak_len value=1}<a href="{dir_depth}{prev}#title-{article}" class="yesterday">{/gt}{view_trend|s}{local_view_delta} eilisestä{@gt key=streak_len value=1}</a>{/gt})</span><span class="sparkline">{#history}{.}{@sep},{/sep}{/history}, {views}</span></p>
                         <p class="streak">{@gt key=streak_len value=1}{local_streak_len} päivän jakso{/gt}</p>
-                        <a href="http://twitter.com/share?text={tweet}&amp;url={permalink|uc}" target="_blank"><img class="twitter-icon" src="{dir_depth}img/twitter.png"></a>
+                        <a href="https://www.google.com/search?q={title|uc}" target="_blank"><span class="ext-icon">🔍</span></a>
+                        <a href="https://news.google.com/search?q={title|uc}&hl={lang}" target="_blank"><span class="ext-icon">🗞️</span></a>
                     </div>
                 </div>
             </li>
@@ -99,7 +101,7 @@
             <p>Lue <a href="http://top.hatnote.com/fi/wikipedia">arkistosta</a>.</p>
 <p>Päivittäin uudistuva luettelo luetuimmista Wikipedia-artikkeleista. Tekijät  <a href="https://twitter.com/sklaporte">Stephen LaPorte</a> ja <a href="https://twitter.com/mhashemi">Mahmoud Hashemi</a>. Se on saatavana myös <a href="http://top.hatnote.com/about.html">muilla kielillä</a>. Jos tämä  kiinnostaa, tutustu myös <a href="http://weekly.hatnote.com">Weeklypediaan</a>, viikottaiseen kokoelmaan eniten muokattuja Wikipedia-artikkeleita. Lisätietoa <a href="#">Hatnote-blogissa</a>.</p>
 <p>Tämän sivun mahdollistaa <a href="https://wikimedia.org/api/rest_v1/?doc#!/Pageviews_data/get_metrics_\ pageviews_top_project_access_year_month_day">Wikipedian uusi Page View API</a>,  joka näyttää <a href="https://www.mediawiki.org/wiki/API:Query">MediaWiki APIn</a> kautta saatavaa  tietoa kuvina ja yhteenvetoina. 
-<p>Haluatko nähkä useimmin luettujen artikkeleiden luettelon Wikipedian  muilla kielillä? Niin mekin! <a href="https://github.com/hatnote/top/issues">Lähetä pyyntö</a> ja kerro,  jos voit auttaa meitä kääntämään mallineita.</p>
+<p>Haluatko nähdä useimmin luettujen artikkeleiden luettelon Wikipedian muilla kielillä? Niin mekin! <a href="https://github.com/hatnote/top/issues">Lähetä pyyntö</a> ja kerro,  jos voit auttaa meitä kääntämään mallineita.</p>
 <p><a href="https://twitter.com/hatnotable">@hatnotable</a></p>
             <p><a href="{dir_depth}feeds/{lang}{project_lower}.rss"><img src="{dir_depth}img/feed.png"></a> <a href="#top" class="up">&uarr; Alkuun</a></p>
         </div>

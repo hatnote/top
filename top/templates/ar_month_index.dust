@@ -5,11 +5,13 @@
     <script src="{dir_depth}js/jquery.js"></script>
     <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
     <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css">
+    <link href="{dir_depth}feeds/{lang}{project_lower}.rss" title="ويكيبيديا العربية المئة الأبرز" type="application/rss+xml" rel="alternate" />
     <!-- 
         Generated: {meta.generated}
     -->
 </head>
-<body dir="auto">
+
+<body>
     <div class="top-area">
         <div class="top container">
             <ul>

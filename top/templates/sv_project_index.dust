@@ -5,6 +5,7 @@
     <script src="{dir_depth}js/jquery.js"></script>
     <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
     <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css">
+    <link href="{dir_depth}feeds/{lang}{project_lower}.rss" title="Svenska Wikipedia Topp 100" type="application/rss+xml" rel="alternate" />
     <!-- 
         Generated: {meta.generated}
     -->
