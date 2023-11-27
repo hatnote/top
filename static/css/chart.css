@@ -209,6 +209,12 @@ a.learn:hover,
   font-size: 131%;
 }
 
+/* for older pages, before ext-icons were introduced (2023-11-26) */
+.twitter-icon {
+  float: right;
+  margin: 1em;
+}
+
 a.issue_nav {
   color: #fff;
 }
