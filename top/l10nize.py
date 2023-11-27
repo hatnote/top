@@ -75,7 +75,7 @@ def main():
 
         target_path = tmpl_dir + '/' + lang + '_' + src_fn
 
-        if '$' in subbed_text:
+        if string_subber.subbable_re.match(subbed_text):
             print ('possible malformed substitution target, '
                    'check for occurrences of "$" in output: %r'
                    % target_path)

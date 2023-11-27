@@ -173,6 +173,7 @@ def save_chart(query_date, lang, project):
     data['dir_depth'] = '../' * 4
     data['is_index'] = False
     data['project_lower'] = project
+    data['lang'] = lang
     data.setdefault('meta', {})['generated'] = datetime.utcnow().isoformat()
 
     outfile_name = HTML_PATH_TMPL.format(lang=lang,
