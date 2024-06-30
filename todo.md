@@ -1,7 +1,6 @@
 # TODOs
 
 - Fix font sizing on mobile
-- RTL template support
 - Blog post
 - Use short numbers in tweets
 
