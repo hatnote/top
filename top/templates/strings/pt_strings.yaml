@@ -1,0 +1,114 @@
+#------------------
+# Wikipedia Top 100
+#    If you want to translate the charts on top.hatnote.com, start with a copy
+#    of this file and leave us a note at:
+#    https://github.com/hatnote/top/issues
+#------------------------------------------------------------------------------
+
+#-----------
+# Page title
+#------------------------------------------------------------------------------
+
+title: Top 100
+full_title: >-
+ Top 100 da Wikipédia em Português em {formatted_date}
+
+index_title: >-
+  Top 100 da Wikipédia em Português
+
+rss_title: >-
+  Os 100 artigos mais visitados na Wikipédia em Português
+
+wikipedia: Wikipedia
+language_project: Wikipédia em Português
+tagline: >-
+    Os artigos mais visitados da Wikipédia em português, atualizados diariamente.<a
+    href="#about" class="learn">Ler mais</a>...
+
+alt_tagline: >-
+     Os artigos mais visitados da Wikipédia em português, atualizados diariamente.
+
+#------
+# Links
+#------------------------------------------------------------------------------
+
+about_link: Sobre
+more_langs_link: Outros idiomas
+feed_link: Feed
+blog_link: Blog
+top: Voltar ao início
+
+#---------
+# Articles
+#
+#   Cada artigo tem estatísticas na parte inferior como esta:
+#   934.8 mil visualizações (↑300.5 mil em relação a ontem)
+#------------------------------------------------------------------------------
+
+views: visualizações
+from_yesterday: desde ontem
+streak: sequência de dias
+
+#------------
+# About section
+#------------------------------------------------------------------------------
+
+about_header: Sobre
+about_section: >-
+     <p>Leia o <a href="http://top.hatnote.com/en/wikipedia">arquivo</a>.</p>
+
+     <p>Uma lista diária dos artigos mais visitados da Wikipédia, gerada
+     por <a href="https://twitter.com/sklaporte">Stephen LaPorte</a>
+     and <a href="https://twitter.com/mhashemi">Mahmoud
+     Hashemi</a>. Também está disponível em <a
+     href="http://top.hatnote.com/about.html">outros idiomas</a>. Se você achou esta lista interessante,
+     vai gostar do
+     <a href="http://weekly.hatnote.com">The Weeklypedia</a>, um resumo semanal dos artigos mais editados da Wikiédia. Saiba mais no <a
+     href="#">Hatnote Blog</a>.</p>
+
+     <p>Esta página foi possível graças à <a
+     href="https://wikimedia.org/api/rest_v1/?doc#!/Pageviews_data/get_metrics_\
+     pageviews_top_project_access_year_month_day">Nova API de visualizações de páginas da Wikipedia</a>,  com algumas imagens e resumos fornecidos pela <a
+     href="https://www.mediawiki.org/wiki/API:Query">API da MediaWiki</a>.
+     Você pode encontrar mais código e documentação
+     <a href="https://github.com/hatnote/top">disponíveis no github</a>.</p>
+
+     <p>Quer ver uma lista dos artigos mais visitados em outro idioma da Wikipédia? Nós também! Por favor, <a
+     href="https://github.com/hatnote/top/issues">envie uma solicitação</a>
+     e nos avise se puder ajudar a traduzir os templates.</p>
+
+     <p><a href="https://twitter.com/hatnotable">@hatnotable</a></p>
+     <p>Leia o <a href="http://top.hatnote.com/en/wikipedia">arquivo</a>.</p>
+
+#-------
+# Tweets
+#
+#   We can provide three possible tweets. They shouldn't be longer than 117 
+#   characters (including the article title, so there is enough space to 
+#   include a link.
+#------------------------------------------------------------------------------
+
+long_tweet: >- 
+    Em uma sequência de {streak} dias, {title} foi o #{rank} artigo
+    mais lido no {project}, com {views} visualizações.
+
+medium_tweet: "{title} foi visto {views} vezes no #{project}"
+short_tweet: "{title} foi o #{rank} no #{project}"
+
+#-------------
+# Archive page
+#------------------------------------------------------------------------------
+
+all_traffic_data: Todos os dados de tráfego
+
+#----
+# RSS
+#------------------------------------------------------------------------------
+
+rss_intro: Os novos números da Wikipédia em inglês foram atualizados!
+rss_description: >-
+    <a href="{permalink|s}">{title}</a> ficou em #{rank}, com {views_short} 
+    visualizações{?streak_min}, continuando sua sequência de {streak_len} dias no ranking
+    ({view_trend|s}{view_delta} visualizações desde ontem){/streak_min}.
+
+rss_read_more: Leia mais...
