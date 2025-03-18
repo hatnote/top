@@ -105,7 +105,7 @@ all_traffic_data: Todos os dados de tráfego
 # RSS
 #------------------------------------------------------------------------------
 
-rss_intro: Os novos números da Wikipédia em inglês foram atualizados!
+rss_intro: Os novos números da Wikipédia em Português foram atualizados!
 rss_description: >-
     <a href="{permalink|s}">{title}</a> ficou em #{rank}, com {views_short} 
     visualizações{?streak_min}, continuando sua sequência de {streak_len} dias no ranking
