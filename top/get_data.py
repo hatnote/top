@@ -43,6 +43,7 @@ DEFAULT_IMAGE = ('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/'
                  'Wikipedia%27s_W.svg/400px-Wikipedia%27s_W.svg.png')
 DEFAULT_SUMMARY = None
 DEFAULT_GROUP_SIZE = 20
+USER_AGENT = 'TopHatnoteBot/1.0 (https://top.hatnote.com/; mahmoud@hatnote.com) urllib2/2.7'
 
 POLL_INTERVAL = parse_timedelta('10m')
 
