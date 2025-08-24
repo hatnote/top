@@ -47,6 +47,11 @@ USER_AGENT = 'TopHatnoteBot/1.0 (https://top.hatnote.com/; mahmoud@hatnote.com) 
 
 POLL_INTERVAL = parse_timedelta('10m')
 
+# Create a custom opener with the user agent header
+opener = urllib2.build_opener()
+opener.addheaders = [('User-Agent', USER_AGENT)]
+urllib2.install_opener(opener)
+
 
 @tlog.wrap('critical')
 def get_wiki_info(lang, project):
