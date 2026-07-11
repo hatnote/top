@@ -5,7 +5,7 @@ from lithoxyl import Logger, SensibleSink, SensibleFilter, SensibleFormatter, St
 
 tlog = Logger('toplog')
 
-stderr_fmt = SensibleFormatter('{status_char}{end_local_iso8601_noms_notz} - {duration_secs}s - {record_name} - {message}')
+stderr_fmt = SensibleFormatter('{status_char}{iso_end_local_noms_notz} - {duration_s}s - {action_name} - {end_message}')
 stderr_emt = StreamEmitter('stderr')
 stderr_filter = SensibleFilter(success='debug',
                                 failure='debug',

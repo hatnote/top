@@ -243,7 +243,7 @@ def find_streaks(title, prev_stats):
         streak_min = min(ranks)
     else:
         streak_min = None
-    if prev_stats > 0 and len(streak) == len(prev_stats):
+    if len(prev_stats) > 0 and len(streak) == len(prev_stats):
         streak_len = '%s+' % len(streak)
     else:
         streak_len = len(streak) + 1
