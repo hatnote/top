@@ -1,12 +1,12 @@
 
 import os
 
-from lithoxyl import Logger, SensibleSink, Formatter, StreamEmitter
+from lithoxyl import Logger, SensibleSink, SensibleFormatter, StreamEmitter
 from lithoxyl.filters import ThresholdFilter
 
 tlog = Logger('toplog')
 
-stderr_fmt = Formatter('{status_char}{end_local_iso8601_noms_notz} - {duration_secs}s - {record_name} - {message}')
+stderr_fmt = SensibleFormatter('{status_char}{end_local_iso8601_noms_notz} - {duration_secs}s - {record_name} - {message}')
 stderr_emt = StreamEmitter('stderr')
 stderr_filter = ThresholdFilter(success='debug',
                                 failure='debug',
