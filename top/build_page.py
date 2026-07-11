@@ -3,9 +3,9 @@ import os
 import time
 import codecs
 import argparse
-from json import load
+from json import load, dumps
 from os import listdir
-from email.Utils import formatdate
+from email.utils import formatdate
 from os.path import join as pjoin, isdir, isfile, dirname
 from datetime import date, timedelta, datetime
 from dateutil.relativedelta import relativedelta
@@ -21,7 +21,9 @@ from utils import int_to_local_str
 from common import (DATA_PATH_TMPL,
                     TEMPLATE_PATH,
                     FEED_PATH_TMPL,
+                    FEED_FILE_TMPL,
                     LANG_PROJ_LINK_TMPL,
+                    DATE_PERMALINK_TMPL,
                     DEFAULT_LANG,
                     BASE_PATH,
                     LOCAL_LANG_MAP,
@@ -73,7 +75,7 @@ def save_rendered(outfile_name, template_name, context):
         out_file = codecs.open(outfile_name, 'w', 'utf-8')
     with out_file:
         out_file.write(rendered)
-    print 'successfully generated %s' % outfile_name
+    print('successfully generated %s' % outfile_name)
 
 
 def check_most_recent(lang=DEFAULT_LANG, project=DEFAULT_PROJECT):
@@ -147,6 +149,20 @@ def load_data(query_date, lang, project):
     return data
 
 
+def make_jsonld(data):
+    items = [{'@type': 'ListItem',
+              'position': a['rank'],
+              'url': a['url'],
+              'name': a['title']} for a in data.get('articles', [])]
+    doc = {'@context': 'https://schema.org',
+           '@type': 'ItemList',
+           'url': data['canonical_url'],
+           'numberOfItems': len(items),
+           'itemListOrder': 'https://schema.org/ItemListOrderAscending',
+           'itemListElement': items}
+    return dumps(doc).replace('</', '<\\/')
+
+
 def save_chart(query_date, lang, project):
     data = load_data(query_date, lang, project)
     data['current'] = HTML_FILE_TMPL.format(lang=lang,
@@ -175,6 +191,13 @@ def save_chart(query_date, lang, project):
     data['project_lower'] = project
     data['lang'] = lang
     data.setdefault('meta', {})['generated'] = datetime.utcnow().isoformat()
+    data['canonical_url'] = DATE_PERMALINK_TMPL.format(
+        lang=lang, project=project, year=query_date.year,
+        month=query_date.month, day=query_date.day)
+    data['current_json'] = data['current'][:-len('.html')] + '.json'
+    if data.get('articles'):
+        data['og_image'] = data['articles'][0]['image_url']
+    data['jsonld'] = make_jsonld(data)
 
     outfile_name = HTML_PATH_TMPL.format(lang=lang,
                                          project=project,
@@ -232,6 +255,7 @@ def update_feeds(cur_date, lang, project, day_count=10):
                   'lang_name': LOCAL_LANG_MAP[lang],
                   'project': project.title(),
                   'canonical_url': canonical_url,
+                  'feed_url': 'https://top.hatnote.com/' + FEED_FILE_TMPL.format(lang=lang, project=project),
                   'cur_utc': to_rss_timestamp(datetime.now())}
 
     data_list = []
@@ -244,13 +268,15 @@ def update_feeds(cur_date, lang, project, day_count=10):
         try:
             date_i_data = load_data(date_i, lang, project)
         except IOError:
-            print 'no data found for %r' % date_i
+            print('no data found for %r' % date_i)
             continue
         # utc_pub_dt = isoparse(date_i_data['meta']['generated'])
         midnight_utc = datetime.utcfromtimestamp(0).timetz()
         pub_dt = datetime.combine(date_i, midnight_utc)
         date_i_data['pub_timestamp'] = to_rss_timestamp(pub_dt)
         date_i_data['summary'] = ASHES_ENV.render(summary_template, date_i_data)
+        if date_i_data.get('articles'):
+            date_i_data['og_image'] = date_i_data['articles'][0]['image_url']
         data_list.append(date_i_data)
     render_ctx['entries'] = data_list
     feed_path = FEED_PATH_TMPL.format(lang=lang, project=project)

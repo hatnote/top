@@ -5,14 +5,15 @@ import time
 import json
 
 import codecs
-import urllib2
+from urllib.request import build_opener, install_opener, urlopen
+from urllib.error import HTTPError, URLError
 import yaml
 from babel.dates import format_date
 from itertools import takewhile
 
 from csv import DictReader as csvDictReader
 from argparse import ArgumentParser
-from urllib import urlencode, quote_plus
+from urllib.parse import urlencode, quote_plus
 from datetime import date, timedelta, datetime
 
 from boltons.fileutils import mkdir_p
@@ -48,9 +49,9 @@ USER_AGENT = 'TopHatnoteBot/1.0 (https://top.hatnote.com/; mahmoud@hatnote.com) 
 POLL_INTERVAL = parse_timedelta('10m')
 
 # Create a custom opener with the user agent header
-opener = urllib2.build_opener()
+opener = build_opener()
 opener.addheaders = [('User-Agent', USER_AGENT)]
-urllib2.install_opener(opener)
+install_opener(opener)
 
 
 @tlog.wrap('critical')
@@ -63,11 +64,11 @@ def get_wiki_info(lang, project):
               'meta': 'siteinfo',
               'format': 'json',
               'siprop': 'general|namespaces'}
-    resp = urllib2.urlopen(url + urlencode(params))
+    resp = urlopen(url + urlencode(params))
     data = json.loads(resp.read())
     mainpage = data['query']['general']['mainpage'].replace(' ', '_')
     namespaces = [ns_info['*'].replace(' ', '_') for ns_id, ns_info in
-                  data['query']['namespaces'].iteritems() if ns_id is not 0]
+                  data['query']['namespaces'].items() if ns_id != 0]
     return {'mainpage': mainpage, 'namespaces': namespaces}
 
 
@@ -94,13 +95,13 @@ def is_article(title, wiki_info):
 def get_project_traffic(date, lang, project):
     datestr = date.strftime('%Y%m%d')
     url = TOTAL_TRAFFIC_URL.format(lang=lang, project=project, datestr=datestr)
-    resp = urllib2.urlopen(url)
+    resp = urlopen(url)
     data = json.loads(resp.read())
     try:
         date_data = data['items'][0]
     except IndexError:
         # backwards compat to the old metrics api which would raise urlerror
-        raise urllib2.URLError('no traffic data available from %r' % url)
+        raise URLError('no traffic data available from %r' % url)
 
     return date_data['views']
 
@@ -111,10 +112,10 @@ def get_query(params, lang, project, extractor, default_val):
     Generic function for MediaWiki queries.
     '''
     url = MW_API_URL.format(lang=lang, project=project)
-    resp = urllib2.urlopen(url + urlencode(params))
+    resp = urlopen(url + urlencode(params))
     data = json.loads(resp.read())
     ret = {}
-    for page_id, page_info in data['query']['pages'].iteritems():
+    for page_id, page_info in data['query']['pages'].items():
         if int(page_id) < 0:
             ret[page_info['title']] = default_val
         else:
@@ -140,7 +141,7 @@ def get_images(titles, lang, project, log_rec):
               'pilicense': 'any',
               'pilimit': 50,
               'format': 'json',
-              'titles': '|'.join(titles).encode('utf-8')}
+              'titles': '|'.join(titles)}
     extractor = lambda page: page.get('thumbnail', {}).get('source',
                                                            DEFAULT_IMAGE)
     images = get_query(params, lang, project, extractor, DEFAULT_IMAGE)
@@ -166,7 +167,7 @@ def get_summaries(titles, lang, project, log_rec):
               'exintro': 1,
               'exlimit': 20,
               'format': 'json',
-              'titles': '|'.join(titles).encode('utf-8')}
+              'titles': '|'.join(titles)}
     extractor = lambda page: page['extract']
     summaries = get_query(params, lang, project, extractor, DEFAULT_SUMMARY)
 
@@ -186,9 +187,9 @@ def get_traffic(query_date, lang, project):
                              month='%02d' % query_date.month,
                              day='%02d' % query_date.day)
     if DEBUG:
-        print 'Getting %s' % url
+        print('Getting %s' % url)
     with tlog.critical('fetch_traffic') as rec:
-        resp = urllib2.urlopen(url)
+        resp = urlopen(url)
         resp_bytes = resp.read()
         rec.success('Fetched {len_bytes} bytes from {url}',
                     len_bytes=len(resp_bytes), url=url)
@@ -255,12 +256,12 @@ def find_streaks(title, prev_stats):
 def get_tweet_templates(lang):
     strings_path = STRINGS_PATH_TMPL.format(lang=lang)
     try:
-        string_file = open(strings_path, 'r')
+        string_file = open(strings_path, 'r', encoding='utf-8')
     except IOError as e:
         default_strings_path = STRINGS_PATH_TMPL.format(lang=DEFAULT_LANG)
-        string_file = open(default_strings_path, 'r')
+        string_file = open(default_strings_path, 'r', encoding='utf-8')
     with string_file:
-        strings = yaml.load(string_file)
+        strings = yaml.safe_load(string_file)
         tweets = {'long': strings['long_tweet'],
                   'medium': strings['medium_tweet'],
                   'short': strings['short_tweet']}
@@ -283,7 +284,7 @@ def tweet_composer(article, lang, project, tweets):
         streak = article['streak_len']
     if int(streak) > 1:
         msg = tweets['long']
-        if not isinstance(msg, unicode):
+        if isinstance(msg, bytes):
             msg = msg.decode('utf-8')
         msg = msg.format(streak=article['streak_len'],
                          title=title,
@@ -293,7 +294,7 @@ def tweet_composer(article, lang, project, tweets):
         if len(msg) < max_tweet_len:
             return msg
     msg = tweets['medium']
-    if not isinstance(msg, unicode):
+    if isinstance(msg, bytes):
         msg = msg.decode('utf-8')
     try:
         msg = msg.format(title=title,
@@ -305,7 +306,7 @@ def tweet_composer(article, lang, project, tweets):
     if len(msg) < max_tweet_len:
         return msg
     msg = tweets['short']
-    if not isinstance(msg, unicode):
+    if isinstance(msg, bytes):
         msg = msg.decode('utf-8')
     msg = msg.format(title=title,
                      rank=article['rank'],
@@ -313,7 +314,7 @@ def tweet_composer(article, lang, project, tweets):
     if len(msg) < max_tweet_len:
         return msg
     msg = tweets['short']
-    if not isinstance(msg, unicode):
+    if isinstance(msg, bytes):
         msg = msg.decode('utf-8')
     msg = msg.format(title=title[:50] + '...',
                      rank=article['rank'],
@@ -346,7 +347,7 @@ def make_article_list(query_date, lang, project):
         article['views_short'] = shorten_number(article['views'])
         article['url'] = 'https://%s.%s.org/wiki/%s' % (lang, project, title)
         article['title'] = title.replace('_', ' ')
-        article['permalink'] = permalink.encode('utf-8')
+        article['permalink'] = permalink
         article['rank'] = len(ret) + 1
         article['pviews'] = prev_article.get('views', None)
         article['prank'] = prev_article.get('rank', None)
@@ -443,10 +444,10 @@ def save_traffic_stats(lang, project, query_date, limit=DEFAULT_LIMIT):
     with tlog.critical('saving_single_day_stats') as rec:
         rec['out_file'] = os.path.abspath(outfile_name)
         try:
-            out_file = codecs.open(outfile_name, 'w')
+            out_file = open(outfile_name, 'w', encoding='utf-8')
         except IOError:
             mkdir_p(os.path.dirname(outfile_name))
-            out_file = codecs.open(outfile_name, 'w')
+            out_file = open(outfile_name, 'w', encoding='utf-8')
         with out_file:
             data_bytes = json.dumps(ret, indent=2, sort_keys=True)
             rec['len_bytes'] = len(data_bytes)
@@ -515,7 +516,7 @@ def main():
             try:
                 save_traffic_stats(args.lang, args.project, input_date)
                 break
-            except (urllib2.HTTPError, urllib2.URLError) as he:
+            except (HTTPError, URLError) as he:
                 # tried to be nice but the API gives back all sorts of statuses
                 # if he.getcode() != 404:
                 #     raise
@@ -541,7 +542,7 @@ def main():
     else:
         save_traffic_stats(args.lang, args.project, input_date)
     if args.update:
-        print update_charts(input_date, args.lang, args.project)
+        print(update_charts(input_date, args.lang, args.project))
     #if DEBUG:
     #    import pdb
     #    pdb.set_trace()

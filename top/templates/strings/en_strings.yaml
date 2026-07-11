@@ -28,6 +28,8 @@ tagline: >-
 alt_tagline: >-
     The most-visited English Wikipedia articles, updated daily.
 
+html_dir: ''
+
 #------
 # Links
 #------------------------------------------------------------------------------

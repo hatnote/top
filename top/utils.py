@@ -27,7 +27,7 @@ def int_to_local_str(num, locale=None):
                  u'٩']
     else:
         lnums = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-    for char in unicode(num):
+    for char in str(num):
         try:
             digit = int(char)
             ret += lnums[digit]
@@ -37,12 +37,6 @@ def int_to_local_str(num, locale=None):
     return ret
 
 
-if __name__ == '__main__':
-    from random import randint
-    test = randint(0, 10000)
-    print test, int_to_locale_str(test, locale='fa')
-    test = 'April 2016'
-    print test, int_to_locale_str(test, locale='fa')
     
 
 

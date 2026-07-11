@@ -1,0 +1,37 @@
+# Hatnote Top 100
+
+The most-visited Wikipedia articles per language, updated daily (~02:00 UTC).
+
+## URL patterns
+
+- **HTML**: `https://top.hatnote.com/{lang}/{project}/{year}/{month}/{day}.html` (month and day are NOT zero-padded)
+- **JSON**: `https://top.hatnote.com/{lang}/{project}/{year}/{month}/{day}.json`
+- **RSS**: `https://top.hatnote.com/feeds/{lang}{project}.rss`
+- **Archive indexes**: `/{lang}/{project}/{year}/{month}/`
+- **Language list**: `/about.html`
+
+## JSON field glossary
+
+Each daily JSON file contains an `articles[]` array. Each article object has the following fields:
+
+| Field | Description |
+|-------|-------------|
+| `article` | Article identifier |
+| `title` | Display title |
+| `url` | Full URL to the Wikipedia article |
+| `rank` | Position in the top 100 (1–100) |
+| `views` | Page view count (integer) |
+| `views_short` | Human-readable view count (e.g. "1.2M") |
+| `view_delta` | Change in views from the previous day |
+| `view_trend` | HTML arrow entity indicating trend direction |
+| `streak_len` | Number of consecutive days on the list |
+| `history` | Last 10 days of view counts (zeros indicate the article was off-chart) |
+| `image_url` | URL of the article's lead image |
+| `summary` | Short extract of the article |
+| `permalink` | Permanent link to this article's chart entry |
+
+## Data source
+
+All data is sourced from the [Wikimedia Pageviews API](https://wikimedia.org/api/rest_v1/).
+
+Source code: <https://github.com/hatnote/top>

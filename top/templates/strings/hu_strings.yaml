@@ -28,6 +28,8 @@ tagline: >-
 alt_tagline: >-
     A magyar Wikipédia leglátogatottabb szócikkei, naponta frissítve.
 
+html_dir: ''
+
 #------
 # Links
 #------------------------------------------------------------------------------

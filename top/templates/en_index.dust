@@ -1,17 +1,12 @@
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{^is_index}{full_lang} Wikipedia Top 100{:else}{full_lang} Wikipedia Top 100 on {formatted_date}{/is_index}</title>
-    <script src="{dir_depth}js/jquery.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{^is_index}English Wikipedia Top 100{:else}English Wikipedia Top 100 on {formatted_date}{/is_index}</title>
     <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
     <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css">
-    <link href="{dir_depth}feeds/{lang}{project_lower}.rss" title="English Wikipedia Feed" type="application/rss+xml" rel="alternate" />
-    <script>
-
-    $(function() {
-
-    });
-    </script>
+    <link href="{dir_depth}feeds/{lang}{project_lower}.rss" title="English Wikipedia Top 100" type="application/rss+xml" rel="alternate" />
 </head>
 <body>
     <div class="top-area">
@@ -20,14 +15,14 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="{dir_depth}about.html" id="other-langs">More languages</a></li>
                 <li><a href="{dir_depth}feeds/{lang}{project_lower}.rss">Feed</a></li>
-                <li><a href="http://blog.hatnote.com/">Blog</a></li>
+                <li><a href="#">Blog</a></li>
             </ul>
         </div>
     </div>
     <div class="header">
         <div class="container">
             <h1><span class="ultra">Top 100</span></h1>
-            <p>The most-visited {full_lang} Wikipedia articles, updated daily.</p>
+            <p>The most-visited English Wikipedia articles, updated daily.</p>
             <div class="subtitle light">{?prev}<a class="issue_nav left" href="{dir_depth}{prev}">&larr;</a>{:else}<span class="left issue_nav"></span>{/prev}<p class="center">Available wikis</p>{?next}<a class="issue_nav right" href="{dir_depth}{next}">&rarr;</a>{:else}<span class="right issue_nav"></span>{/next}
             <br style="clear: left;" />
             </div>
@@ -73,13 +68,7 @@
         </div>
     </div>
 
-    <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-40320359-1', 'hatnote.com');
-    ga('send', 'pageview');
-    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9LD7M2WME2"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9LD7M2WME2');</script>
 </body>
 </html>

@@ -52,7 +52,7 @@ WORD_FILTERS = ['penis',
 
 
 def word_filter(text):
-    if not isinstance(text, unicode):
+    if isinstance(text, bytes):
         text = text.decode('utf8')
     text = text.replace('_', ' ').replace('File:', '')
     for file_name in unwelcome.file_names:

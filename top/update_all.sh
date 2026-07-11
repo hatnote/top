@@ -1,7 +1,7 @@
 
 TOP_LOG_BASE_PATH=/home/hatnote/top/logs/cron_out
 TOP_PYTHON_SCRIPT=/home/hatnote/top/top/get_data.py
-TOP_PYTHON_BIN=/home/hatnote/virtualenvs/top/bin/python
+TOP_PYTHON_BIN=/home/hatnote/virtualenvs/top3/bin/python
 TOP_POLL_TIME=1s
 
 TOP_TARGET_DATE=20160425

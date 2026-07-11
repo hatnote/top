@@ -33,7 +33,7 @@ class DevDebugSink(object):
         if self.post_mortem:
             import pdb; pdb.post_mortem()
         if self.reraise:
-            raise exc_type, exc_obj, exc_tb
+            raise exc_obj.with_traceback(exc_tb)
 
 
 tlog.add_sink(DevDebugSink(post_mortem=os.getenv('TOP_PDB')))

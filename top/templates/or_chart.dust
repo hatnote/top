@@ -1,42 +1,30 @@
-<html>
+<!DOCTYPE html>
+<html lang="{lang}">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0d0f05">
     <title>{?is_index}ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆର ଲୋକପ୍ରିୟ ୧୦୦ ପ୍ରସଙ୍ଗ{:else}ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆର ଲୋକପ୍ରିୟ ୧୦୦ ପ୍ରସଙ୍ଗ {formatted_date}{/is_index}</title>
-    <script src="{dir_depth}js/jquery.js"></script>
-    <script src="{dir_depth}js/jquery.peity.min.js"></script>
-    <script src="{dir_depth}js/jquery.jknav.js"></script>
-    <script src="{dir_depth}js/jquery.hotkeys.js"></script>
+    <meta name="description" content="ସବୁଦିନ ଅପଡେଟ ହେଉଥିବା ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆର ସର୍ବାଧିକ ପଠିତ ପ୍ରସଙ୍ଗସମୂହ ।">
+    <link rel="canonical" href="{canonical_url}">
+    <meta property="og:site_name" content="Hatnote Top 100">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{?is_index}ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆର ଲୋକପ୍ରିୟ ୧୦୦ ପ୍ରସଙ୍ଗ{:else}ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆର ଲୋକପ୍ରିୟ ୧୦୦ ପ୍ରସଙ୍ଗ {formatted_date}{/is_index}">
+    <meta property="og:description" content="ସବୁଦିନ ଅପଡେଟ ହେଉଥିବା ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆର ସର୍ବାଧିକ ପଠିତ ପ୍ରସଙ୍ଗସମୂହ ।">
+    <meta property="og:url" content="{canonical_url}">
+    {?og_image}<meta property="og:image" content="{og_image}">{/og_image}
+    <meta name="twitter:card" content="summary">
     <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
     <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css">
-    <link href="{dir_depth}feeds/{lang}{project_lower}.rss" title="ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆ ଲୋକପ୍ରିୟ ୧୦୦" type="application/rss+xml" rel="alternate" />
-    <style>
-    {#articles}
-    .cover-{rank} {
-        background: url({image_url});
-        background-size: cover;
-        background-position: 50%;
-    }
-    {/articles}
-    </style>
-    <script>
-
-    $(function() {
-        $('.rank').jknav();
-        $.jknav.init({speed: 'fast', circular: true});
-        $('.sparkline').peity('line', {fill: null,
-                                       width: 50,
-                                       height: 14,
-                                       stroke: 'rgba(116, 131, 138, 0.7)'})
-        $('.row').hover(function() {
-            $('.permalink', this).toggle();
-        });
-    });
-    </script>
+    <link href="{dir_depth}feeds/{lang}{project_lower}.rss" title="ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆ ଲୋକପ୍ରିୟ ୧୦୦" type="application/rss+xml" rel="alternate">
+    <link href="{dir_depth}{current_json}" type="application/json" rel="alternate">
+    <script defer src="{dir_depth}js/top.js"></script>
     <!--
         Generated: {meta.generated}
         Fetched: {meta.fetched}
         Total Traffic: {total_traffic_short}
     -->
+    <script type="application/ld+json">{jsonld|s}</script>
 </head>
 <body>
     <div class="top-area">
@@ -45,7 +33,7 @@
                 <li><a href="#about">ଉଇକିପିଡ଼ିଆ ବାବଦରେ</a></li>
                 <li><a href="{dir_depth}about.html" id="other-langs">ଅଲଗା ଭାଷାରେ</a></li>
                 <li><a href="{dir_depth}feeds/{lang}{project_lower}.rss">ଫିଡ଼</a></li>
-                <li><a href="http://blog.hatnote.com/">ବ୍ଲଗ</a></li>
+                <li><a href="https://blog.hatnote.com/">ବ୍ଲଗ</a></li>
             </ul>
         </div>
     </div>
@@ -61,29 +49,29 @@
     </div>
 
     <div class="container">
-        <ul>
+        <ol class="chart">
             {#articles}
             <li class="row">
                 <div class="column rank">
                     <p><a href="{dir_depth}{current}#rank-{rank}">{local_rank}</a></p>
                 </div>
-                <a class="column cover-art cover-{rank}" href="{url}" target="_blank"></a>
+                <a class="column cover-art" href="{url}" target="_blank" rel="noopener"><img src="{image_url}" alt="{title}" loading="lazy" decoding="async"></a>
                 <div class="column label">
                     <a id="rank-{rank}"></a>
                     <a id="title-{article}"></a>
                     <p class="sparkline-area"></p>
-                    <p class="title"><a href="{url}" target="_blank">{title}</a><a href="{dir_depth}{current}#title-{article}"><img class="permalink" src="{dir_depth}img/permalink.png"></a></p>
+                    <p class="title"><a href="{url}" target="_blank" rel="noopener">{title}</a><a href="{dir_depth}{current}#title-{article}"><img class="permalink" src="{dir_depth}img/permalink.png"></a></p>
                     <p class="summary">{summary}</p>
                     <div class="meta-area">
                         <p class="views">{local_views_short} ପଠିତ <span class="meta">({@gt key=streak_len value=1}<a href="{dir_depth}{prev}#title-{article}" class="yesterday">{/gt}{view_trend|s}{local_view_delta} ଗତକାଲିଠାରୁ{@gt key=streak_len value=1}</a>{/gt})</span><span class="sparkline">{#history}{.}{@sep},{/sep}{/history}, {views}</span></p>
                         <p class="streak">{@gt key=streak_len value=1}{local_streak_len} ଦିନ ଷ୍ଟ୍ରିକ{/gt}</p>
-                        <a href="https://www.google.com/search?q={title|uc}" target="_blank"><span class="ext-icon">🔍</span></a>
-                        <a href="https://news.google.com/search?q={title|uc}&hl={lang}" target="_blank"><span class="ext-icon">🗞️</span></a>
+                        <a href="https://www.google.com/search?q={title|uc}" target="_blank" rel="noopener"><span class="ext-icon">&#x1F50D;</span></a>
+                        <a href="https://news.google.com/search?q={title|uc}&hl={lang}" target="_blank" rel="noopener"><span class="ext-icon">&#x1F5DE;&#xFE0F;</span></a>
                     </div>
                 </div>
             </li>
             {/articles}
-        </ul>
+        </ol>
     </div>
 
     <div class="end-nav">
@@ -107,13 +95,7 @@
         </div>
     </div>
 
-    <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-40320359-1', 'hatnote.com');
-    ga('send', 'pageview');
-    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9LD7M2WME2"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9LD7M2WME2');</script>
 </body>
 </html>

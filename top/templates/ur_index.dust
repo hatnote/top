@@ -1,17 +1,12 @@
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{^is_index}اردو ویکیپیڈیا کے اولین 100 صفحات{:else}اردو ویکیپیڈیا کے اولین 100 صفحات {formatted_date}{/is_index}</title>
-    <script src="{dir_depth}js/jquery.js"></script>
     <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
     <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css">
     <link href="{dir_depth}feeds/{lang}{project_lower}.rss" title="اردو ویکیپیڈیا Top 100" type="application/rss+xml" rel="alternate" />
-    <script>
-
-    $(function() {
-
-    });
-    </script>
 </head>
 <body>
     <div class="top-area">
@@ -73,13 +68,7 @@
         </div>
     </div>
 
-    <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-40320359-1', 'hatnote.com');
-    ga('send', 'pageview');
-    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9LD7M2WME2"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9LD7M2WME2');</script>
 </body>
 </html>

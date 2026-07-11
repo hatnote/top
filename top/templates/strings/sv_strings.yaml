@@ -28,6 +28,8 @@ tagline: >-
 alt_tagline: >-
     De mest besökta artiklarna på svenska Wikipedia, updaterad varje dag.
 
+html_dir: ''
+
 #------
 # Links
 #------------------------------------------------------------------------------
