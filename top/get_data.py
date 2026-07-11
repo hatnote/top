@@ -240,7 +240,7 @@ def find_streaks(title, prev_stats):
     history.reverse()
     streak = [a for a in takewhile(lambda r: r, ranks)]
     if len(streak) > 0:
-        streak_min = min(ranks)
+        streak_min = min(streak)
     else:
         streak_min = None
     if len(prev_stats) > 0 and len(streak) == len(prev_stats):
