@@ -3,6 +3,11 @@
 
   var SVG_NS = 'http://www.w3.org/2000/svg';
 
+  // resolve img/w.png relative to this script's own URL, so it works at any
+  // page depth (/, /en/wikipedia/2026/7/10.html, ...)
+  var FALLBACK_COVER = document.currentScript ?
+    document.currentScript.src.replace(/js\/top\.js.*$/, 'img/w.png') : '/img/w.png';
+
   function initSparklines() {
     var spans = document.querySelectorAll('span.sparkline');
     for (var i = 0; i < spans.length; i++) {
@@ -50,6 +55,20 @@
     }
   }
 
+  function initCoverFallback() {
+    var imgs = document.querySelectorAll('.cover-art img');
+    function swap(img) {
+      if (img.getAttribute('data-fallback')) { return; }
+      img.setAttribute('data-fallback', '1');
+      img.src = FALLBACK_COVER;
+    }
+    for (var i = 0; i < imgs.length; i++) {
+      var img = imgs[i];
+      img.addEventListener('error', function (event) { swap(event.target); });
+      if (img.complete && img.naturalWidth === 0) { swap(img); }
+    }
+  }
+
   function initKeyNav() {
     var currentIndex = -1;
 
@@ -74,6 +93,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     initSparklines();
+    initCoverFallback();
     initKeyNav();
   });
 })();
