@@ -146,6 +146,10 @@ ul .row .cover-art {
   padding-left: 1em;
 }
 
+.streak-one {
+  display: none;
+}
+
 .meta-area {
   margin: 0 0 1em 1em;
   border-top: 1px dotted #ccc;
@@ -388,7 +392,7 @@ a.yesterday:hover {
   .cover-art {
     float: left;
     width: 96px;
-    height: 96px;
+    height: 115px;
     margin: 0 12px 8px 0;
     overflow: hidden;
   }
@@ -402,6 +406,7 @@ a.yesterday:hover {
   .views .peity { float: left; margin: 6px 8px 12px 0; }
   [dir="rtl"] .views .peity { float: right; margin: 6px 0 12px 8px; }
   .streak { padding: 0; margin: 6px 0 0; }
+  .streak-one { display: inline; }
   .ext-icon { margin: 2px 0 0 12px; }
   [dir="rtl"] .ext-icon { float: left; margin: 2px 12px 0 0; }
 }
