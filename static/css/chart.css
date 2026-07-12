@@ -398,7 +398,10 @@ a.yesterday:hover {
   .summary { font-size: 0.95em; line-height: 1.5; margin: 0 16px 12px; }
   .meta-area { clear: both; margin: 0 16px 12px; }
   .views { display: block; margin: 8px 0 0; }
-  .views .peity { display: block; margin: 6px 0 0; }
+  .views .meta::after { content: "\A"; white-space: pre; }
+  .views .peity { float: left; margin: 6px 8px 12px 0; }
+  [dir="rtl"] .views .peity { float: right; margin: 6px 0 12px 8px; }
   .streak { padding: 0; margin: 6px 0 0; }
   .ext-icon { margin: 2px 0 0 12px; }
+  [dir="rtl"] .ext-icon { float: left; margin: 2px 12px 0 0; }
 }
