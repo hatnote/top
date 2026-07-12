@@ -387,15 +387,18 @@ a.yesterday:hover {
   .rank { font-size: 1em; }
   .cover-art {
     float: left;
-    width: 92px;
-    height: 92px;
-    margin: 0 0.75em 0.4em 0;
+    width: 96px;
+    height: 96px;
+    margin: 0 12px 8px 0;
     overflow: hidden;
   }
-  [dir="rtl"] .cover-art { float: right; margin: 0 0 0.4em 0.75em; }
-  .title { font-size: 1.3em; margin: 0.4em 0.5em 0.2em 0.5em; }
-  .summary { font-size: 0.95em; margin: 0 0.5em 0.4em 0.5em; }
-  .meta-area { clear: both; margin: 0 0.5em 0.5em 0.5em; }
-  .streak { padding-left: 0.5em; }
-  .ext-icon { margin: 0.35em; }
+  [dir="rtl"] .cover-art { float: right; margin: 0 0 8px 12px; }
+  .title { font-size: 1.3em; line-height: 1.375; margin: 12px 16px 4px; }
+  .permalink { display: none !important; }
+  .summary { font-size: 0.95em; line-height: 1.5; margin: 0 16px 12px; }
+  .meta-area { clear: both; margin: 0 16px 12px; }
+  .views { display: block; margin: 8px 0 0; }
+  .views .peity { display: block; margin: 6px 0 0; }
+  .streak { padding: 0; margin: 6px 0 0; }
+  .ext-icon { margin: 2px 0 0 12px; }
 }
