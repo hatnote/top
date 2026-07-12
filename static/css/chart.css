@@ -73,7 +73,7 @@ h1 .ultra {
   color: #46454b;
 }
 
-.chart { list-style: none; margin: 1em 0; }
+.chart { list-style: none; margin: 1em 0; padding: 0; }
 .chart .row { display: flex; overflow: hidden; }
 .chart .column { display: block; }
 .chart .cover-art { flex: none; position: relative; }
