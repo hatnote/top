@@ -380,21 +380,20 @@ a.yesterday:hover {
 @media (max-width: 640px) {
   h1 { font-size: 2.25em; }
   .subtitle { font-size: 1.15em; }
-  .row { display: flex; }
-  .label { flex: 1; min-width: 0; }
+  .row { display: block; overflow: hidden; }
+  .column { display: block; }
   .rank { font-size: 1em; }
   .cover-art {
-    flex: none;
+    float: left;
     width: 92px;
     height: 92px;
-    align-self: flex-start;
-    border-radius: 0 0 7px 0;
+    margin: 0 0.75em 0.4em 0;
     overflow: hidden;
   }
-  [dir="rtl"] .cover-art { border-radius: 0 0 0 7px; }
-  .title { font-size: 1.3em; margin: 0.5em 0.5em 0.25em 0.6em; }
-  .summary { font-size: 0.95em; margin: 0 0.75em 0.75em 0.75em; }
-  .meta-area { margin: 0 0 0.75em 0.75em; }
+  [dir="rtl"] .cover-art { float: right; margin: 0 0 0.4em 0.75em; }
+  .title { font-size: 1.3em; margin: 0.4em 0.5em 0.2em 0.5em; }
+  .summary { font-size: 0.95em; margin: 0 0.5em 0.4em 0.5em; }
+  .meta-area { clear: both; margin: 0 0.5em 0.5em 0.5em; }
   .streak { padding-left: 0.5em; }
   .ext-icon { margin: 0.35em; }
 }
