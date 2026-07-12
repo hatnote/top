@@ -380,8 +380,10 @@ a.yesterday:hover {
 @media (max-width: 640px) {
   h1 { font-size: 2.25em; }
   .subtitle { font-size: 1.15em; }
-  .row { display: block; overflow: hidden; }
-  .column { display: block; }
+  .row, .chart .row { display: block; overflow: hidden; }
+  .column, .chart .column { display: block; }
+  .label { overflow: visible; }
+  .chart .label { flex: initial; min-width: initial; }
   .rank { font-size: 1em; }
   .cover-art {
     float: left;
