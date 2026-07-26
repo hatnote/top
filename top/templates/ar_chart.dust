@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#0d0f05">
+    <link rel="manifest" href="{dir_depth}manifest.json">
+    <link rel="apple-touch-icon" href="{dir_depth}img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="{dir_depth}img/icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Top 100">
     <title>{?is_index}المقالات المئة الأكثر مطالعة في ويكيبيديا العربية{:else}المقالات المئة الأكثر مطالعة في ويكيبيديا العربية في {formatted_date}{/is_index}</title>
     <meta name="description" content="قائمة مقالات ويكيبيديا العربية الأكثر مطالعة تُحدَّث يوميا.">
     <link rel="canonical" href="{canonical_url}">
@@ -33,7 +40,7 @@
                 <li><a href="#about">عن الخدمة</a></li>
                 <li><a href="{dir_depth}about.html" id="other-langs">بلغات أخرى</a></li>
                 <li><a href="{dir_depth}feeds/{lang}{project_lower}.rss">التلقيمة</a></li>
-                <li><a href="https://blog.hatnote.com/">المدونة</a></li>
+                <li><a href="https://blog.hatnote.com/" target="_blank" rel="noopener">المدونة</a></li>
             </ul>
         </div>
     </div>

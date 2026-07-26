@@ -91,9 +91,46 @@
     });
   }
 
+  var A2HS_KEY = 'a2hs-dismissed';
+
+  function initAddToHome() {
+    var ua = navigator.userAgent;
+    var isIOS = /iP(hone|od|ad)/.test(navigator.platform) ||
+      (navigator.maxTouchPoints > 1 && /Mac/.test(ua) && 'ontouchend' in document);
+    if (!isIOS) { return; }
+    if (navigator.standalone || window.matchMedia('(display-mode: standalone)').matches) { return; }
+    if ((document.documentElement.lang || 'en').slice(0, 2) !== 'en') { return; }
+    try {
+      if (window.localStorage.getItem(A2HS_KEY) === '1') { return; }
+    } catch (e) { /* private browsing: show the hint, just don't persist */ }
+
+    var bar = document.createElement('div');
+    bar.className = 'a2hs';
+
+    var msg = document.createElement('p');
+    msg.innerHTML = 'Add <b>Top 100</b> to your Home Screen: in <b>Safari</b>, ' +
+      'tap Share then \u201CAdd to Home Screen.\u201D ' +
+      '(Brave and Firefox for iOS can\u2019t do this.)';
+
+    var close = document.createElement('button');
+    close.type = 'button';
+    close.className = 'a2hs-close';
+    close.setAttribute('aria-label', 'Dismiss');
+    close.textContent = 'Got it';
+    close.addEventListener('click', function () {
+      bar.parentNode.removeChild(bar);
+      try { window.localStorage.setItem(A2HS_KEY, '1'); } catch (e) { /* ignore */ }
+    });
+
+    bar.appendChild(msg);
+    bar.appendChild(close);
+    document.body.appendChild(bar);
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     initSparklines();
     initCoverFallback();
     initKeyNav();
+    initAddToHome();
   });
 })();
