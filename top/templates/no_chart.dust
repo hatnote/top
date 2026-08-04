@@ -97,6 +97,7 @@
 <p>Denne siden er gjort mulig gjennom <a href="https://wikimedia.org/api/rest_v1/?doc#!/Pageviews_data/get_metrics_\ pageviews_top_project_access_year_month_day">Wikipedias nye sidevisnings-API</a>, med fine bilder og sammenfatninger fra <a href="https://www.mediawiki.org/wiki/API:Query">MediaWiki-APIet</a>. Du kan også lese mer om koden og dokumentasjonen <a href="https://github.com/hatnote/top">på github</a>.</p>
 <p>Vil du ha en liste over de mest besøkte artiklene på en annen språkversjon av Wikipedia? Det vil gjerne vi også! <a href="https://github.com/hatnote/top/\ issues">send en forespørsel</a> og fortell oss om du kan bidra til oversetting.</p>
 <p><a href="https://twitter.com/hatnotable">@hatnotable</a></p>
+            {?data_from_iso}<p class="data-meta">Data hentet <time dir="ltr" datetime="{data_from_iso}">{data_from_display}</time>{?next_drop} &middot; <span id="next-drop" data-min="{next_drop.min_iso}" data-max="{next_drop.max_iso}" data-tmpl-range="neste dataoppdatering ventes om [lo]–[hi] timer" data-tmpl-soon="neste dataoppdatering ventes når som helst"></span>{/next_drop}</p>{/data_from_iso}
             <p><a href="{dir_depth}feeds/{lang}{project_lower}.rss"><img src="{dir_depth}img/feed.png"></a> <a href="#top" class="up">&uarr; Til toppen av siden</a></p>
         </div>
     </div>

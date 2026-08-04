@@ -258,11 +258,47 @@
     });
   }
 
+  function initNextDrop() {
+    var el = document.getElementById('next-drop');
+    if (!el) { return; }
+    var min = Date.parse(el.getAttribute('data-min'));
+    var max = Date.parse(el.getAttribute('data-max'));
+    if (isNaN(min) || isNaN(max)) { return; }
+    var lang = document.documentElement.lang || 'en';
+
+    function render() {
+      var now = Date.now();
+      var text;
+      if (now >= min) {
+        // window open, or drop overdue (incl. stale PWA page): either way, imminent
+        text = el.getAttribute('data-tmpl-soon');
+      } else {
+        var lo = Math.floor((min - now) / 3600000);
+        var hi = Math.ceil((max - now) / 3600000);
+        if (lo < 1) { lo = 1; }
+        if (hi <= lo) { hi = lo + 1; }
+        text = el.getAttribute('data-tmpl-range')
+          .replace('[lo]', lo.toLocaleString(lang))
+          .replace('[hi]', hi.toLocaleString(lang));
+      }
+      el.textContent = text;
+    }
+
+    render();
+    setInterval(render, 60000);
+    // iOS PWA: pages resume frozen from background; recompute immediately
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden) { render(); }
+    });
+    window.addEventListener('pageshow', render);
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     initSparklines();
     initCoverFallback();
     initKeyNav();
     initAddToHome();
+    initNextDrop();
   });
 
   window.addEventListener('load', initServiceWorker);

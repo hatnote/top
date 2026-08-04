@@ -117,3 +117,11 @@ rss_description: >-
     ({view_trend|s}{view_delta} views since yesterday){/streak_min}.
 
 rss_read_more: Read more...
+
+#----------------------
+# Data freshness footer
+#------------------------------------------------------------------------------
+
+data_from: 'Data from'
+next_drop_range: 'next data drop expected in [lo]–[hi] hours'
+next_drop_soon: 'next data drop expected any time now'

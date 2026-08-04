@@ -114,3 +114,11 @@ rss_description: >-
     toplistában, ({view_trend|s}{view_delta} megtekintéssel tegnap óta){/streak_min}.
 
 rss_read_more: Olvass tovább...
+
+#----------------------
+# Data freshness footer
+#------------------------------------------------------------------------------
+
+data_from: 'Adatok lekérve:'
+next_drop_range: 'a következő adatfrissítés [lo]–[hi] órán belül várható'
+next_drop_soon: 'a következő adatfrissítés bármelyik pillanatban várható'

@@ -87,6 +87,7 @@
             <h2>About</h2>
             <a name="about"></a>
             {about|s}
+            {?data_from_iso}<p class="data-meta">Data from <time dir="ltr" datetime="{data_from_iso}">{data_from_display}</time>{?next_drop} &middot; <span id="next-drop" data-min="{next_drop.min_iso}" data-max="{next_drop.max_iso}" data-tmpl-range="next data drop expected in [lo]&ndash;[hi] hours" data-tmpl-soon="next data drop expected any time now"></span>{/next_drop}</p>{/data_from_iso}
             <p><a href="{dir_depth}feeds/{lang}{project_lower}.rss"><img src="{dir_depth}img/feed.png"></a> <a href="#top" class="up">&uarr; Back to top</a></p>
         </div>
     </div>

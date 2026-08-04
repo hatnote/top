@@ -148,6 +148,29 @@ def load_data(query_date, lang, project):
         data = load(data_file)
     return data
 
+def get_fetched_dt(query_date, lang, project):
+    "Return the data file's meta.fetched as a datetime (naive UTC), or None."
+    try:
+        data = load_data(query_date, lang, project)
+        return datetime.fromisoformat(data['meta']['fetched'])
+    except (IOError, OSError, KeyError, ValueError, TypeError):
+        return None
+
+
+def calc_next_drop_window(query_date, lang, project):
+    """Expected window for the next data drop: the day after the most recent
+    fetch, between the min and max fetch times-of-day observed over the last
+    3 days of data. Returns (min_dt, max_dt) naive UTC, or None."""
+    fetched_dts = [dt for dt in (get_fetched_dt(query_date - timedelta(days=i), lang, project)
+                                 for i in range(3)) if dt is not None]
+    if not fetched_dts:
+        return None
+    base_day = max(fetched_dts).date() + timedelta(days=1)
+    tods = [timedelta(hours=dt.hour, minutes=dt.minute, seconds=dt.second)
+            for dt in fetched_dts]
+    day_start = datetime(base_day.year, base_day.month, base_day.day)
+    return (day_start + min(tods), day_start + max(tods))
+
 
 def make_jsonld(data):
     items = [{'@type': 'ListItem',
@@ -191,6 +214,22 @@ def save_chart(query_date, lang, project):
     data['project_lower'] = project
     data['lang'] = lang
     data.setdefault('meta', {})['generated'] = datetime.utcnow().isoformat()
+    fetched = data.get('meta', {}).get('fetched')
+    if fetched:
+        try:
+            fetched_dt = datetime.fromisoformat(fetched)
+        except (ValueError, TypeError):
+            fetched_dt = None
+        if fetched_dt:
+            data['data_from_iso'] = fetched_dt.strftime('%Y-%m-%dT%H:%M:%SZ')
+            data['data_from_display'] = fetched_dt.strftime('%Y-%m-%dT%H:%MZ')
+    if not data['next'] and data.get('data_from_iso'):
+        window = calc_next_drop_window(query_date, lang, project)
+        if window:
+            data['next_drop'] = {
+                'min_iso': window[0].strftime('%Y-%m-%dT%H:%M:%SZ'),
+                'max_iso': window[1].strftime('%Y-%m-%dT%H:%M:%SZ'),
+            }
     data['canonical_url'] = DATE_PERMALINK_TMPL.format(
         lang=lang, project=project, year=query_date.year,
         month=query_date.month, day=query_date.day)

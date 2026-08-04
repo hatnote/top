@@ -115,3 +115,11 @@ rss_description: >-
     ({view_trend|s}{view_delta} lukukertaa eilisestä){/streak_min}.
 
 rss_read_more: Lue lisää...
+
+#----------------------
+# Data freshness footer
+#------------------------------------------------------------------------------
+
+data_from: 'Tiedot haettu'
+next_drop_range: 'seuraava datapäivitys odotettavissa [lo]–[hi] tunnin kuluessa'
+next_drop_soon: 'seuraava datapäivitys odotettavissa hetkenä minä hyvänsä'

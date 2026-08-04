@@ -7,7 +7,7 @@
  *
  * Bump VERSION to evict every old cache on the next deploy.
  */
-var VERSION = 'top-v1';
+var VERSION = 'top-v2';
 var SHELL = VERSION + '-shell';
 var RUNTIME = VERSION + '-runtime';
 var OFFLINE_URL = '/offline.html';

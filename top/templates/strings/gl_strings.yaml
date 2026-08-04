@@ -100,3 +100,11 @@ rss_description: >-
     visitas{?streak_min}, continuando a súa xeira de {streak_len} días na gráfica
     ({view_trend|s}{view_delta} visitas dende onte){/streak_min}.
 rss_read_more: Ler mais...
+
+#----------------------
+# Data freshness footer
+#------------------------------------------------------------------------------
+
+data_from: 'Datos de'
+next_drop_range: 'próxima actualización de datos prevista en [lo]–[hi] horas'
+next_drop_soon: 'próxima actualización de datos prevista en calquera momento'

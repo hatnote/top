@@ -112,3 +112,11 @@ rss_description: >-
     ({view_trend|s}{view_delta} views since yesterday){/streak_min}.
 
 rss_read_more: Read more...
+
+#----------------------
+# Data freshness footer
+#------------------------------------------------------------------------------
+
+data_from: 'ତଥ୍ୟ ଆହରଣ ସମୟ:'
+next_drop_range: 'ପରବର୍ତ୍ତୀ ତଥ୍ୟ ଅଦ୍ୟତନ [lo]–[hi] ଘଣ୍ଟା ମଧ୍ୟରେ ଆଶା କରାଯାଉଛି'
+next_drop_soon: 'ପରବର୍ତ୍ତୀ ତଥ୍ୟ ଅଦ୍ୟତନ ଯେକୌଣସି ସମୟରେ ଆସିପାରେ'

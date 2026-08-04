@@ -114,3 +114,11 @@ rss_description: >-
     ({view_trend|s}{view_delta} visualizações desde ontem){/streak_min}.
 
 rss_read_more: Leia mais...
+
+#----------------------
+# Data freshness footer
+#------------------------------------------------------------------------------
+
+data_from: 'Dados de'
+next_drop_range: 'próxima atualização de dados prevista em [lo]–[hi] horas'
+next_drop_soon: 'próxima atualização de dados prevista a qualquer momento'

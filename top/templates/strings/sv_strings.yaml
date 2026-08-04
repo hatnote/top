@@ -109,3 +109,11 @@ rss_description: >-
     ({view_trend|s}{view_delta} visningar sedan igår){/streak_min}.
 
 rss_read_more: Läs mer...
+
+#----------------------
+# Data freshness footer
+#------------------------------------------------------------------------------
+
+data_from: 'Data hämtad'
+next_drop_range: 'nästa datauppdatering väntas om [lo]–[hi] timmar'
+next_drop_soon: 'nästa datauppdatering väntas när som helst'
