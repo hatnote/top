@@ -88,6 +88,11 @@
             </div>
         </div>
     </div>
+    {?data_from_iso}<div class="data-meta-area">
+        <div class="container">
+            <p class="data-meta">This data from <time dir="ltr" datetime="{data_from_iso}">{data_from_display}</time>.{?next_drop} <span id="next-drop" data-min="{next_drop.min_iso}" data-max="{next_drop.max_iso}" data-tmpl-range="Next data drop expected in [lo]–[hi] hours." data-tmpl-soon="Next data drop expected any time now."></span>{/next_drop}</p>
+        </div>
+    </div>{/data_from_iso}
 
     <div class="footer-area">
         <div class="container footer">
@@ -98,7 +103,6 @@
 <p>This page was made possible by <a href="https://wikimedia.org/api/rest_v1/?doc#!/Pageviews_data/get_metrics_\ pageviews_top_project_access_year_month_day">Wikipedia's new page view API</a>, with some nice images and summaries from the <a href="https://www.mediawiki.org/wiki/API:Query">MediaWiki API</a>. You can find more code and documentation <a href="https://github.com/hatnote/top">available on github</a>.</p>
 <p>Want to see a list of the most visited articles in another language of Wikipedia? So do we! Please <a href="https://github.com/hatnote/top/issues">send a request</a> and let us know if you can help translate the templates.</p>
 <p><a href="https://twitter.com/hatnotable">@hatnotable</a></p>
-            {?data_from_iso}<p class="data-meta">Data from <time dir="ltr" datetime="{data_from_iso}">{data_from_display}</time>{?next_drop} &middot; <span id="next-drop" data-min="{next_drop.min_iso}" data-max="{next_drop.max_iso}" data-tmpl-range="next data drop expected in [lo]–[hi] hours" data-tmpl-soon="next data drop expected any time now"></span>{/next_drop}</p>{/data_from_iso}
             <p><a href="{dir_depth}feeds/{lang}{project_lower}.rss"><img src="{dir_depth}img/feed.png"></a> <a href="#top" class="up">&uarr; Back to top</a></p>
         </div>
     </div>

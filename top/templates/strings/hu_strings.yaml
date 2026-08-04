@@ -119,6 +119,6 @@ rss_read_more: Olvass tovább...
 # Data freshness footer
 #------------------------------------------------------------------------------
 
-data_from: 'Adatok lekérve:'
-next_drop_range: 'a következő adatfrissítés [lo]–[hi] órán belül várható'
-next_drop_soon: 'a következő adatfrissítés bármelyik pillanatban várható'
+data_from_line: 'Az adatok lekérve: <time dir="ltr" datetime="{data_from_iso}">{data_from_display}</time>.'
+next_drop_range: 'A következő adatfrissítés [lo]–[hi] órán belül várható.'
+next_drop_soon: 'A következő adatfrissítés bármelyik pillanatban várható.'

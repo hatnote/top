@@ -117,6 +117,6 @@ rss_read_more: Read more...
 # Data freshness footer
 #------------------------------------------------------------------------------
 
-data_from: 'ତଥ୍ୟ ଆହରଣ ସମୟ:'
-next_drop_range: 'ପରବର୍ତ୍ତୀ ତଥ୍ୟ ଅଦ୍ୟତନ [lo]–[hi] ଘଣ୍ଟା ମଧ୍ୟରେ ଆଶା କରାଯାଉଛି'
-next_drop_soon: 'ପରବର୍ତ୍ତୀ ତଥ୍ୟ ଅଦ୍ୟତନ ଯେକୌଣସି ସମୟରେ ଆସିପାରେ'
+data_from_line: 'ତଥ୍ୟ ଆହରଣ ସମୟ: <time dir="ltr" datetime="{data_from_iso}">{data_from_display}</time>।'
+next_drop_range: 'ପରବର୍ତ୍ତୀ ତଥ୍ୟ ଅଦ୍ୟତନ [lo]–[hi] ଘଣ୍ଟା ମଧ୍ୟରେ ଆଶା କରାଯାଉଛି।'
+next_drop_soon: 'ପରବର୍ତ୍ତୀ ତଥ୍ୟ ଅଦ୍ୟତନ ଯେକୌଣସି ସମୟରେ ଆସିପାରେ।'

@@ -88,6 +88,11 @@
             </div>
         </div>
     </div>
+    {?data_from_iso}<div class="data-meta-area">
+        <div class="container">
+            <p class="data-meta">Dessa data hämtades <time dir="ltr" datetime="{data_from_iso}">{data_from_display}</time>.{?next_drop} <span id="next-drop" data-min="{next_drop.min_iso}" data-max="{next_drop.max_iso}" data-tmpl-range="Nästa datauppdatering väntas om [lo]–[hi] timmar." data-tmpl-soon="Nästa datauppdatering väntas när som helst."></span>{/next_drop}</p>
+        </div>
+    </div>{/data_from_iso}
 
     <div class="footer-area">
         <div class="container footer">
@@ -97,7 +102,6 @@
 <p>Denna sida har gjorts möjlig genom <a href="https://wikimedia.org/api/rest_v1/?doc#!/Pageviews_data/get_metrics_\ pageviews_top_project_access_year_month_day">Wikipedias nya sidvisnings-API</a>, med fina bilder och sammanfattningar från <a href="https://www.mediawiki.org/wiki/API:Query">MediaWiki-API:et</a>. Du kan läsa mer om kod och dokumentation <a href="https://github.com/hatnote/top">på github</a>.</p>
 <p>Vill du ha en lista på de mest besökta artiklarna på en annan språkversion av Wikipedia? Det vill vi med! <a href="https://github.com/hatnote/top/\ issues">Skicka en begäran</a> och berätta för oss om du kan hjälpa till att översätta mallarna.</p>
 <p><a href="https://twitter.com/hatnotable">@hatnotable</a></p>
-            {?data_from_iso}<p class="data-meta">Data hämtad <time dir="ltr" datetime="{data_from_iso}">{data_from_display}</time>{?next_drop} &middot; <span id="next-drop" data-min="{next_drop.min_iso}" data-max="{next_drop.max_iso}" data-tmpl-range="nästa datauppdatering väntas om [lo]–[hi] timmar" data-tmpl-soon="nästa datauppdatering väntas när som helst"></span>{/next_drop}</p>{/data_from_iso}
             <p><a href="{dir_depth}feeds/{lang}{project_lower}.rss"><img src="{dir_depth}img/feed.png"></a> <a href="#top" class="up">&uarr; Tillbaks till toppen</a></p>
         </div>
     </div>

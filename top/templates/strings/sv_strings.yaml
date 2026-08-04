@@ -114,6 +114,6 @@ rss_read_more: Läs mer...
 # Data freshness footer
 #------------------------------------------------------------------------------
 
-data_from: 'Data hämtad'
-next_drop_range: 'nästa datauppdatering väntas om [lo]–[hi] timmar'
-next_drop_soon: 'nästa datauppdatering väntas när som helst'
+data_from_line: 'Dessa data hämtades <time dir="ltr" datetime="{data_from_iso}">{data_from_display}</time>.'
+next_drop_range: 'Nästa datauppdatering väntas om [lo]–[hi] timmar.'
+next_drop_soon: 'Nästa datauppdatering väntas när som helst.'

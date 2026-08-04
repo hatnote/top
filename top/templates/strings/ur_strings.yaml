@@ -123,6 +123,6 @@ rss_read_more: مزید جانئیے...
 # Data freshness footer
 #------------------------------------------------------------------------------
 
-data_from: 'ڈیٹا بوقت'
-next_drop_range: 'اگلی ڈیٹا اپڈیٹ [lo]–[hi] گھنٹوں میں متوقع ہے'
-next_drop_soon: 'اگلی ڈیٹا اپڈیٹ کسی بھی وقت متوقع ہے'
+data_from_line: 'یہ ڈیٹا بوقت <time dir="ltr" datetime="{data_from_iso}">{data_from_display}</time> کا ہے۔'
+next_drop_range: 'اگلی ڈیٹا اپڈیٹ [lo]–[hi] گھنٹوں میں متوقع ہے۔'
+next_drop_soon: 'اگلی ڈیٹا اپڈیٹ کسی بھی وقت متوقع ہے۔'

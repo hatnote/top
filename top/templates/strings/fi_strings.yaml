@@ -120,6 +120,6 @@ rss_read_more: Lue lisää...
 # Data freshness footer
 #------------------------------------------------------------------------------
 
-data_from: 'Tiedot haettu'
-next_drop_range: 'seuraava datapäivitys odotettavissa [lo]–[hi] tunnin kuluessa'
-next_drop_soon: 'seuraava datapäivitys odotettavissa hetkenä minä hyvänsä'
+data_from_line: 'Nämä tiedot haettu <time dir="ltr" datetime="{data_from_iso}">{data_from_display}</time>.'
+next_drop_range: 'Seuraava datapäivitys odotettavissa [lo]–[hi] tunnin kuluessa.'
+next_drop_soon: 'Seuraava datapäivitys odotettavissa hetkenä minä hyvänsä.'

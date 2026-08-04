@@ -114,6 +114,6 @@ rss_read_more: Les mer...
 # Data freshness footer
 #------------------------------------------------------------------------------
 
-data_from: 'Data hentet'
-next_drop_range: 'neste dataoppdatering ventes om [lo]–[hi] timer'
-next_drop_soon: 'neste dataoppdatering ventes når som helst'
+data_from_line: 'Disse dataene ble hentet <time dir="ltr" datetime="{data_from_iso}">{data_from_display}</time>.'
+next_drop_range: 'Neste dataoppdatering ventes om [lo]–[hi] timer.'
+next_drop_soon: 'Neste dataoppdatering ventes når som helst.'

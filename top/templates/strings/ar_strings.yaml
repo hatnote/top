@@ -104,6 +104,6 @@ rss_read_more: طالع المزيد…
 # Data freshness footer
 #------------------------------------------------------------------------------
 
-data_from: 'البيانات كما في'
-next_drop_range: 'الدفعة التالية من البيانات متوقعة خلال [lo]–[hi] ساعات'
-next_drop_soon: 'الدفعة التالية من البيانات متوقعة في أي لحظة'
+data_from_line: 'هذه البيانات كما في <time dir="ltr" datetime="{data_from_iso}">{data_from_display}</time>.'
+next_drop_range: 'الدفعة التالية من البيانات متوقعة خلال [lo]–[hi] ساعات.'
+next_drop_soon: 'الدفعة التالية من البيانات متوقعة في أي لحظة.'

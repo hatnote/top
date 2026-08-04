@@ -88,6 +88,11 @@
             </div>
         </div>
     </div>
+    {?data_from_iso}<div class="data-meta-area">
+        <div class="container">
+            <p class="data-meta">ਡਾਟਾ ਪ੍ਰਾਪਤੀ ਸਮਾਂ: <time dir="ltr" datetime="{data_from_iso}">{data_from_display}</time>।{?next_drop} <span id="next-drop" data-min="{next_drop.min_iso}" data-max="{next_drop.max_iso}" data-tmpl-range="ਅਗਲਾ ਡਾਟਾ ਅੱਪਡੇਟ [lo]–[hi] ਘੰਟਿਆਂ ਵਿੱਚ ਆਉਣ ਦੀ ਉਮੀਦ ਹੈ।" data-tmpl-soon="ਅਗਲਾ ਡਾਟਾ ਅੱਪਡੇਟ ਕਿਸੇ ਵੀ ਸਮੇਂ ਆ ਸਕਦਾ ਹੈ।"></span>{/next_drop}</p>
+        </div>
+    </div>{/data_from_iso}
 
     <div class="footer-area">
         <div class="container footer">
@@ -98,7 +103,6 @@
 <p>ਇਹ ਸਫ਼ਾ ਬਣਾਇਆ ਗਿਆ <a href="https://wikimedia.org/api/rest_v1/?doc#!/Pageviews_data/get_metrics_\ pageviews_top_project_access_year_month_day"> ਵਿਕੀਪੀਡੀਆ ਦੀ ਨਵੀਂ ਪੇਜ ਵੀਊ ਏ.ਪੀ.ਆਈ.</a> ਦੇ ਨਾਲ ਅਤੇ ਕੁਝ ਵਧੀਆ ਤਸਵੀਰਾਂ ਅਤੇ ਸਾਰ <a href="https://www.mediawiki.org/wiki/API:Query">ਮੀਡੀਆਵਿਕੀ  ਏ.ਪੀ.ਆਈ. ਵੱਲੋਂ।</a>. ਤੁਸੀਂ ਹੋਰ ਸਰੋਤ ਅਤੇ ਦਸਤਾਵੇ <a href="https://github.com/hatnote/top">ਗਿੱਟਹੱਬ</a> ਤੇ ਵੇਖ ਸਕਦੇ ਹੋ।</p>
 <p>ਕੀ ਤੁਸੀਂ ਇਹ ਸੂਚੀ ਹੋਰ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਵੇਖਣੀ ਚਾਹੁੰਦੇ ਹੋ? ਅਸੀਂ ਵੀ ਇਹ ਹੀ ਚਾਹੁੰਦੇ ਹਾਂ! ਕਿਰਪਾ ਕਰਕੇ <a href="https://github.com/hatnote/top/issues">ਤੇ ਬੇਨਤੀ ਭੇਜੋ</a>  ਅਤੇ ਸਾਨੂੰ ਦੱਸੋ ਜੇ ਤੁਸੀਂ ਫ਼ਰਮੇ ਦਾ ਅਨੁਵਾਦ ਕਰ ਸਕਦੇ ਹੋ।</p>
 <p><a href="https://twitter.com/hatnotable">@hatnotable</a></p>
-            {?data_from_iso}<p class="data-meta">ਡਾਟਾ ਪ੍ਰਾਪਤੀ ਸਮਾਂ: <time dir="ltr" datetime="{data_from_iso}">{data_from_display}</time>{?next_drop} &middot; <span id="next-drop" data-min="{next_drop.min_iso}" data-max="{next_drop.max_iso}" data-tmpl-range="ਅਗਲਾ ਡਾਟਾ ਅੱਪਡੇਟ [lo]–[hi] ਘੰਟਿਆਂ ਵਿੱਚ ਆਉਣ ਦੀ ਉਮੀਦ ਹੈ" data-tmpl-soon="ਅਗਲਾ ਡਾਟਾ ਅੱਪਡੇਟ ਕਿਸੇ ਵੀ ਸਮੇਂ ਆ ਸਕਦਾ ਹੈ"></span>{/next_drop}</p>{/data_from_iso}
             <p><a href="{dir_depth}feeds/{lang}{project_lower}.rss"><img src="{dir_depth}img/feed.png"></a> <a href="#top" class="up">&uarr; ਵਾਪਸ ਉੱਤੇ ਜਾਓ</a></p>
         </div>
     </div>
