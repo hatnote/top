@@ -258,6 +258,33 @@
     });
   }
 
+  // Warm the SW cache with today's dated permalink and yesterday's chart so
+  // both survive going offline. The SW caches every same-origin GET it sees;
+  // warming is just fetching the right URLs through it while online.
+  function initOfflineWarm() {
+    if (!('serviceWorker' in navigator)) { return; }
+    navigator.serviceWorker.ready.then(function () {
+      // first-ever visit: page isn't SW-controlled, fetches would bypass the
+      // SW and warm nothing; the next visit warms.
+      if (!navigator.serviceWorker.controller) { return; }
+      if (navigator.onLine === false) { return; }
+      var idle = 'requestIdleCallback' in window ?
+        window.requestIdleCallback :
+        function (f) { setTimeout(f, 2000); };
+      idle(function () {
+        var urls = [];
+        var canonical = document.querySelector('link[rel=canonical]');
+        if (canonical && canonical.href) { urls.push(canonical.href); }
+        var prev = document.querySelector('a.issue_nav.left');
+        if (prev && prev.href) { urls.push(prev.href); }
+        urls.forEach(function (url) {
+          if (url === location.href) { return; }
+          fetch(url, {credentials: 'same-origin'}).catch(function () {});
+        });
+      });
+    });
+  }
+
   function initNextDrop() {
     var el = document.getElementById('next-drop');
     if (!el) { return; }
@@ -301,5 +328,8 @@
     initNextDrop();
   });
 
-  window.addEventListener('load', initServiceWorker);
+  window.addEventListener('load', function () {
+    initServiceWorker();
+    initOfflineWarm();
+  });
 })();

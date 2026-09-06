@@ -11,6 +11,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Top 100">
+    {>splash_links.dust/}
     <title>{^is_index}English Wikipedia Top 100{:else}English Wikipedia Top 100 on {formatted_date}{/is_index}</title>
     <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
     <link href="{dir_depth}css/chart.css" rel="stylesheet" type="text/css">

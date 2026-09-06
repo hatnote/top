@@ -1,0 +1,31 @@
+{
+  "id": "/pa/",
+  "name": "ਪੰਜਾਬੀ ਵਿਕੀਪੀਡੀਆ ਸਿਖਰਲੇ ੧੦੦",
+  "short_name": "ਸਿਖਰਲੇ ੧੦੦",
+  "description": "The most-visited Wikipedia articles, updated daily.",
+  "lang": "pa",
+  "dir": "ltr",
+  "start_url": "/pa/?src=homescreen",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#dfe0e2",
+  "theme_color": "#0d0f05",
+  "icons": [
+    {
+      "src": "/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

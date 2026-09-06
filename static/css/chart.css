@@ -244,6 +244,7 @@ a.learn:hover,
 
 a.issue_nav {
   color: #fff;
+  touch-action: manipulation;
 }
 
 a.issue_nav:hover {
@@ -462,6 +463,7 @@ a.yesterday:hover {
   border-radius: 7px;
   padding: 0.55em 1em;
   min-height: 44px;
+  touch-action: manipulation;
 }
 .a2hs-close {
   flex: none;
@@ -476,5 +478,6 @@ a.yesterday:hover {
   min-width: 44px;
   min-height: 44px;
   padding: 0;
+  touch-action: manipulation;
   margin: -0.3em -0.45em 0 0;
 }
