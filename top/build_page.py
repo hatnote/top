@@ -63,6 +63,14 @@ def choose_template(template, lang):
     return ret
 
 
+def manifest_file(lang):
+    # per-lang manifests make installs open the language they came from;
+    # the root manifest stays the manifest for the English/root pages
+    if lang == DEFAULT_LANG:
+        return 'manifest.json'
+    return 'manifest-%s.json' % lang
+
+
 def save_rendered(outfile_name, template_name, context):
     global ASHES_ENV  # retain laziness
     if not ASHES_ENV:
@@ -213,6 +221,7 @@ def save_chart(query_date, lang, project):
     data['is_index'] = False
     data['project_lower'] = project
     data['lang'] = lang
+    data['manifest_file'] = manifest_file(lang)
     data.setdefault('meta', {})['generated'] = datetime.utcnow().isoformat()
     fetched = data.get('meta', {}).get('fetched')
     if fetched:
@@ -413,6 +422,7 @@ def update_month(query_date, lang, project):
     weekdays = get_day_names(locale=lang)
     data = {'dir_depth': '../' * 4,
             'lang': lang,
+            'manifest_file': manifest_file(lang),
             'month_name': month_name[month],
             'project': project.capitalize(),
             'full_lang': LOCAL_LANG_MAP[lang],
@@ -444,6 +454,7 @@ def update_year(year, lang, project):
     full_lang = LOCAL_LANG_MAP[lang]
     year_data = {'months': [],
                  'lang': lang,
+                 'manifest_file': manifest_file(lang),
                  'year': year,
                  'local_year': int_to_local_str(year, locale=lang),
                  'project': project.capitalize(),
@@ -464,6 +475,7 @@ def update_project(lang, project):
     full_lang = LOCAL_LANG_MAP[lang]
     data = {'years': [],
             'lang': lang,
+            'manifest_file': manifest_file(lang),
             'project': project.capitalize(),
             'full_lang': full_lang,
             'dir_depth': '../' * 2}
@@ -485,6 +497,7 @@ def update_lang(lang, project):
     full_lang = LOCAL_LANG_MAP[lang]
     lang_path = LANG_PATH.format(lang=lang)
     lang_data = {'lang': lang,
+                 'manifest_file': manifest_file(lang),
                  'projects': [p.capitalize()
                               for p
                               in next(os.walk(lang_path))[1]],
