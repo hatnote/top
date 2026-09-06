@@ -2,14 +2,14 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#0d0f05">
     <link rel="manifest" href="{dir_depth}{manifest_file}">
     <link rel="apple-touch-icon" href="{dir_depth}img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="{dir_depth}img/icon-192.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Top 100">
     <title>{?is_index}ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆର ଲୋକପ୍ରିୟ ୧୦୦ ପ୍ରସଙ୍ଗ{:else}ଓଡ଼ିଆ ଉଇକିପିଡ଼ିଆର ଲୋକପ୍ରିୟ ୧୦୦ ପ୍ରସଙ୍ଗ {formatted_date}{/is_index}</title>
     <link href="{dir_depth}css/fonts.css" rel="stylesheet" type="text/css">
