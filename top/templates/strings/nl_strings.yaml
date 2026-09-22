@@ -1,0 +1,117 @@
+#------------------
+# Wikipedia Top 100
+#    If you want to translate the charts on top.hatnote.com, start with a copy
+#    of this file and leave us a note at:
+#    https://github.com/hatnote/top/issues
+#------------------------------------------------------------------------------
+
+#-----------
+# Page title
+#------------------------------------------------------------------------------
+
+title: Top 100
+full_title: >-
+  Nederlandstalige Wikipedia Top 100 op {formatted_date}
+
+index_title: >-
+  Nederlandstalige Wikipedia Top 100
+
+rss_title: >-
+  De 100 meest bezochte artikelen op de Nederlandstalige Wikipedia
+
+wikipedia: Wikipedia
+language_project: Nederlandstalige Wikipedia
+tagline: >-
+    De meest bezochte artikelen op de Nederlandstalige Wikipedia, dagelijks bijgewerkt. <a
+    href="#about" class="learn">Meer informatie</a>...
+
+alt_tagline: >-
+    De meest bezochte artikelen op de Nederlandstalige Wikipedia, dagelijks bijgewerkt.
+
+#------
+# Links
+#------------------------------------------------------------------------------
+
+about_link: Over
+more_langs_link: Meer talen
+feed_link: Feed
+blog_link: Blog
+top: Terug naar boven
+
+#---------
+# Articles
+#
+#   Each article has statistics at the bottom like this:
+#   934.8K views (↑300.5K from yesterday)
+#------------------------------------------------------------------------------
+
+views: weergaven
+from_yesterday: ten opzichte van gisteren
+streak: dagen op rij
+
+#------------
+# About section
+#------------------------------------------------------------------------------
+
+about_header: Over
+about_section: >-
+     <p>Lees het <a href="http://top.hatnote.com/en/wikipedia">archief</a>.</p>
+
+     <p>Een dagelijkse lijst van de meest bezochte Wikipedia-artikelen, samengesteld
+     door <a href="https://twitter.com/sklaporte">Stephen LaPorte</a>
+     en <a href="https://twitter.com/mhashemi">Mahmoud
+     Hashemi</a>. De lijst is ook beschikbaar in <a
+     href="http://top.hatnote.com/about.html">andere talen</a>. Als
+     u deze lijst interessant vindt, zult u ook genieten van <a
+     href="http://weekly.hatnote.com">The Weeklypedia</a>, een wekelijks
+     overzicht van de meest bewerkte Wikipedia-artikelen. Lees meer op de <a
+     href="#">Hatnote Blog</a>.</p>
+
+     <p>Deze pagina is mogelijk gemaakt door de <a
+     href="https://wikimedia.org/api/rest_v1/?doc#!/Pageviews_data/get_metrics_\
+     pageviews_top_project_access_year_month_day">nieuwe paginaweergave-API
+     van Wikipedia</a>, met mooie afbeeldingen en samenvattingen van de <a
+     href="https://www.mediawiki.org/wiki/API:Query">MediaWiki
+     API</a>. U vindt meer code en documentatie <a
+     href="https://github.com/hatnote/top">op
+     github</a>.</p>
+
+     <p>Wilt u een lijst zien van de meest bezochte artikelen in een andere
+     taal van Wikipedia? Wij ook! <a
+     href="https://github.com/hatnote/top/issues">Stuur een verzoek</a>
+     en laat het ons weten als u kunt helpen met het vertalen van de sjablonen.</p>
+
+     <p><a href="https://twitter.com/hatnotable">@hatnotable</a></p>
+
+#-------
+# Tweets
+#
+#   We can provide three possible tweets. They shouldn't be longer than 117
+#   characters (including the article title, so there is enough space to
+#   include a link.
+#------------------------------------------------------------------------------
+
+long_tweet: >-
+    Al {streak} dagen op rij was {title} het #{rank} meest
+    gelezen artikel op #{project} met {views} weergaven
+
+medium_tweet: "{title} is {views} keer bekeken op #{project}"
+short_tweet: "{title} was #{rank} op #{project}"
+
+#-------------
+# Archive page
+#------------------------------------------------------------------------------
+
+all_traffic_data: Alle verkeersgegevens
+
+#----
+# RSS
+#------------------------------------------------------------------------------
+
+rss_intro: De nieuwe cijfers van de Nederlandstalige Wikipedia zijn binnen!
+rss_description: >-
+    <a href="{permalink|s}">{title}</a> kwam binnen op #{rank}, met {views_short}
+    weergaven{?streak_min}, voor de {streak_len}e dag op rij in de lijst
+    ({view_trend|s}{view_delta} weergaven sinds gisteren){/streak_min}.
+
+rss_read_more: Lees meer...
